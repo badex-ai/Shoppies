@@ -1,0 +1,11 @@
+.movie {
+  width: 830px;
+  height: 110px;
+  margin: 16px;
+  background-color: #f2f2f2;
+}
+
+.movieInfo {
+  display: flex;
+  justify-content: space-between;
+}

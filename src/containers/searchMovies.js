@@ -1,26 +1,36 @@
-import React from 'react';
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import * as actions from '../components/store/actions/index'
 
-function searchMovies(props) {
+function SearchMovies(props) {
 
-  const onSearchHandler=()=>{
-    props.onSearchMovie("space")
+  const [title, setTitle] = useState({value:''});
+
+  const inputChangeHandler=(e)=>{
+    setTitle({value: e.target.value})
+    // console.log(title)
+
+  }
+
+  const onSearchHandler=(e)=>{
+    e.preventDefault()
+    // console.log(title.value);
+    props.onSearchMovie(title.value)
   }
   
 
     return (
         <div>
-          <form>
-          <input type="text" placeholder="enter title of movie"></input>
-          <button type="button" onClick={onSearchHandler}> search</button>
+          <form onSubmit={(e)=>onSearchHandler(e)}>
+          <input type="text" name="title" onChange={(e)=>{inputChangeHandler(e)}} value={title.value} placeholder="enter title of movie"></input>
+          <button type="submit" > search</button>
         </form>
         </div>
     )
 }
 
-searchMovies.propTypes = {
+SearchMovies.propTypes = {
 
 }
 
@@ -36,5 +46,5 @@ const mapDispatchToProps=(dispatch)=>{
   }
 }
 
-export default connect(mapStatetToProps,mapDispatchToProps)(searchMovies)
+export default connect(mapStatetToProps,mapDispatchToProps)(SearchMovies)
 

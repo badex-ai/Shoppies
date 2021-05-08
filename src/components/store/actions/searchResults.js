@@ -20,6 +20,12 @@ export const setMovies=(movies)=>{
         moviesResult: movies
     }
 }
+export const setMoreMovies=(movies)=>{
+    return{
+        type: actionTypes.SET_MORE_MOVIES,
+        moviesResult: movies
+    }
+}
 
 export const nominateMovie=(movie)=>{
     return{
@@ -28,7 +34,7 @@ export const nominateMovie=(movie)=>{
     }
 }
 
-export const searchMovie =(movieTitle)=>{
+export const searchMovie=(movieTitle)=>{
     return dispatch=>{
      
         axios.get(`http://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_ombd_API}&s=${movieTitle}`).then(
@@ -42,4 +48,22 @@ export const searchMovie =(movieTitle)=>{
     }
     
 }
+
+
+export const fetchMoreMovies=(movieTitle,page)=>{
+    return dispatch=>{
+     
+        axios.get(`http://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_ombd_API}&s=${movieTitle}&page=${page}`).then(
+            response=>{
+               
+                dispatch(setMoreMovies(response.data))
+            }
+        ).catch(error=>{ 
+          dispatch(searchMoviesFailed()) 
+        })
+    }
+    
+}
+
+
 
