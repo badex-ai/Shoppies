@@ -1,26 +1,29 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import classes from './searchResult.css'
 import * as actions from '../components/store/actions/index';
 
-export const searchResult = (props) => {
+export const SearchResult = (props) => {
+
+    const [nominated, setNominated] = useState(false);
 
     const onNominateMovie=()=>{
-       // console.log(props.movieInfo);
+       // ;
         if(props.nominationComplete){
             return
         }else{
             
             let nomList = props.nominationList
-            console.log(nomList)
+          
             if(nomList.length > 0 && !nomList.includes(props.movieInfo)){
-                console.log('ok it is greater')
-              console.log() 
                 
+              
+                setNominated(true)
                 props.onSetNominatedMovie(props.movieInfo)
             }
             if(nomList.length === 0 ){
+                setNominated(true)
                 props.onSetNominatedMovie(props.movieInfo)
             }
                 
@@ -32,11 +35,34 @@ export const searchResult = (props) => {
 
     }
 
+    let tag= nominated ?  <div>
+        <svg id="Tick_with_background" data-name="Tick with background" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+        <rect id="Rectangle_36" data-name="Rectangle 36" width="36" height="36" rx="18" fill="#004c3f"/>
+        <g id="Tick_Icon" data-name="Tick Icon" transform="translate(2 2)">
+          <rect id="Rectangle_42" data-name="Rectangle 42" width="32" height="32" fill="none"/>
+          <g id="Group_39" data-name="Group 39">
+            <path id="Path_2" data-name="Path 2" d="M9,17l4,4L23,11" fill="none" stroke="#fff" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
+          </g>
+        </g>
+          </svg>
+    </div>  : 
+  <div>
+      <svg id="Add_Icon" data-name="Add Icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+        <rect id="Rectangle_38" data-name="Rectangle 38" width="30" height="30" fill="none"/>
+        <g id="Group_22" data-name="Group 22" transform="translate(7.628 7.628)">
+            <path id="Path_1" data-name="Path 1" d="M20.744,12.143H14.6V6H12.143v6.143H6V14.6h6.143v6.143H14.6V14.6h6.143Z" transform="translate(-6 -6)" fill="#004c3f"/>
+        </g>
+        </svg>
+  </div>
+
     return (
         <div className={classes.movie} onClick={()=>{onNominateMovie()}}>
             <div className={classes.movieInfo}>
-                <div><p>{props.title}</p></div>
-                <div>tag</div>
+                <div className={classes.title}><p>{props.title}</p></div>
+                <div className={classes.year}><p>{props.movieInfo.Year}</p></div>
+                <div className={classes.tag}>
+                    {tag}
+                </div>
             
             </div>
             
@@ -46,7 +72,7 @@ export const searchResult = (props) => {
     )
 }
 
-searchResult.propTypes = {
+SearchResult.propTypes = {
     // props: PropTypes
 }
 
@@ -55,7 +81,8 @@ const mapStateToProps = (state) => ({
     nominatedMovie: state.searchResults.nominated,
     moviesResults: state.searchResults.moviesResults,
     nominationComplete: state.nominatedMovies.nominationComplete,
-    nominationList: state.nominatedMovies.nominatedMovies
+    nominationList: state.nominatedMovies.nominatedMovies,
+    
 })
 
 const mapDispatchToProps = (dispatch) => (
@@ -67,4 +94,4 @@ const mapDispatchToProps = (dispatch) => (
     
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(searchResult)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult)

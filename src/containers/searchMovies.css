@@ -1,0 +1,31 @@
+input {
+  width: 77.8rem;
+  height: 5.9rem;
+  background-color: rgba(255, 255, 255, 0.626);
+  border: 1px solid rgba(255, 255, 255, 0.626);
+  border-radius: 0 2px 2px 0;
+  font-size: 24px;
+}
+input:focus {
+  outline: none;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-size: 24px Arimo;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  font-size: normal normal normal 24px/28px Arimo;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  font-size: normal normal normal 24px/28px Arimo;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  font-size: normal normal normal 24px/28px Arimo;
+}
+:-ms-input-placeholder {
+  font-size: normal normal normal 24px/28px Arimo;
+}

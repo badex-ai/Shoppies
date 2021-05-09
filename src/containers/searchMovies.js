@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import classes from './searchMovies.css'
 import * as actions from '../components/store/actions/index'
 
 function SearchMovies(props) {
@@ -23,8 +24,8 @@ function SearchMovies(props) {
     return (
         <div>
           <form onSubmit={(e)=>onSearchHandler(e)}>
-          <input type="text" name="title" onChange={(e)=>{inputChangeHandler(e)}} value={title.value} placeholder="enter title of movie"></input>
-          <button type="submit" > search</button>
+          <input className={classes.input} type="text" name="title" onChange={(e)=>{inputChangeHandler(e)}} value={title.value} placeholder="enter title of movie"></input>
+          {/* <button type="submit" > search</button> */}
         </form>
         </div>
     )
