@@ -1,49 +1,51 @@
 .header {
   width: 192rem;
   height: 46.7rem;
-  background: url() transparent
-    linear-gradient(180deg, #000000 0%, #00000000 100%) 0% 0% no-repeat
-    padding-box;
-  opacity: 0.8;
+  /* background: transparent linear-gradient(180deg, #000000 0%, #00000000 100%) 0%
+    0% no-repeat padding-box; */
+
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: ;
+  background-size: contain;
+  background-image: url(./assets/Header\ Image.png);
+  /* justify-content: ; */
 }
 a {
   margin-left: 1rem;
   text-decoration: none;
   padding: 1.5rem 3rem;
-  font-size: 1.6rem;
+  font-size: 2rem;
   color: white;
 }
 .active {
   background-color: #004c3f;
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 .topNav {
   display: flex;
   justify-content: space-between;
   height: 5.5rem;
   width: 162.8rem;
+  margin: 1.5rem;
 }
 .logo {
-  width: 19rem;
+  width: 20rem;
   height: 4.7rem;
-  background-color: blue;
+  /* background-color: blue; */
   display: flex;
   color: white;
-  font: normal normal bold 20px Arimo;
+  font: normal normal bold 2rem Arimo;
   align-items: center;
   justify-content: space-between;
 }
 .jumbo {
-  margin: 75px 0;
+  margin: 7.5rem 0;
 }
 .bigCaption {
-  width: 58rem;
+  width: 62rem;
   height: 5.8rem;
-  font: normal normal bold 52px/60px Arimo;
+  font: normal normal bold 5.1rem/5.1rem worksans;
 }
 .smallCaption {
   width: 46rem;
@@ -51,15 +53,15 @@ a {
   text-align: left;
   letter-spacing: 0px;
   opacity: 1;
-  color: black;
-  font: normal normal normal 24px/36px Arimo;
+  color: white;
+  font: normal normal normal 1.9rem/2.8rem Arimo;
 }
 
 .searchBar {
   width: 83.7rem;
   height: 6.2rem;
   background: #ffffff 0% 0% no-repeat padding-box;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   opacity: 0.8;
   display: flex;
 }
@@ -80,14 +82,13 @@ a {
   text-align: left;
   width: 84rem;
   height: 24rem;
-  color: black;
-  background-color: grey;
+  color: white;
   margin-left: -16rem;
 }
 .links {
   width: 35rem;
   height: 5.5rem;
-  background-color: yellow;
+  /* background-color: yellow; */
   display: flex;
   align-items: center;
 }
@@ -103,6 +104,7 @@ a {
   width: 55.2rem;
   height: 87.1rem;
   background-color: #fbf7ed;
+  padding: 1rem;
 }
 .searchResults {
   overflow: auto;
@@ -110,12 +112,14 @@ a {
   height: 88rem;
 }
 .resultDescription {
-  font: normal normal bold 28px/32px Arimo;
+  margin: 2rem 0;
+  font: normal normal bold 2rem/2.4rem Montserrat;
 }
 .sectionDescription {
   display: flex;
   /* height: 10px; */
   width: 55.2rem;
+  margin: 2rem 0;
   justify-content: space-between;
 
   position: relative;
@@ -124,20 +128,21 @@ a {
   color: #2f2f2f;
 }
 .green {
-  font: normal normal bold 28px/32px Arimo;
+  font: normal normal bold 2rem/2.4rem Arimo;
   letter-spacing: 0px;
   color: #004c3f;
 }
 .share {
-  font: normal normal normal 24px/28px Arimo;
+  font: normal normal normal 1.8rem/2.2rem Arimo;
   letter-spacing: 0px;
   color: #1a1a1a;
+  cursor: pointer;
 }
 
 .initial {
   margin-top: 9.5rem;
-  width: 855px;
-  height: 920px;
+  width: 85.5rem;
+  height: 92rem;
   display: flex;
   align-items: center;
   /* justify-content: center; */
@@ -148,7 +153,7 @@ a {
   fill: #e6e6e6;
 }
 .initialText {
-  font: normal normal normal 24px/36px Arimo;
+  font: normal normal normal 2.4rem/3.6rem Arimo;
   color: #1a1a1a;
   width: 27rem;
   text-align: center;
@@ -159,17 +164,17 @@ a {
   height: 8rem;
   justify-content: space-evenly;
   align-items: center;
-  font: normal normal normal 24px/28px Arimo;
+  font: normal normal normal 2.8rem/2.8rem Arimo;
   color: #1a1a1a;
   z-index: 10;
 }
 .socials {
   position: absolute;
-  width: 24.6rem;
-  height: 16.4rem;
+  width: 20rem;
+  height: 14rem;
   background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #00000029;
-  border-radius: 5px;
+  box-shadow: 0px 3rem 0.6rem #00000029;
+  border-radius: 0.5rem;
   top: 3.1rem;
   right: 0;
   z-index: 5;
@@ -186,13 +191,9 @@ a {
   align-items: center;
 }
 
-.share {
-  font: normal normal normal 24px/28px Arimo;
-}
-
 .body {
   height: 80vh;
-  width: 1920px;
+  width: 192rem;
   display: flex;
   justify-content: center;
   /* background-color: black; */
@@ -202,21 +203,22 @@ a {
   /* background-color: #fafafa; */
 }
 .notifBar {
-  background-color: rgba(2, 98, 2, 0.387);
+  /* background-color: rgba(2, 98, 2, 0.387); */
   color: #004c3f;
   height: 10.4rem;
-  width: 1920px;
+  width: 192rem;
   position: relative;
 }
 .small {
   width: 3.2rem;
   height: 3.2rem;
-  margin-left: -2px;
+  margin-left: -0.2rem;
 }
 .movableNav {
   height: 10rem;
+  width: 100%;
   position: fixed;
-  top: -100px;
+  top: -10rem;
   align-self: center;
   z-index: 20;
   transition: top 0.3s;
@@ -229,10 +231,10 @@ a {
   height: 10.1rem;
   width: 55.3rem;
   background: #fbf7ed;
-  border: 1px solid #004c3f;
+  border: 0.1rem solid #004c3f;
   position: absolute;
   top: 0;
-  font: normal normal bold 20px/30px Arimo;
+  font: normal normal bold 2rem/3rem Arimo;
   color: #004c3f;
   right: 24rem;
   z-index: 15;
@@ -246,10 +248,10 @@ a {
   right: 0;
 }
 .focus {
-  width: 1430px;
-  height: 930px;
+  width: 143rem;
+  height: 93rem;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  grid-column-gap: 1px;
+  grid-column-gap: 0.1rem;
   /* background-color: darkgreen; */
 }

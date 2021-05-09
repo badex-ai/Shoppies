@@ -2,9 +2,9 @@ input {
   width: 77.8rem;
   height: 5.9rem;
   background-color: rgba(255, 255, 255, 0.626);
-  border: 1px solid rgba(255, 255, 255, 0.626);
-  border-radius: 0 2px 2px 0;
-  font-size: 24px;
+  border: 0.1rem solid rgba(255, 255, 255, 0.626);
+  border-radius: 0 0.2rem 0.2rem 0;
+  font-size: 2rem;
 }
 input:focus {
   outline: none;
@@ -12,20 +12,20 @@ input:focus {
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  font-size: 24px Arimo;
+  font-size: 2.4rem Arimo;
 }
 ::-moz-placeholder {
   /* Firefox 19+ */
-  font-size: normal normal normal 24px/28px Arimo;
+  font-size: normal normal normal 2.4rem/2.8rem Arimo;
 }
 :-ms-input-placeholder {
   /* IE 10+ */
-  font-size: normal normal normal 24px/28px Arimo;
+  font-size: normal normal normal 2.4rem/2.8rem Arimo;
 }
 :-moz-placeholder {
   /* Firefox 18- */
-  font-size: normal normal normal 24px/28px Arimo;
+  font-size: normal normal normal 2.4rem/2.8rem Arimo;
 }
 :-ms-input-placeholder {
-  font-size: normal normal normal 24px/28px Arimo;
+  font-size: normal normal normal 2.4rem/2.8rem Arimo;
 }
