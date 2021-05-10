@@ -7,16 +7,16 @@ const initialState={
 }
 
 const setNominatedMovie=(state, action)=>{
-//     //console.log(state.nominatedMovies)
+//     console.log(state.nominatedMovies)
  
             let newArray = state.nominatedMovies.slice()
-           // //console.log(newArray)
+           // console.log(newArray)
             // newArray.forEach(element => {
-            //   return //console.log(element) 
+            //   return console.log(element) 
             // });
             // if(newArray.length > 1){
             //     newArray.array.forEach(element => {
-            //         //console.log(element)
+            //         console.log(element)
             //        // action.selectedMovie.imdbID == element.
             //     });
             // }
@@ -39,13 +39,13 @@ const setNominatedMovie=(state, action)=>{
 }
 
 const removeMovie =(state,action)=>{
-    const selectedIndex = state.nominatedMovies.indexOf(action.selectedMovie)
-    //console.log(selectedIndex);
+    // const selectedIndex = state.nominatedMovies.indexOf(action.selectedMovie)
+    // console.log(selectedIndex);
    const newarr= state.nominatedMovies.filter((el,index) => {
         return el.imdbID !== action.selectedMovie.imdbID
         
     })
-    //console.log(newarr)
+    console.log(newarr)
     const  updatedState={nominatedMovies: newarr, nominationComplete: false}
     return updateState(state,updatedState)
 }
