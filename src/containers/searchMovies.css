@@ -8,6 +8,7 @@ input {
 }
 input:focus {
   outline: none;
+  font-size: 2rem;
 }
 
 ::-webkit-input-placeholder {

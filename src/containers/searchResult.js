@@ -35,7 +35,10 @@ export const SearchResult = (props) => {
 
     }
 
-    let tag= nominated ?  <div>
+
+    
+
+    let tag= nominated && props.nominationList.includes(props.movieInfo) ?  <div>
         <svg id="Tick_with_background" data-name="Tick with background" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
         <rect id="Rectangle_36" data-name="Rectangle 36" width="36" height="36" rx="18" fill="#004c3f"/>
         <g id="Tick_Icon" data-name="Tick Icon" transform="translate(2 2)">
@@ -88,7 +91,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => (
     {
         onNominate: () => dispatch(actions.nominateMovie()),
-        onSetNominatedMovie: (movie)=>dispatch(actions.setNominatedMovie(movie))
+        onSetNominatedMovie: (movie)=>dispatch(actions.setNominatedMovie(movie)),
+       
     }
 )
     

@@ -7,6 +7,7 @@ export const setNominatedMovie=(nominatedMovie)=>{
     }
 }
 
+
 export const removeMovie =(selectedMovie)=>{
     return {
         type: actionTypes.REMOVE_MOVIE,

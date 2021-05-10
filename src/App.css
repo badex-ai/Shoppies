@@ -160,20 +160,20 @@ a {
 }
 .shareSection {
   display: flex;
-  width: 20rem;
+  width: 18rem;
   height: 8rem;
   justify-content: space-evenly;
   align-items: center;
-  font: normal normal normal 2.8rem/2.8rem Arimo;
+  font: normal normal normal 1.6rem/2rem Arimo;
   color: #1a1a1a;
   z-index: 10;
 }
 .socials {
   position: absolute;
   width: 20rem;
-  height: 14rem;
+  height: 7rem;
   background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3rem 0.6rem #00000029;
+  box-shadow: 0px 1.5rem 0.4rem #00000029;
   border-radius: 0.5rem;
   top: 3.1rem;
   right: 0;
@@ -229,14 +229,14 @@ a {
 }
 .notif {
   height: 10.1rem;
-  width: 55.3rem;
+  width: 56.6rem;
   background: #fbf7ed;
   border: 0.1rem solid #004c3f;
   position: absolute;
   top: 0;
   font: normal normal bold 2rem/3rem Arimo;
   color: #004c3f;
-  right: 24rem;
+  right: 22rem;
   z-index: 15;
   display: flex;
   align-items: center;
