@@ -342,12 +342,12 @@ function App(props) {
    <div className={classes.links}>
      <div>
        
-     <a className={classes.active} href="#">
+     <a className={classes.active} href="/">
      Home
      </a>
      </div>
      <div>
-     <a href="#">
+     <a href="/">
        About
      </a>
      </div>
@@ -381,12 +381,12 @@ function App(props) {
           </div>
           <div className={classes.links}>
             <div>
-            <a className={classes.active} href="#">
+            <a className={classes.active} href="/">
             Home
             </a>
             </div>
             <div>
-            <a href="#">
+            <a href="/">
               About
             </a>
             </div>
