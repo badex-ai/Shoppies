@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classes from './searchMovies.css'
 import * as actions from '../components/store/actions/index'
@@ -10,13 +10,13 @@ function SearchMovies(props) {
 
   const inputChangeHandler=(e)=>{
     setTitle({value: e.target.value})
-    // //console.log(title)
+    // console.log(title)
 
   }
 
   const onSearchHandler=(e)=>{
     e.preventDefault()
-    // //console.log(title.value);
+    // console.log(title.value);
     props.onSearchMovie(title.value)
   }
   
@@ -31,9 +31,9 @@ function SearchMovies(props) {
     )
 }
 
-SearchMovies.propTypes = {
+// SearchMovies.propTypes = {
 
-}
+// }
 
 const mapStatetToProps=(state)=>{
   return {

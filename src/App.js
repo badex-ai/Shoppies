@@ -8,7 +8,7 @@ import classes from './App.css';
 
 import {connect} from 'react-redux';
 import * as actions from './components/store/actions/index'
-import InfiniteScroll from "react-infinite-scroll-component";
+// import InfiniteScroll from "react-infinite-scroll-component";
 
 
 function App(props) {
@@ -241,7 +241,7 @@ function App(props) {
   
   <div className={classes.initialText}>Your search results will appear here </div>
   </div>;}
-   
+  
 
    let nominationComplete = props.nominationComplete ? 
    <div className={classes.notif}>
@@ -265,7 +265,7 @@ function App(props) {
    </div>: null;
 
 
-  
+    
    
    let nominatedMovieslist = props.nominatedMovies.length>0 ? props.nominatedMovies.map((el)=>{
      return <NominatedMovies  key={el.imdbID} movie={el}></NominatedMovies>
@@ -341,6 +341,7 @@ function App(props) {
           </span><SearchMovies className={classes.search}></SearchMovies></div>
    <div className={classes.links}>
      <div>
+       
      <a className={classes.active} href="#">
      Home
      </a>

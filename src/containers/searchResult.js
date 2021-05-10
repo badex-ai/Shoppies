@@ -1,5 +1,5 @@
 import React,{ useState } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import classes from './searchResult.css'
 import * as actions from '../components/store/actions/index';
@@ -75,9 +75,9 @@ export const SearchResult = (props) => {
     )
 }
 
-SearchResult.propTypes = {
-    // props: PropTypes
-}
+// SearchResult.propTypes = {
+//     // props: PropTypes
+// }
 
 const mapStateToProps = (state) => ({
     
