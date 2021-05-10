@@ -22,7 +22,7 @@ function App(props) {
   // }
   // if(props.searchResults){
   //   const searchResults= props.searchResults.search;
-  //   console.log(searchResults)
+  //   //console.log(searchResults)
   // }
 
   // const onLoadMoreMovies=()=>{
@@ -33,7 +33,7 @@ function App(props) {
 
   // }
   window.onscroll = function() {scrollFunction()};
-  console.log(document.body)
+  //console.log(document.body)
   function scrollFunction() {
   if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
     document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "0";
@@ -54,7 +54,7 @@ function App(props) {
   
   if(props.searchResults){
    searchResults = props.searchResults.Search.map((mov)=>{
-      // console.log(mov)
+      // //console.log(mov)
       return <SearchResult key={mov.imdbID} title={mov.Title} movieInfo={mov}></SearchResult>
         
      })
@@ -265,7 +265,7 @@ function App(props) {
    </div>: null;
 
 
-    let loader= props.loading ? <Loader/>: null;
+  
    
    let nominatedMovieslist = props.nominatedMovies.length>0 ? props.nominatedMovies.map((el)=>{
      return <NominatedMovies  key={el.imdbID} movie={el}></NominatedMovies>

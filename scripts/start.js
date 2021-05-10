@@ -49,20 +49,20 @@ const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
 if (process.env.HOST) {
-  console.log(
+  //console.log(
     chalk.cyan(
       `Attempting to bind to HOST environment variable: ${chalk.yellow(
         chalk.bold(process.env.HOST)
       )}`
     )
   );
-  console.log(
+  //console.log(
     `If this was unintentional, check that you haven't mistakenly set it in your shell.`
   );
-  console.log(
+  //console.log(
     `Learn more here: ${chalk.yellow('https://cra.link/advanced-config')}`
   );
-  console.log();
+  //console.log();
 }
 
 // We require that you explicitly set browsers and do not fall back to
@@ -125,21 +125,21 @@ checkBrowsers(paths.appPath, isInteractive)
     // Launch WebpackDevServer.
     devServer.listen(port, HOST, err => {
       if (err) {
-        return console.log(err);
+        return //console.log(err);
       }
       if (isInteractive) {
         clearConsole();
       }
 
       if (env.raw.FAST_REFRESH && semver.lt(react.version, '16.10.0')) {
-        console.log(
+        //console.log(
           chalk.yellow(
             `Fast Refresh requires React 16.10 or higher. You are using React ${react.version}.`
           )
         );
       }
 
-      console.log(chalk.cyan('Starting the development server...\n'));
+      //console.log(chalk.cyan('Starting the development server...\n'));
       openBrowser(urls.localUrlForBrowser);
     });
 
@@ -160,7 +160,7 @@ checkBrowsers(paths.appPath, isInteractive)
   })
   .catch(err => {
     if (err && err.message) {
-      console.log(err.message);
+      //console.log(err.message);
     }
     process.exit(1);
   });
