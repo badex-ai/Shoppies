@@ -33,7 +33,7 @@ function App(props) {
 
   // }
   window.onscroll = function() {scrollFunction()};
-  console.log(document.body)
+  // console.log(document.body)
   function scrollFunction() {
   if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
     document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "0";
