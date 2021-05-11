@@ -2,9 +2,9 @@ import './App.css';
 import NominatedMovies from  './containers/nominatedMovies';
 import SearchResult from './containers/searchResult'
 import SearchMovies from './containers/searchMovies';
-// import Loader from './components/shared/loader';
+import Loader from './components/shared/loader';
 import classes from './App.css';
- import {useState} from 'react'
+ import {useState,useEffect} from 'react'
 
 import {connect} from 'react-redux';
 import * as actions from './components/store/actions/index'
@@ -15,8 +15,17 @@ function App(props) {
   // const [moviesRemain, setMoviesRemain] = useState({
   //   hasMore: true,
   // })
+
+
+  useEffect(() => {
+    if(props.searchResults != null){
+      setLoading({value: false})
+    }
+    
+  },[props.searchResults])
+
    const [socials, setSocials] = useState({openSocials: false})
-  //  const [loading, setLoading] = useState({value:false})
+   const [loading, setLoading] = useState({value:false})
 
   // const loading = if(props.loading){
 
@@ -45,19 +54,22 @@ function App(props) {
 
 
 const onHandleLoading=(event)=>{
-  // setLoading({value:true})
+  setLoading({value:true})
+  console.log("i have been clicked")
   // console.log('e reach here')
 }
   const onShareHandler=()=>{
      setSocials({openSocials:!socials.openSocials})
   }
 
+  
+
   // const onCloseSocials=()=>{
   //   setSocials({openSocials:false})
   // }
   // console.log(props.loading,"it is loading")
 
-  // const loader = loading.value ? <Loader/> : null;
+  
   
   
   let searchResults
@@ -65,6 +77,7 @@ const onHandleLoading=(event)=>{
   //   searchResults = <Loader/>
   // }else 
   if(props.searchResults){
+   
     // setLoading({value: false});
     searchResults = props.searchResults.Search.map((mov)=>{
        // console.log(mov)
@@ -254,6 +267,8 @@ const onHandleLoading=(event)=>{
   <div className={classes.initialText}>Your search results will appear here </div>
   </div>;}
 
+const content = loading.value ? <div className={classes.loaderCont}><Loader/></div> : searchResults;
+
   // if(props.searchResults !== !null){
   //   setLoading({value: false})
   //   // console.log(loading)
@@ -307,7 +322,7 @@ const onHandleLoading=(event)=>{
         
       
     
-     <a href="https://twitter.com/intent/tweet?text=I%20just%20nominated%20my%20favorite%20movies%20on%20shoppiesflick.netlify.app" className={classes.shareSection}>
+     <a href="https://twitter.com/intent/tweet?text=I%20just%20nominated%20my%20favorite%20movies%20on%20shoppiesflick.netlify.app" target="blank" className={classes.shareSection}>
        <div className={classes.small}>
        <svg version="1.1" id="Capa_1"  x="0px" y="0px"
 	 viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}}>
@@ -355,7 +370,7 @@ const onHandleLoading=(event)=>{
           </g>
         </svg>
 
-          </span><SearchMovies className={classes.search}></SearchMovies></div>
+          </span><SearchMovies className={classes.search} onSubmit={()=>{onHandleLoading()}}></SearchMovies></div>
    <div className={classes.links}>
      <div>
        
@@ -435,24 +450,13 @@ const onHandleLoading=(event)=>{
       </header>
 
 
-    {/* This is for the scroll nav */}
-
-      {/* <div className={classes.topNav}>
-      <div className={classes.logo}>Logo</div>
-          <div className={classes.links}>
-            <div>Home</div>
-            <div>About</div>
-            <SearchMovies className={classes.search}></SearchMovies>
-            <div className={classes.profileImg}><img width="45px" height="45px" alt="i"/></div>
-          </div>
-      
-      </div> */}
+    
 
       <div className={classes.movableNav}>
         {movableNav}
       </div>
       <div className={classes.notifBar}>
-      {/* {loader} */}
+      
       {nominationComplete}
       </div>
 
@@ -465,8 +469,8 @@ const onHandleLoading=(event)=>{
         <div className={classes.searchResultSide} >
           <div className={classes.resultDescription}>Results for:<span className={classes.searchTerm}>FOOD</span></div>
           <div className={classes.searchResults}>
+          {content}
           
-          {searchResults}
           </div>
           
         </div>
@@ -511,7 +515,6 @@ const onHandleLoading=(event)=>{
 
 
 const mapStateToProps = (state) => ({
-  loading: state.searchResults.loading.value,
   searchResults: state.searchResults.moviesResult,
   nominatedMovies: state.nominatedMovies.nominatedMovies,
   nominationComplete: state.nominatedMovies.nominationComplete

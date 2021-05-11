@@ -175,8 +175,13 @@ a {
   font-weight: 600;
 }
 
-/* .searchResultSide {
-} */
+.loaderCont {
+  width: 100%;
+  height: 70%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
 
 .searchResults {
   overflow: auto;

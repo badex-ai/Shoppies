@@ -11,9 +11,9 @@ function Loader() {
             </div>
             </div>
 
-            <div>
+            {/* <div>
                 <div className={classes.btspinner}></div>
-            </div>
+            </div> */}
         </React.Fragment>
     )
 }
