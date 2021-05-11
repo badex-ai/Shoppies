@@ -49,18 +49,20 @@ function App(props) {
   // const onCloseSocials=()=>{
   //   setSocials({openSocials:false})
   // }
-
+  console.log(props.loading,"it is loading")
   let searchResults
   
-  if(props.searchResults){
-   searchResults = props.searchResults.Search.map((mov)=>{
-      // console.log(mov)
-      return <SearchResult key={mov.imdbID} title={mov.Title} movieInfo={mov}></SearchResult>
-        
-     })
-  }else if(props.loading){
-    searchResults = <Loader/>
-  }else{searchResults = <div className={classes.initial}>
+  if(props.loading){
+    console.log(props.loading,"it is loading")
+    // searchResults = <Loader/>
+  
+  }else if(props.searchResults){
+    searchResults = props.searchResults.Search.map((mov)=>{
+       // console.log(mov)
+       return <SearchResult key={mov.imdbID} title={mov.Title} movieInfo={mov}></SearchResult>
+         
+      })
+    }else{searchResults = <div className={classes.initial}>
   <div className={classes.initialSvg}>
     <svg version="1.1" id="Capa_1" x="0px" y="0px"
        viewBox="0 0 398.963 398.963" >
@@ -254,8 +256,8 @@ function App(props) {
   <g id="Remove_Icon" data-name="Remove Icon" transform="translate(2 2)">
     <rect id="Rectangle_44" data-name="Rectangle 44" width="32" height="32" fill="none"/>
     <g id="Group_50" data-name="Group 50">
-      <line id="Line_2" data-name="Line 2" x1="12" y2="12" transform="translate(10 10)" fill="none" stroke="#004c3f" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/>
-      <line id="Line_3" data-name="Line 3" x1="12" y1="12" transform="translate(10 10)" fill="none" stroke="#004c3f" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/>
+      <line id="Line_2" data-name="Line 2" x1="12" y2="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
+      <line id="Line_3" data-name="Line 3" x1="12" y1="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
     </g>
   </g>
 </svg>
@@ -493,7 +495,7 @@ function App(props) {
 
 
 const mapStateToProps = (state) => ({
-  loading: state.searchResults.loading,
+  loading: state.searchResults.loading.value,
   searchResults: state.searchResults.moviesResult,
   nominatedMovies: state.nominatedMovies.nominatedMovies,
   nominationComplete: state.nominatedMovies.nominationComplete

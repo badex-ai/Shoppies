@@ -17,7 +17,8 @@ function SearchMovies(props) {
   const onSearchHandler=(e)=>{
     e.preventDefault()
     // console.log(title.value);
-    props.onSearchMovie(title.value)
+    props.onSearchMovie(title.value);
+    // console.log(props.loadingState, "this checks the loading state");
     setTitle({value:''})
   }
   
@@ -38,7 +39,7 @@ function SearchMovies(props) {
 
 const mapStatetToProps=(state)=>{
   return {
-   
+   loadingState: state.searchResults.loading
   }
 }
 

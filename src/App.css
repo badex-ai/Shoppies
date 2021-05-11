@@ -51,7 +51,7 @@ a {
 
 .links {
   width: 24rem;
-  height: 5.5rem;
+  height: 4.4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -97,7 +97,7 @@ a {
 
 .searchIcon {
   width: 5rem;
-  height: 5rem;
+  height: 4.4rem;
   display: flex;
   align-items: center;
   justify-content: center;

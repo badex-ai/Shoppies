@@ -4,13 +4,13 @@ import updateState from '../../shared/utility';
 const initialState={
     moviesResult: null,
     error: false,
-    loading: false,
+    loading: {value:false},
     nominated: false
 
 }
 
 const searchMovie=(state, action)=>{
-    const updatedState= {error: false, loading: true};
+    const updatedState= {error: false, loading: {value: true}};
     return updatedState(state, updatedState )
     
 
@@ -27,12 +27,12 @@ const searchMovie=(state, action)=>{
 // }
 
 const searchMoviesFailed =(state,action)=>{
-   const  updatedState={error: true, loading: false}
+   const  updatedState={error: true, loading: {value: false}}
     return updateState(state,updatedState)
 }
 
 const setMovies = (state,action)=>{
-    const  updatedState={moviesResult: action.moviesResult , loading: false};
+    const  updatedState={moviesResult: action.moviesResult , loading: {value: false}};
     return updateState(state,updatedState)
 }
 const setMoreMovies=(state,action)=>{

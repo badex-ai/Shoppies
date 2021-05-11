@@ -45,7 +45,7 @@ const removeMovie =(state,action)=>{
         return el.imdbID !== action.selectedMovie.imdbID
         
     })
-    console.log(newarr)
+    // console.log(newarr)
     const  updatedState={nominatedMovies: newarr, nominationComplete: false}
     return updateState(state,updatedState)
 }
