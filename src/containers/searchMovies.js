@@ -18,6 +18,7 @@ function SearchMovies(props) {
     e.preventDefault()
     // console.log(title.value);
     props.onSearchMovie(title.value)
+    setTitle({value:''})
   }
   
 
