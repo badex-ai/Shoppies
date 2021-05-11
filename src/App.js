@@ -35,7 +35,7 @@ function App(props) {
   window.onscroll = function() {scrollFunction()};
   // console.log(document.body)
   function scrollFunction() {
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+  if (document.body.scrollTop > 290 || document.documentElement.scrollTop > 290) {
     document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "0";
   } else {
     document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "-10rem";
@@ -446,7 +446,7 @@ function App(props) {
       <main  className={classes.body}>
         <div className={classes.focus}>
         <div className={classes.searchResultSide} >
-          <div className={classes.resultDescription}>Result for:<span className={classes.searchTerm}>food</span></div>
+          <div className={classes.resultDescription}>Results for:<span className={classes.searchTerm}>FOOD</span></div>
           <div className={classes.searchResults}>
           {searchResults}
           </div>

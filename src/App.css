@@ -1,6 +1,7 @@
 .header {
   width: 100%;
-  height: 38rem;
+  height: 36.8rem;
+  padding-top: 1.2rem;
 
   align-items: center;
   display: flex;
@@ -18,7 +19,7 @@
   justify-content: space-between;
   height: 4.4rem;
   width: 130.2rem;
-  margin: 1.2rem;
+  /* margin: 1.2rem; */
 }
 
 a {
@@ -35,8 +36,7 @@ a:hover,
 }
 
 .active {
-  background-color: #004c3f !important;
-  border-radius: 0.4rem;
+  color: white !important;
 }
 
 .logo {
@@ -116,26 +116,19 @@ a:hover,
   color: white;
   margin-left: -12.8rem;
 }
-.body {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
 
 .notifBar {
   background-color: rgba(2, 98, 2, 0.387);
   color: #004c3f;
-  height: 6rem;
+  height: 3rem;
   width: 100%;
   position: relative;
   display: flex;
   align-content: center;
 }
 
-/* reach */
-
 .notif {
-  height: 5.8rem;
+  height: 4rem;
   width: 40rem;
   background: #fbf7ed;
   position: absolute;
@@ -151,38 +144,66 @@ a:hover,
 
 .cancelNotif {
   position: absolute;
-  top: 0;
+  top: 0.18rem;
   right: 0;
 }
+.body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.focus {
+  width: 114rem;
+  height: 66rem;
+  display: grid;
+  grid-template-columns: 68.4rem auto 44.2rem;
+  /* grid-column-gap: 0.1rem; */
+  background-color: red;
+}
 
-.nominatedMovies {
-  width: 44.2rem;
-  height: 70rem;
-  background-color: #fbf7ed;
-  padding: 0.8rem;
+.resultDescription {
+  margin: 1.7rem 0;
+  font: 1.6rem Arimo;
+  font-weight: 500;
+  color: rgb(52, 52, 52);
+}
+
+.searchTerm {
+  color: #254a44;
+  margin-left: 0.3rem;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.searchResultSide {
 }
 
 .searchResults {
   overflow: auto;
   background-color: #fafafa;
-  height: 70rem;
+  height: 58rem;
+  padding: 0.8rem;
+  width: 68.4rem;
 }
-.resultDescription {
-  margin: 2rem 0;
-  font: normal normal bold 2rem/2.4rem Montserrat;
+
+/* reach */
+.nominatedMovies {
+  width: 36rem;
+  height: 56rem;
+  background-color: #fbf7ed;
+  padding: 0.8rem;
 }
+
 .sectionDescription {
   display: flex;
   /* height: 10px; */
-  width: 55.2rem;
-  margin: 2rem 0;
+  width: 44.2rem;
+  margin: 1.4rem 0;
   justify-content: space-between;
 
   position: relative;
 }
-.searchTerm {
-  color: #2f2f2f;
-}
+
 .green {
   font: normal normal bold 2rem/2.4rem Arimo;
   letter-spacing: 0px;
@@ -197,21 +218,21 @@ a:hover,
 
 .initial {
   margin-top: 9.5rem;
-  width: 85.5rem;
-  height: 92rem;
+  width: 68rem;
+
   display: flex;
   align-items: center;
   /* justify-content: center; */
   flex-direction: column;
 }
 .initialSvg {
-  width: 27rem;
+  width: 21rem;
   fill: #e6e6e6;
 }
 .initialText {
-  font: normal normal normal 2.4rem/3.6rem Arimo;
+  font: 2rem Arimo;
   color: #1a1a1a;
-  width: 27rem;
+  width: 21rem;
   text-align: center;
 }
 .shareSection {
@@ -264,13 +285,4 @@ a:hover,
   justify-content: center;
   align-items: center;
   background-color: #004c3f;
-}
-
-.focus {
-  width: 143rem;
-  height: 93rem;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  grid-column-gap: 0.1rem;
-  /* background-color: darkgreen; */
 }

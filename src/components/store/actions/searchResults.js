@@ -37,7 +37,7 @@ export const nominateMovie=(movie)=>{
 export const searchMovie=(movieTitle)=>{
     return dispatch=>{
      
-        axios.get(`http://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_ombd_API}&s=${movieTitle}`).then(
+        axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_ombd_API}&s=${movieTitle}`).then(
             response=>{
                
                 dispatch(setMovies(response.data))
@@ -53,7 +53,7 @@ export const searchMovie=(movieTitle)=>{
 export const fetchMoreMovies=(movieTitle,page)=>{
     return dispatch=>{
      
-        axios.get(`http://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_ombd_API}&s=${movieTitle}&page=${page}`).then(
+        axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_ombd_API}&s=${movieTitle}&page=${page}`).then(
             response=>{
                
                 dispatch(setMoreMovies(response.data))
