@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createStore, applyMiddleware,compose,combineReducers} from 'redux';
 import {Provider} from 'react-redux';
+
 import searchResultReducer from './components/store/reducers/searchResults';
 import nominatedMoviesReducer from './components/store/reducers/nominatedMovies'
 import thunk from 'redux-thunk';

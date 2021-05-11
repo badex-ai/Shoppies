@@ -12,14 +12,14 @@
 
 .spinner div {
   position: absolute;
-  animation: spin 0.5s linear infinite;
-  width: 58px;
-  height: 58px;
+  animation: spin 0.3s linear infinite;
+  width: 50px;
+  height: 50px;
   top: 16px;
   left: 16px;
   border-radius: 50%;
 
-  box-shadow: 0 4px 0 0 rgb(174, 174, 174);
+  box-shadow: 0 4px 0 0 #004c3f;
 }
 
 .spinnerEclipse {

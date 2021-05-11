@@ -16,6 +16,7 @@ function App(props) {
   //   hasMore: true,
   // })
    const [socials, setSocials] = useState({openSocials: false})
+   const [loading, setLoading] = useState({value:false})
 
   // const loading = if(props.loading){
 
@@ -42,6 +43,11 @@ function App(props) {
   }
 }
 
+
+const onHandleLoading=(event)=>{
+  setLoading({value:true})
+  // console.log('e reach here')
+}
   const onShareHandler=()=>{
      setSocials({openSocials:!socials.openSocials})
   }
@@ -49,20 +55,24 @@ function App(props) {
   // const onCloseSocials=()=>{
   //   setSocials({openSocials:false})
   // }
-  console.log(props.loading,"it is loading")
+  // console.log(props.loading,"it is loading")
+
+  // const loader = loading.value ? <Loader/> : null;
+  
+  
   let searchResults
-  
-  if(props.loading){
-    console.log(props.loading,"it is loading")
-    // searchResults = <Loader/>
-  
-  }else if(props.searchResults){
+  if(loading){
+    searchResults = <Loader/>
+  }
+  else if(props.searchResults){
+    setLoading({value: false});
     searchResults = props.searchResults.Search.map((mov)=>{
        // console.log(mov)
        return <SearchResult key={mov.imdbID} title={mov.Title} movieInfo={mov}></SearchResult>
          
       })
-    }else{searchResults = <div className={classes.initial}>
+    }else{searchResults =
+     <div className={classes.initial}>
   <div className={classes.initialSvg}>
     <svg version="1.1" id="Capa_1" x="0px" y="0px"
        viewBox="0 0 398.963 398.963" >
@@ -243,6 +253,11 @@ function App(props) {
   
   <div className={classes.initialText}>Your search results will appear here </div>
   </div>;}
+
+  if(props.searchResults !== !null){
+    setLoading({value: false})
+    // console.log(loading)
+  }
   
 
    let nominationComplete = props.nominationComplete ? 
@@ -411,7 +426,7 @@ function App(props) {
           </g>
         </svg>
 
-          </span><SearchMovies className={classes.search}></SearchMovies></div>
+          </span><SearchMovies className={classes.search} onSubmit={()=>{onHandleLoading()}}></SearchMovies></div>
         
 
         </div>
@@ -437,7 +452,7 @@ function App(props) {
         {movableNav}
       </div>
       <div className={classes.notifBar}>
-
+      {/* {loader} */}
       {nominationComplete}
       </div>
 
@@ -450,6 +465,7 @@ function App(props) {
         <div className={classes.searchResultSide} >
           <div className={classes.resultDescription}>Results for:<span className={classes.searchTerm}>FOOD</span></div>
           <div className={classes.searchResults}>
+          
           {searchResults}
           </div>
           
