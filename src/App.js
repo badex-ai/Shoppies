@@ -2,7 +2,7 @@ import './App.css';
 import NominatedMovies from  './containers/nominatedMovies';
 import SearchResult from './containers/searchResult'
 import SearchMovies from './containers/searchMovies';
-import Loader from './components/shared/loader';
+// import Loader from './components/shared/loader';
 import classes from './App.css';
  import {useState} from 'react'
 
@@ -16,7 +16,7 @@ function App(props) {
   //   hasMore: true,
   // })
    const [socials, setSocials] = useState({openSocials: false})
-   const [loading, setLoading] = useState({value:false})
+  //  const [loading, setLoading] = useState({value:false})
 
   // const loading = if(props.loading){
 
@@ -45,7 +45,7 @@ function App(props) {
 
 
 const onHandleLoading=(event)=>{
-  setLoading({value:true})
+  // setLoading({value:true})
   // console.log('e reach here')
 }
   const onShareHandler=()=>{
@@ -61,11 +61,11 @@ const onHandleLoading=(event)=>{
   
   
   let searchResults
-  if(loading){
-    searchResults = <Loader/>
-  }
-  else if(props.searchResults){
-    setLoading({value: false});
+  // if(loading){
+  //   searchResults = <Loader/>
+  // }else 
+  if(props.searchResults){
+    // setLoading({value: false});
     searchResults = props.searchResults.Search.map((mov)=>{
        // console.log(mov)
        return <SearchResult key={mov.imdbID} title={mov.Title} movieInfo={mov}></SearchResult>
@@ -254,10 +254,10 @@ const onHandleLoading=(event)=>{
   <div className={classes.initialText}>Your search results will appear here </div>
   </div>;}
 
-  if(props.searchResults !== !null){
-    setLoading({value: false})
-    // console.log(loading)
-  }
+  // if(props.searchResults !== !null){
+  //   setLoading({value: false})
+  //   // console.log(loading)
+  // }
   
 
    let nominationComplete = props.nominationComplete ? 
