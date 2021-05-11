@@ -30,7 +30,7 @@ a {
   color: white;
 }
 
-a:hover,
+.links a:hover,
 :active {
   color: rgb(124, 179, 66);
 }
@@ -118,7 +118,7 @@ a:hover,
 }
 
 .notifBar {
-  background-color: rgba(2, 98, 2, 0.387);
+  /* background-color: rgba(2, 98, 2, 0.387); */
   color: #004c3f;
   height: 3rem;
   width: 100%;
@@ -153,12 +153,12 @@ a:hover,
   justify-content: center;
 }
 .focus {
-  width: 114rem;
+  width: 111.6rem;
   height: 66rem;
   display: grid;
-  grid-template-columns: 68.4rem auto 44.2rem;
-  /* grid-column-gap: 0.1rem; */
-  background-color: red;
+  grid-template-columns: 65rem 45.8rem;
+  grid-column-gap: 0.8rem;
+  /* background-color: red; */
 }
 
 .resultDescription {
@@ -183,13 +183,13 @@ a:hover,
   background-color: #fafafa;
   height: 58rem;
   padding: 0.8rem;
-  width: 68.4rem;
+  width: 63.4rem;
 }
 
 /* reach */
 .nominatedMovies {
-  width: 36rem;
-  height: 56rem;
+  width: 44.2rem;
+  height: 58rem;
   background-color: #fbf7ed;
   padding: 0.8rem;
 }
@@ -198,19 +198,20 @@ a:hover,
   display: flex;
   /* height: 10px; */
   width: 44.2rem;
-  margin: 1.4rem 0;
+  margin: 1.7rem 0;
   justify-content: space-between;
 
   position: relative;
 }
 
 .green {
-  font: normal normal bold 2rem/2.4rem Arimo;
+  font: normal normal bold 1.6rem Arimo;
+  font-weight: 500;
   letter-spacing: 0px;
   color: #004c3f;
 }
 .share {
-  font: normal normal normal 1.8rem/2.2rem Arimo;
+  font: 1.4rem Arimo;
   letter-spacing: 0px;
   color: #1a1a1a;
   cursor: pointer;
@@ -218,7 +219,7 @@ a:hover,
 
 .initial {
   margin-top: 9.5rem;
-  width: 68rem;
+  width: 100%;
 
   display: flex;
   align-items: center;
@@ -227,52 +228,54 @@ a:hover,
 }
 .initialSvg {
   width: 21rem;
-  fill: #e6e6e6;
+  fill: #9dc29d82;
 }
 .initialText {
-  font: 2rem Arimo;
+  font: 1.6rem Arimo;
   color: #1a1a1a;
   width: 21rem;
   text-align: center;
 }
 .shareSection {
   display: flex;
-  width: 18rem;
+  width: 12rem;
   height: 8rem;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  font: normal normal normal 1.6rem/2rem Arimo;
+  font: 1.6rem Arimo;
   color: #1a1a1a;
   z-index: 10;
 }
 .socials {
   position: absolute;
-  width: 20rem;
-  height: 7rem;
+  width: 14rem;
+  height: 5rem;
   background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 1.5rem 0.4rem #00000029;
+  box-shadow: 0px 1rem 0.2rem #00000029;
   border-radius: 0.5rem;
-  top: 3.1rem;
+  top: 2.5rem;
   right: 0;
   z-index: 5;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   display: flex;
   flex-direction: column;
 }
 .initialNominated {
-  width: 55.2rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 12.5rem;
+  margin-top: 20.8rem;
+  /* padding-top: 12.5rem; */
   align-items: center;
 }
 
 .small {
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   margin-left: -0.2rem;
 }
+
 .movableNav {
   height: 7rem;
   width: 100%;

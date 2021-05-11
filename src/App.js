@@ -280,7 +280,7 @@ function App(props) {
 
      </div>
      <div className={classes.initialText}>
-     <p >You have not nominated any movies</p>
+     <p >You have not nominated any movie</p>
      </div>
      
    </div>;

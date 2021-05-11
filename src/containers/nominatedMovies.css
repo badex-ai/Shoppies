@@ -1,11 +1,11 @@
 .card {
-  width: 52.8rem;
-  height: 15.7rem;
+  width: 41.6rem;
+  height: 9.5rem;
   margin: 1rem;
   background-color: #ffffff;
   position: relative;
   display: flex;
-  font-size: 2rem;
+  font-size: 1.6rem;
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
@@ -20,20 +20,23 @@
   z-index: 2;
 }
 .title {
-  margin: 1rem 1rem;
+  margin: 0.8rem 0.8rem;
   width: 27rem;
   height: auto;
-  font: normal normal bold 2rem/3rem Arimo;
+  font: bold 1.6rem Arimo;
 }
 
 .year {
-  margin: 0.8rem 1rem;
-  font: normal normal normal 1.6rem/2rem Arimo;
+  margin: 0.4rem 0.8rem;
+  font: 1.3rem Arimo;
   color: #a5a5a5;
 }
 
 .rating {
-  margin: 0.6rem 1rem;
+  margin: 0.5rem 1rem;
   display: flex;
-  font: normal normal normal 20px/23px Arimo;
+  font: normal normal normal 1.3rem Arimo;
+}
+img {
+  width: 6.32rem;
 }
