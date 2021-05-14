@@ -10,6 +10,7 @@ function SearchMovies(props) {
 
   const inputChangeHandler=(e)=>{
     setTitle({value: e.target.value})
+    // props.onChange(title)
     // console.log(title)
 
   }
@@ -17,7 +18,7 @@ function SearchMovies(props) {
   const onSearchHandler=(e)=>{
     e.preventDefault()
     // console.log(title.value);
-    props.onSubmit(e)
+    props.onSubmit(title.value)
     props.onSearchMovie(title.value);
     // console.log(props.loadingState, "this checks the loading state");
     setTitle({value:''})

@@ -5,10 +5,11 @@ import SearchMovies from './containers/searchMovies';
 import Loader from './components/shared/loader';
 import classes from './App.css';
  import {useState,useEffect} from 'react'
+ import completeImg from './assets/animoj2.png'
 
 import {connect} from 'react-redux';
 import * as actions from './components/store/actions/index'
-// import InfiniteScroll from "react-infinite-scroll-component";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 
 function App(props) {
@@ -24,26 +25,30 @@ function App(props) {
     
   },[props.searchResults])
 
-   const [socials, setSocials] = useState({openSocials: false})
-   const [loading, setLoading] = useState({value:false})
+useEffect(() => {
+  // console.log(props.nominationComplete);
+  setNotif(props.nominationComplete)
+  
+  
+  
+}, [props.nominationComplete])
 
-  // const loading = if(props.loading){
+   const [socials, setSocials] = useState({openSocials: false});
+   const [loading, setLoading] = useState({value:false});
+   const [notif, setNotif] = useState(false);
+   const [searchTerm, setSearchTerm] = useState('Movie Title')
 
-  // }
-  // if(props.searchResults){
-  //   const searchResults= props.searchResults.search;
-  //   console.log(searchResults)
-  // }
+  
 
-  // const onLoadMoreMovies=()=>{
-  //   if(props.searchResults.)
-  //   props.fetchMoreMovies()
+  const onLoadMoreMovies=()=>{
+    if(props.searchResults.totalResults > props.searchResults.moviesResult){
+      console.log("loading more movies")
+    }
+    // props.fetchMoreMovies()
+  }
 
-   
 
-  // }
   window.onscroll = function() {scrollFunction()};
-  // console.log(document.body)
   function scrollFunction() {
   if (document.body.scrollTop > 290 || document.documentElement.scrollTop > 290) {
     document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "0";
@@ -53,10 +58,15 @@ function App(props) {
 }
 
 
+
+const onCloseNotif=()=>{
+  setNotif(false)
+}
+
 const onHandleLoading=(event)=>{
   setLoading({value:true})
-  console.log("i have been clicked")
-  // console.log('e reach here')
+  
+   setSearchTerm(event);
 }
   const onShareHandler=()=>{
      setSocials({openSocials:!socials.openSocials})
@@ -64,27 +74,46 @@ const onHandleLoading=(event)=>{
 
   
 
-  // const onCloseSocials=()=>{
-  //   setSocials({openSocials:false})
-  // }
-  // console.log(props.loading,"it is loading")
-
-  
+  const onCloseSocials=()=>{
+    setSocials({openSocials:false})
+  }
   
   
   let searchResults
-  // if(loading){
-  //   searchResults = <Loader/>
-  // }else 
-  if(props.searchResults){
+  
+  const completeOverlay = notif? <div className={classes.completeOverlay}>
+    <div className={classes.complete} >
+      <div className={classes.animoj}>
+      <img style={{width: '15rem'}}src={completeImg} alt="complete" />
+      </div>
+      <p>Thanks you for nominating</p>
+    </div>
    
+    
+  </div> : null
+  
+
+  if(props.searchResults ){
+   const results = props.searchResults.Search.map((mov)=>{
+      // console.log(mov)
+      return <SearchResult key={mov.imdbID} title={mov.Title} movieInfo={mov}></SearchResult>
+        
+     })
     // setLoading({value: false});
-    searchResults = props.searchResults.Search.map((mov)=>{
-       // console.log(mov)
-       return <SearchResult key={mov.imdbID} title={mov.Title} movieInfo={mov}></SearchResult>
+    searchResults =<div id="scrollableDiv" className={classes.scrollableDiv}>
+    <InfiniteScroll
+        dataLength={props.searchResults.totalResults}
+        // hasMore={this.state.hasMore}
+        next={onLoadMoreMovies}
+        loader={<h4>Loading...</h4>}
+        scrollableTarget="scrollableDiv"
+      >
+        {results}
+      </InfiniteScroll>
+    </div>
          
-      })
-    }else{searchResults =
+      }
+    else{searchResults =
      <div className={classes.initial}>
   <div className={classes.initialSvg}>
     <svg version="1.1" id="Capa_1" x="0px" y="0px"
@@ -269,17 +298,14 @@ const onHandleLoading=(event)=>{
 
 const content = loading.value ? <div className={classes.loaderCont}><Loader/></div> : searchResults;
 
-  // if(props.searchResults !== !null){
-  //   setLoading({value: false})
-  //   // console.log(loading)
-  // }
+ 
   
 
-   let nominationComplete = props.nominationComplete ? 
+   let nominationComplete = notif ? 
    <div className={classes.notif}>
-     <p>Nominations complete!</p>
-     <div className={classes.cancelNotif}>
-     <svg id="Remove_with_background" data-name="Remove with background" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+     <p>Nominations complete !</p>
+     <div onClick={onCloseNotif} className={classes.cancelNotif}>
+     <svg id="Remove_with_background" data-name="Remove with background" xmlns="http://www.w3.org/2000/svg" width="25" height="36" viewBox="0 0 36 36">
   <g id="Group_38" data-name="Group 38" transform="translate(-1026.43 -590.43)">
     <rect id="Rectangle_36" data-name="Rectangle 36" width="36" height="36" rx="18" transform="translate(1026.43 590.43)" fill="#fbf7ed"/>
   </g>
@@ -370,7 +396,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
           </g>
         </svg>
 
-          </span><SearchMovies className={classes.search} onSubmit={()=>{onHandleLoading()}}></SearchMovies></div>
+          </span><SearchMovies className={classes.search}  onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies></div>
    <div className={classes.links}>
      <div>
        
@@ -441,7 +467,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
           </g>
         </svg>
 
-          </span><SearchMovies className={classes.search} onSubmit={()=>{onHandleLoading()}}></SearchMovies></div>
+          </span><SearchMovies className={classes.search} onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies></div>
         
 
         </div>
@@ -456,20 +482,26 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
         {movableNav}
       </div>
       <div className={classes.notifBar}>
-      
       {nominationComplete}
       </div>
+      {/* {nominationComplete} */}
 
-
+      
       
       
       {/* onClick={onCloseSocials} */}
-      <main  className={classes.body}>
+      <main onClick={onCloseSocials}  className={classes.body}>
+        {/* <div className={classes.notifBar}>
+        {nominationComplete}
+        </div> */}
+      
         <div className={classes.focus}>
         <div className={classes.searchResultSide} >
-          <div className={classes.resultDescription}>Results for:<span className={classes.searchTerm}>FOOD</span></div>
+          <div className={classes.resultDescription}>Results for:<span className={classes.searchTerm}>{searchTerm}</span></div>
           <div className={classes.searchResults}>
-          {content}
+            
+            {completeOverlay}
+            {content}
           
           </div>
           
@@ -489,9 +521,9 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
        <div className={classes.nominatedSide}>
          <div className={classes.sectionDescription}>
            <div className={classes.green}> Your Nominations</div>
-           <div onClick={()=>onShareHandler()}  className = {classes.share}>
+           {/* <div onClick={()=>onShareHandler()}  className = {classes.share}>
              Share
-           </div>
+           </div> */}
            {socialsSection}
          </div>
          <div className={classes.nominatedMovies}>
@@ -503,6 +535,9 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
        
 
       </main>
+      <div onClick={()=>onShareHandler()}  className = {classes.share}>
+             Share
+           </div>
 
       
        

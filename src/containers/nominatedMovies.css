@@ -5,13 +5,17 @@
   background-color: #ffffff;
   position: relative;
   display: flex;
+
   font-size: 1.6rem;
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
 .description {
   display: flex;
+
   flex-direction: column;
+  justify-content: space-evenly;
+  /* padding: 20px 0; */
 }
 .remove {
   position: absolute;
@@ -20,20 +24,20 @@
   z-index: 2;
 }
 .title {
-  margin: 0.8rem 0.8rem;
+  margin: 0 0.8rem;
   width: 27rem;
   height: auto;
   font: bold 1.6rem Arimo;
 }
 
 .year {
-  margin: 0.4rem 0.8rem;
+  margin: 0 0.8rem;
   font: 1.3rem Arimo;
   color: #a5a5a5;
 }
 
 .rating {
-  margin: 0.5rem 1rem;
+  margin: 0 1rem;
   display: flex;
   font: normal normal normal 1.3rem Arimo;
 }

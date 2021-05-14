@@ -31,7 +31,7 @@ a {
 }
 
 .links a:hover,
-:active {
+.links:active {
   color: rgb(124, 179, 66);
 }
 
@@ -118,24 +118,32 @@ a {
 }
 
 .notifBar {
-  /* background-color: rgba(2, 98, 2, 0.387); */
   color: #004c3f;
-  height: 3rem;
+  height: 4rem;
   width: 100%;
-  position: relative;
+  top: 0;
+  position: absolute;
   display: flex;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 7rem;
   align-content: center;
+  /* position: relative; */
 }
 
 .notif {
   height: 4rem;
-  width: 40rem;
+  width: 18rem;
   background: #fbf7ed;
-  position: absolute;
-  top: 0;
-  font: bold 1.6rem Arimo;
+  /* position: sticky;
+  position: -webkit-sticky;
+  top: 7rem; */
+  /* position: absolute;
+  top: 10rem; */
+  font: bold 1.2rem Arimo;
+  margin-left: 133rem;
   color: #004c3f;
-  right: 8%;
+  right: 0;
   z-index: 15;
   display: flex;
   align-items: center;
@@ -143,9 +151,10 @@ a {
 }
 
 .cancelNotif {
-  position: absolute;
-  top: 0.18rem;
-  right: 0;
+  /* position: absolute; */
+  margin-right: -2px;
+  /*margin-top: 0.2rem; */
+  cursor: pointer;
 }
 .body {
   width: 100%;
@@ -153,7 +162,7 @@ a {
   justify-content: center;
 }
 .focus {
-  width: 111.6rem;
+  width: 111.8rem;
   height: 66rem;
   display: grid;
   grid-template-columns: 65rem 45.8rem;
@@ -182,13 +191,17 @@ a {
   display: flex;
   align-items: center;
 }
-
-.searchResults {
+.scrollableDiv {
+  height: 58rem;
   overflow: auto;
+}
+.searchResults {
+  /* overflow: auto; */
   background-color: #fafafa;
   height: 58rem;
   padding: 0.8rem;
   width: 63.4rem;
+  position: relative;
 }
 
 /* reach */
@@ -202,7 +215,7 @@ a {
 .sectionDescription {
   display: flex;
   /* height: 10px; */
-  width: 44.2rem;
+  width: 46rem;
   margin: 1.7rem 0;
   justify-content: space-between;
 
@@ -216,10 +229,16 @@ a {
   color: #004c3f;
 }
 .share {
-  font: 1.4rem Arimo;
+  font: 1.5rem Arimo;
   letter-spacing: 0px;
   color: #1a1a1a;
   cursor: pointer;
+  position: absolute;
+  right: 21rem;
+  top: 43.65rem;
+}
+.share:hover {
+  color: rgb(124, 179, 66);
 }
 
 .initial {
@@ -231,6 +250,62 @@ a {
   /* justify-content: center; */
   flex-direction: column;
 }
+
+.animoj {
+  width: '15rem';
+  animation: push 0.3s linear 1;
+}
+/* .animoj:hover {
+  animation: wiggle 0.5s linear;
+} */
+
+@keyframes wiggle {
+  0% {
+    -webkit-transform: rotate(2deg);
+  }
+  25% {
+    -webkit-transform: rotate(-5deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+@keyframes push {
+  50% {
+    transform: scale(0.8);
+  }
+}
+.complete {
+  text-align: center;
+  height: 20rem;
+  margin-top: 9.5rem;
+  font: 1.6rem Arimo;
+}
+.completeOverlay {
+  width: 63rem;
+  height: 97.4%;
+  margin: 8px 0;
+
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  /* background-image: linear-gradient(red, orange); */
+  /* background-color: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); */
+}
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .completeOverlay {
+    -webkit-backdrop-filter: blur(3.5px);
+    backdrop-filter: blur(3.5px);
+    background-color: rgba(201, 200, 200, 0.75);
+  }
+}
+
 .initialSvg {
   width: 21rem;
   fill: #9dc29d82;
