@@ -20,7 +20,7 @@ html {
 }
 *:hover::-webkit-scrollbar-thumb {
   /* height: 20px; */
-  background-color: #b6d5b695;
+  background-color: #3ebd81;
   border-radius: 2rem;
   box-shadow: inset 0 0 0.6rem rgba(0, 0, 0, 0.3);
   /* border: 0.75px solid #9DB9CC; */
@@ -29,6 +29,13 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
+
+  background: transparent;
+}
+input[type='text'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .completeOverlay {
@@ -38,4 +45,10 @@ select:focus {
   position: absolute;
   top: 0;
   background-color: rgba(0, 0, 0, 0.353);
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 50.5%;
+  }
 }

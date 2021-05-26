@@ -5,25 +5,31 @@ import SearchMovies from './containers/searchMovies';
 import Loader from './components/shared/loader';
 import classes from './App.css';
  import {useState,useEffect} from 'react'
- import completeImg from './assets/animoj2.png'
+ import completeImg from './animoj.png'
 
 import {connect} from 'react-redux';
 import * as actions from './components/store/actions/index'
 import InfiniteScroll from "react-infinite-scroll-component";
+import nominatedMovies from './containers/nominatedMovies';
 
 
 function App(props) {
-  // const [moviesRemain, setMoviesRemain] = useState({
-  //   hasMore: true,
-  // })
+  
 
 
   useEffect(() => {
     if(props.searchResults != null){
+
       setLoading({value: false})
+      if(props.totalMoviesNumber === props.searchResults.length){
+        console.log(props.totalMoviesNumber === (props.searchResults.length), "yes they are equal")
+        setMoviesRemain(true)
+        
+      }
     }
     
-  },[props.searchResults])
+    
+  },[props.searchResults, props.totalMoviesNumber])
 
 useEffect(() => {
   // console.log(props.nominationComplete);
@@ -37,19 +43,46 @@ useEffect(() => {
    const [loading, setLoading] = useState({value:false});
    const [notif, setNotif] = useState(false);
    const [searchTerm, setSearchTerm] = useState('Movie Title')
+   const [moviesRemain, setMoviesRemain] = useState(true);
+   const [page, setPage] = useState(2);
+    const [show, setShow] = useState(false)
+
+  // if(props.searchResults.totalResults > props.searchResults.moviesResult){
+  //   setMoviesRemain(true);
+  // }
 
   
-
   const onLoadMoreMovies=()=>{
-    if(props.searchResults.totalResults > props.searchResults.moviesResult){
+    const newpage = page + 1;
+    setPage(newpage);
+    console.log(page);
+    if(moviesRemain){
       console.log("loading more movies")
     }
+    props.fetchMoreMovies(searchTerm,page)
     // props.fetchMoreMovies()
   }
 
+  // console.log(window.screen.width)
+  
+  window.onscroll = function() {
+    if(window.screen.width <= 480){
+      scrollmobileFunction();
+     
+    }else{
+      scrollDeskFunction()
+    }
+    };
 
-  window.onscroll = function() {scrollFunction()};
-  function scrollFunction() {
+  
+  function scrollmobileFunction() {
+  if (document.body.scrollTop > 220 || document.documentElement.scrollTop > 220) {
+    document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "0rem";
+  } else {
+    document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "-10rem";
+  }
+}
+  function scrollDeskFunction() {
   if (document.body.scrollTop > 290 || document.documentElement.scrollTop > 290) {
     document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "0";
   } else {
@@ -62,7 +95,10 @@ useEffect(() => {
 const onCloseNotif=()=>{
   setNotif(false)
 }
-
+const onShowNominated=()=>{
+  // console.log(show)
+  setShow(!show)
+}
 const onHandleLoading=(event)=>{
   setLoading({value:true})
   
@@ -81,8 +117,8 @@ const onHandleLoading=(event)=>{
   
   let searchResults
   
-  const completeOverlay = notif? <div className={classes.completeOverlay}>
-    <div className={classes.complete} >
+  const completeOverlay = notif ? <div className={classes.completeOverlay}>
+    <div className={classes.complete}>
       <div className={classes.animoj}>
       <img style={{width: '15rem'}}src={completeImg} alt="complete" />
       </div>
@@ -94,7 +130,9 @@ const onHandleLoading=(event)=>{
   
 
   if(props.searchResults ){
-   const results = props.searchResults.Search.map((mov)=>{
+    // console.log(props.searchResults)
+
+   const results = props.searchResults.map((mov)=>{
       // console.log(mov)
       return <SearchResult key={mov.imdbID} title={mov.Title} movieInfo={mov}></SearchResult>
         
@@ -102,11 +140,16 @@ const onHandleLoading=(event)=>{
     // setLoading({value: false});
     searchResults =<div id="scrollableDiv" className={classes.scrollableDiv}>
     <InfiniteScroll
-        dataLength={props.searchResults.totalResults}
-        // hasMore={this.state.hasMore}
+        dataLength={props.totalMoviesNumber}
+        hasMore={moviesRemain}
         next={onLoadMoreMovies}
         loader={<h4>Loading...</h4>}
         scrollableTarget="scrollableDiv"
+        endMessage={
+          <p style={{ textAlign: "center" }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
       >
         {results}
       </InfiniteScroll>
@@ -116,6 +159,7 @@ const onHandleLoading=(event)=>{
     else{searchResults =
      <div className={classes.initial}>
   <div className={classes.initialSvg}>
+
     <svg version="1.1" id="Capa_1" x="0px" y="0px"
        viewBox="0 0 398.963 398.963" >
     <g id="_x33_8-Award_symbol">
@@ -305,6 +349,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
    <div className={classes.notif}>
      <p>Nominations complete !</p>
      <div onClick={onCloseNotif} className={classes.cancelNotif}>
+
      <svg id="Remove_with_background" data-name="Remove with background" xmlns="http://www.w3.org/2000/svg" width="25" height="36" viewBox="0 0 36 36">
   <g id="Group_38" data-name="Group 38" transform="translate(-1026.43 -590.43)">
     <rect id="Rectangle_36" data-name="Rectangle 36" width="36" height="36" rx="18" transform="translate(1026.43 590.43)" fill="#fbf7ed"/>
@@ -329,6 +374,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
      return <NominatedMovies  key={el.imdbID} movie={el}></NominatedMovies>
    }): <div className={classes.initialNominated}>
      <div>
+
      <svg id="transporter-empty" xmlns="http://www.w3.org/2000/svg" width="5.4rem" height="90.796" viewBox="0 0 90.796 90.796">
       <rect id="Rectangle_46" data-name="Rectangle 46" width="90.763" height="90.763" fill="none"/>
       <g id="Group_65" data-name="Group 65" transform="translate(0 0)">
@@ -350,6 +396,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
     
      <a href="https://twitter.com/intent/tweet?text=I%20just%20nominated%20my%20favorite%20movies%20on%20shoppiesflick.netlify.app" target="blank" className={classes.shareSection}>
        <div className={classes.small}>
+
        <svg version="1.1" id="Capa_1"  x="0px" y="0px"
 	 viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}}>
 <path style={{fill:"#03A9F4"}} d="M512,97.248c-19.04,8.352-39.328,13.888-60.48,16.576c21.76-12.992,38.368-33.408,46.176-58.016
@@ -369,10 +416,11 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
         
         
    </div> : null;
-   let movableNav= <div className={classes.topNav}>
+   let movableNav= <div className={classes.topNavMov}>
    <div className={classes.logo}>
    <div>
-   <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path fill="#7cb342" 
+
+   <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="50px"><path fill="#7cb342" 
    d="M37.216,11.78c-0.023-0.211-0.211-0.305-0.351-0.305s-3.21-0.234-3.21-0.234s-2.132-2.132-2.39-2.343
      c-0.234-0.234-0.68-0.164-0.867-0.117c-0.023,0-0.469,0.141-1.195,0.375c-0.726-2.086-1.968-3.984-4.194-3.984h-0.211
        C24.187,4.375,23.391,4,22.735,4c-5.155,0-7.639,6.444-8.412,9.725c-2.015,0.633-3.445,1.054-3.609,1.125	c-1.125,0.351-1.148,
@@ -385,9 +433,10 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
        1.59-1.521c0-2.651-4.333-2.766-4.333-7.145c0-3.665,2.628-7.214,7.952-7.214	C23.777,17.994,24.792,18.593,24.792,18.593z"/>
    </svg>
    </div>
-   <div >The Shoppies</div>
+   {/* <div className={classes.sitename} >The Shoppies</div> */}
    </div>
-   <div className={classes.searchBar}><span className={classes.searchIcon}>
+   <div className={classes.searchBarMov}><span className={classes.searchIcon}>
+
         <svg id="Search_Icon" data-name="Search Icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <rect id="Rectangle_34" data-name="Rectangle 34" width="24" height="24" fill="none"/>
           <g id="Group_15" data-name="Group 15">
@@ -396,7 +445,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
           </g>
         </svg>
 
-          </span><SearchMovies className={classes.search}  onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies></div>
+          </span><SearchMovies className={classes.searchMov}  onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies></div>
    <div className={classes.links}>
      <div>
        
@@ -412,16 +461,49 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
      <div className={classes.profileImg}>
        
      </div>
+
    </div>
+   <div onClick={onShowNominated} className={classes.mob}>
+     
+        <div style={{position:"relative",width: "3rem", height: "3rem"}}>
+        <div className={classes.fave}>
+            {props.nominatedMovies.length}
+          </div>
+          <div className={classes.star}>
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  x="0"
+                  y="0"
+                  enableBackground="new 0 0 512.001 512.001"
+                  version="1.1"
+                  viewBox="0 0 512.001 512.001"
+                  xmlSpace="preserve"
+                >
+                  <path
+            fill="#FFDC64"
+            d="M499.92 188.26l-165.839-15.381L268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348L256 413.188l143.207 85.034c10.027 5.954 22.314-2.972 19.75-14.348l-36.619-162.476 125.126-109.922c8.761-7.696 4.068-22.139-7.544-23.216z"
+                  ></path>
+                  <path
+            fill="#FFC850"
+            d="M268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348l31.963-18.979c4.424-182.101 89.034-310.338 156.022-383.697L268.205 19.91z"
+                  ></path>
+                </svg>
+               
+          </div>
+          
+        </div>
+   </div>
+  
 
  </div>
 
   return (
-    <div>
+    <div className={classes.total}>
       <header className={classes.header}>
         <div className={classes.topNav}>
           <div className={classes.logo}>
           <div>
+
           <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path fill="#7cb342" 
           d="M37.216,11.78c-0.023-0.211-0.211-0.305-0.351-0.305s-3.21-0.234-3.21-0.234s-2.132-2.132-2.39-2.343
           	c-0.234-0.234-0.68-0.164-0.867-0.117c-0.023,0-0.469,0.141-1.195,0.375c-0.726-2.086-1.968-3.984-4.194-3.984h-0.211
@@ -435,7 +517,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
               1.59-1.521c0-2.651-4.333-2.766-4.333-7.145c0-3.665,2.628-7.214,7.952-7.214	C23.777,17.994,24.792,18.593,24.792,18.593z"/>
           </svg>
           </div>
-          <div >The Shoppies</div>
+          {/* <div >The Shoppies</div> */}
           </div>
           <div className={classes.links}>
             <div>
@@ -452,13 +534,49 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
               
             </div>
           </div>
+          <div className={classes.mob}>
+     {/* <div className={classes.hamburger}>
+     <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path></svg>
+
+     </div> */}
+     
+        
+        <div onClick={onShowNominated} style={{position:"relative",width: "3rem", height: "3rem"}}>
+        <div className={classes.fave}>
+            {props.nominatedMovies.length}
+          </div>
+          <div className={classes.star}>
+
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  x="0"
+                  y="0"
+                  enableBackground="new 0 0 512.001 512.001"
+                  version="1.1"
+                  viewBox="0 0 512.001 512.001"
+                  xmlSpace="preserve"
+                >
+                  <path
+            fill="#FFDC64"
+            d="M499.92 188.26l-165.839-15.381L268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348L256 413.188l143.207 85.034c10.027 5.954 22.314-2.972 19.75-14.348l-36.619-162.476 125.126-109.922c8.761-7.696 4.068-22.139-7.544-23.216z"
+                  ></path>
+                  <path
+            fill="#FFC850"
+            d="M268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348l31.963-18.979c4.424-182.101 89.034-310.338 156.022-383.697L268.205 19.91z"
+                  ></path>
+                </svg>
+          </div>
+          
+        </div>
+   </div>
 
         </div>
         <div className={classes.jumbo}>
         <div className={classes.caption}>
         <div className={classes.bigCaption}>The Shoppies Awards</div>
-        <div className={classes.smallCaption}>Search for your top 5 favourite movies and nominate them for the shoppies Awards</div>
+        <div className={classes.smallCaption}>Search your favourite movies and recommend them to friends</div>
         <div className={classes.searchBar}><span className={classes.searchIcon}>
+
         <svg id="Search_Icon" data-name="Search Icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <rect id="Rectangle_34" data-name="Rectangle 34" width="24" height="24" fill="none"/>
           <g id="Group_15" data-name="Group 15">
@@ -467,7 +585,9 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
           </g>
         </svg>
 
-          </span><SearchMovies className={classes.search} onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies></div>
+          </span><span className={classes.searchBox}>
+            <SearchMovies className={classes.search} onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies>
+          </span></div>
         
 
         </div>
@@ -517,6 +637,9 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
             {searchResults}
           </InfiniteScroll>
         </div> */}
+
+        
+        {/* HAMBURGER SVG */}
        
        <div className={classes.nominatedSide}>
          <div className={classes.sectionDescription}>
@@ -533,18 +656,53 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
       </div>
         </div>
        
+        
 
       </main>
       <div onClick={()=>onShareHandler()}  className = {classes.share}>
              Share
+      </div>
+      <div style={{transform: show ? 'translateY(0)': 'translateY(85vh)', transition: 'transform .5s '}} className={classes.cont}>
+      <div className={classes.downArrow}>
+        <div>Nomination List</div>
+        <div onClick={onShowNominated}>
+          <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          x="0"
+          y="0"
+          enableBackground="new 0 0 451.847 451.847"
+          version="1.1"
+          viewBox="0 0 451.847 451.847"
+          xmlSpace="preserve"
+              >
+          <path d="M225.923 354.706c-8.098 0-16.195-3.092-22.369-9.263L9.27 151.157c-12.359-12.359-12.359-32.397 0-44.751 12.354-12.354 32.388-12.354 44.748 0l171.905 171.915 171.906-171.909c12.359-12.354 32.391-12.354 44.744 0 12.365 12.354 12.365 32.392 0 44.751L248.292 345.449c-6.177 6.172-14.274 9.257-22.369 9.257z"></path>
+              </svg>
+        </div>
+      </div>
+        <div className={classes.nominatedSideMob}>
+        <div className={classes.sectionDescription}>
+             <div className={classes.green}> Your Nominations</div>
+             {/* <div onClick={()=>onShareHandler()}  className = {classes.share}>
+               Share
+             </div> */}
+             {socialsSection}
            </div>
-
+           <div className={classes.nominatedMovies}>
+           {nominatedMovieslist}
+           </div>
+        </div>
+      </div>
+      
       
        
       
+{/* <div class="MobileLoader_loader__1dBJf"><div class="MobileLoader_loaderProgressBar__2kARO"><div class="MobileLoader_loadProgress__1LGoL" style="transform: scaleX(1); transform-origin: left center;"></div></div></div> */}
       
       
     </div>
+    
     );
 }
 
@@ -552,7 +710,8 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
 const mapStateToProps = (state) => ({
   searchResults: state.searchResults.moviesResult,
   nominatedMovies: state.nominatedMovies.nominatedMovies,
-  nominationComplete: state.nominatedMovies.nominationComplete
+  nominationComplete: state.nominatedMovies.nominationComplete,
+  totalMoviesNumber: state.searchResults.moviesTotal
   
   
 })
@@ -564,3 +723,5 @@ const mapDispatchToProps =(dispatch)=>( {
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
+
+

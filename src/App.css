@@ -11,14 +11,14 @@
       rgba(0, 0, 0, 0.687) 5%,
       rgba(255, 255, 255, 0)
     ),
-    url(./assets/movie\ background.jpg);
+    url(./assets/movie-background.jpg);
 }
 
 .topNav {
   display: flex;
   justify-content: space-between;
   height: 4.4rem;
-  width: 130.2rem;
+  width: 90vw;
   /* margin: 1.2rem; */
 }
 
@@ -40,13 +40,16 @@ a {
 }
 
 .logo {
-  width: 18rem;
-  height: 4.7rem;
+  width: auto;
+  height: 5rem;
   display: flex;
   color: white;
   font: normal normal bold 2rem Arimo;
   align-items: center;
   justify-content: space-between;
+}
+.cont {
+  display: none;
 }
 
 .links {
@@ -64,6 +67,9 @@ a {
   background-size: contain;
   width: 4.5rem;
   height: 4.5rem;
+}
+.mob {
+  display: none;
 }
 
 .jumbo {
@@ -94,10 +100,13 @@ a {
   opacity: 0.8;
   display: flex;
 }
+.downArrow {
+  display: none;
+}
 
 .searchIcon {
-  width: 5rem;
-  height: 4.4rem;
+  width: 15%;
+  height: 5.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,6 +114,26 @@ a {
 
 .search {
   background-color: #ffffff;
+  width: 63rem;
+}
+
+.topNavMov {
+  width: 94%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* margin: 1.2rem; */
+}
+
+.searchBarMov {
+  height: 5rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  opacity: 0.8;
+  display: flex;
+  font-size: 16px;
+  width: 70rem;
 }
 .caption {
   display: flex;
@@ -129,6 +158,9 @@ a {
   top: 7rem;
   align-content: center;
   /* position: relative; */
+}
+.star {
+  /* display: none; */
 }
 
 .notif {
@@ -203,6 +235,8 @@ a {
   width: 63.4rem;
   position: relative;
 }
+.searchResultSide {
+}
 
 /* reach */
 .nominatedMovies {
@@ -210,6 +244,12 @@ a {
   height: 58rem;
   background-color: #fbf7ed;
   padding: 0.8rem;
+}
+.nominatedSide {
+  /* height: auto; */
+}
+.nominatedSideMob {
+  display: none;
 }
 
 .sectionDescription {
@@ -252,25 +292,14 @@ a {
 }
 
 .animoj {
-  width: '15rem';
+  width: 15rem;
+  fill: #f5c517;
   animation: push 0.3s linear 1;
 }
 /* .animoj:hover {
   animation: wiggle 0.5s linear;
 } */
 
-@keyframes wiggle {
-  0% {
-    -webkit-transform: rotate(2deg);
-  }
-  25% {
-    -webkit-transform: rotate(-5deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(0deg);
-  }
-}
 @keyframes push {
   50% {
     transform: scale(0.8);
@@ -280,7 +309,7 @@ a {
   text-align: center;
   height: 20rem;
   margin-top: 9.5rem;
-  font: 1.6rem Arimo;
+  font: bold 1.8rem Arimo;
 }
 .completeOverlay {
   width: 63rem;
@@ -298,6 +327,7 @@ a {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px); */
 }
+
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
   .completeOverlay {
     -webkit-backdrop-filter: blur(3.5px);
@@ -358,14 +388,248 @@ a {
 
 .movableNav {
   height: 7rem;
-  width: 100%;
+  width: 100vw;
   position: fixed;
   top: -10rem;
-  align-self: center;
   z-index: 20;
   transition: top 0.3s;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #004c3f;
+}
+
+@media screen and (max-width: 480px) {
+  .caption {
+    display: flex;
+    /* justify-content: space-between; */
+    /* flex-direction: column; */
+    align-items: center;
+    text-align: left;
+    width: 38rem;
+    height: auto;
+    color: white;
+    margin-left: 0;
+  }
+  .focus {
+    display: block;
+    width: 99%;
+    position: relative;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .topNavMov {
+    width: 94%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* margin: 1.2rem; */
+  }
+  .notifBar {
+    color: #004c3f;
+    height: 4rem;
+    width: 100%;
+    top: 0;
+    position: absolute;
+    display: flex;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 7rem;
+    align-content: center;
+    /* position: relative; */
+  }
+  .notif {
+    height: 4rem;
+    /* width: 100%; */
+    background: #fbf7ed;
+    /* position: sticky;
+    position: -webkit-sticky;
+    top: 7rem; */
+    /* position: absolute;
+    top: 10rem; */
+    font: bold 1.2rem Arimo;
+    margin-left: 0;
+    color: #004c3f;
+    right: 0;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sitename {
+    display: none;
+  }
+  .searchResultSide {
+    width: 100%;
+  }
+  .searchResults {
+    /* overflow: auto; */
+    background-color: #fafafa;
+    height: 82vh;
+    padding: 0.8rem 0;
+    width: 100%;
+    /* display: none; */
+    position: relative;
+  }
+  .downArrow {
+    height: 38px;
+    display: flex;
+    font-size: 16px;
+    justify-content: space-between;
+    font-weight: bold;
+    align-items: center;
+    /* margin-top: 8px; */
+    background-color: pink;
+    padding: 0px 16px;
+    border-bottom: 1px solid rgba(98, 98, 98, 0.551);
+    background-color: #cbddcb;
+    border-radius: 20px 20px 0 0;
+  }
+  .scrollableDiv {
+    height: 82vh;
+    overflow: auto;
+  }
+  .completeOverlay {
+    width: 100%;
+    height: 97.4%;
+    margin: 8px 0;
+
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    /* background-image: linear-gradient(red, orange); */
+    /* background-color: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); */
+  }
+
+  .bigCaption {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font: bold 6rem Worksans;
+  }
+  .smallCaption {
+    width: 85%;
+    height: auto;
+    text-align: justify;
+    letter-spacing: 0.1px;
+    margin: 15px 0;
+    opacity: 1;
+    color: white;
+    font: normal 2.2rem Arimo;
+  }
+  .searchBar {
+    width: 36rem;
+    height: 5.2rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    opacity: 0.8;
+    display: flex;
+    font-size: 16px;
+  }
+  .searchBox {
+    width: 85%;
+  }
+  .searchBarMov {
+    height: 5rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    opacity: 0.8;
+    display: flex;
+    font-size: 16px;
+    width: auto;
+  }
+  .search {
+    width: 32rem;
+  }
+  .searchMov {
+    width: 28rem;
+  }
+  .mob {
+    width: auto;
+    display: flex;
+    align-items: center;
+    height: 4.8rem;
+    justify-content: space-between;
+  }
+  .jumbo {
+    margin: 3.5rem auto;
+  }
+  .total {
+    /* height: calc(100vh + 50vh); */
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+  }
+
+  .header {
+    height: 50vh;
+    width: 100vw;
+  }
+  .share {
+    display: none;
+  }
+  .links {
+    display: none;
+  }
+  .cont {
+    display: block;
+    position: fixed;
+    width: 100vw;
+    height: 75vh;
+    background-color: #fbf7ed;
+    bottom: 0;
+    right: 0;
+    border-radius: 20px 20px 0 0;
+    border: 1px solid rgb(98, 98, 98);
+  }
+  .star {
+    width: 25px;
+    height: 25px;
+  }
+  .nominatedSide {
+    display: none;
+  }
+  .nominatedSideMob {
+    display: block;
+    width: 100vw;
+    height: auto;
+    /* background-color: grey; */
+  }
+  .nominatedMovies {
+    width: calc(100vw - 1.6rem);
+  }
+  .movableNav {
+    width: 100vw;
+  }
+  .notifBar {
+    display: none;
+  }
+  .sectionDescription {
+    display: none;
+  }
+  .fave {
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    background-color: black;
+    color: white;
+    top: -6px;
+    right: -6px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .resultDescription {
+    margin: 1.7rem 1rem;
+  }
 }

@@ -9,24 +9,41 @@ export const SearchResult = (props) => {
     const [nominated, setNominated] = useState(false);
 
     const onNominateMovie=()=>{
-       // ;
         if(props.nominationComplete){
             return
         }else{
             
             let nomList = props.nominationList
-          
-            if(nomList.length > 0 && !nomList.includes(props.movieInfo)){
-                
-              
-                setNominated(true)
-                props.onSetNominatedMovie(props.movieInfo)
-            }
             if(nomList.length === 0 ){
                 setNominated(true)
                 props.onSetNominatedMovie(props.movieInfo)
             }
+            if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                // console.log('mobile device');
+                if(nomList.length > 0 ){
                 
+                    
+
+                    if(nominated === false){
+                        setNominated(true)
+                        if(!nomList.includes(props.movieInfo)){
+                            props.onSetNominatedMovie(props.movieInfo)
+                        }
+                    }else{
+                        setNominated(false)
+                        props.onRemoveNominated(props.movieInfo)
+                    } 
+                }
+               }
+               else{
+                if(nomList.length > 0 && !nomList.includes(props.movieInfo)){
+                
+              
+                    setNominated(true)
+                    console.log(nominated)
+                    props.onSetNominatedMovie(props.movieInfo)
+                }
+               }  
             }
             ;
         
@@ -92,6 +109,7 @@ const mapDispatchToProps = (dispatch) => (
     {
         onNominate: () => dispatch(actions.nominateMovie()),
         onSetNominatedMovie: (movie)=>dispatch(actions.setNominatedMovie(movie)),
+        onRemoveNominated: (movie)=>dispatch(actions.removeMovie(movie))
        
     }
 )

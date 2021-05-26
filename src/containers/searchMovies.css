@@ -1,16 +1,21 @@
 input {
-  width: 62.2rem;
+  width: 62rem;
   height: 4.4rem;
   background-color: rgba(255, 255, 255, 0.626);
   border: 0.08rem solid rgba(255, 255, 255, 0.626);
   border-radius: 0 0.5rem 0.5rem 0;
-  padding: 0.1rem 0.8rem;
-  font-size: 1.4rem;
+  padding: 0rem 0.8rem;
+  font-size: 16px;
   transition: font-size 0.3s;
 }
 input:focus {
   outline: none;
-  font-size: 1.6rem;
+  font-size: 16px;
+}
+.form {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 ::-webkit-input-placeholder {
@@ -31,4 +36,10 @@ input:focus {
 }
 :-ms-input-placeholder {
   font-size: normal normal normal 2.4rem/2.8rem Arimo;
+}
+@media screen and (max-width: 480px) {
+  input {
+    width: calc(100% - 1.7rem);
+    height: 96%;
+  }
 }

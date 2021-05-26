@@ -17,8 +17,8 @@ const rootReducer = combineReducers({
                                       nominatedMovies:nominatedMoviesReducer,
   
                                     }) 
-const store = createStore(rootReducer,  composeEnhancers(applyMiddleware(thunk))) 
-
+const store = createStore(rootReducer, applyMiddleware(thunk))
+// composeEnhancers(applyMiddleware(thunk))
 
 ReactDOM.render(
   <React.StrictMode>

@@ -21,10 +21,19 @@
 .title {
   font: normal normal bold 2rem Arimo;
   color: #004c3f;
-  max-width: 60rem;
+  max-width: 90%;
 }
 .year {
   font: 1.6rem Arimo;
   margin-top: 1.6rem;
   color: #a5a5a5;
+}
+@media screen and (max-width: 480px) {
+  .movie {
+    width: auto;
+    height: 8.8rem;
+    margin: 1.3rem;
+    background-color: #f2f2f2;
+    padding: 1.4rem;
+  }
 }

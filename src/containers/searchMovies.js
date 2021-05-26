@@ -26,12 +26,11 @@ function SearchMovies(props) {
   
 
     return (
-        <div>
-          <form onSubmit={(e)=>onSearchHandler(e)}>
+        
+          <form className={classes.form} onSubmit={(e)=>onSearchHandler(e)}>
           <input className={classes.input} type="text" name="title" onChange={(e)=>{inputChangeHandler(e)}} value={title.value} placeholder="Enter movie title"></input>
           {/* <button type="submit" > search</button> */}
         </form>
-        </div>
     )
 }
 
