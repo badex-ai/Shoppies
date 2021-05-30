@@ -30,8 +30,22 @@ const searchMoviesFailed =(state,action)=>{
 }
 
 const setMovies = (state,action)=>{
-    console.log(action.moviesResult.Search)
-    const  updatedState={moviesResult: action.moviesResult.Search , loading: {value: false}};
+    // console.log(action.moviesResult.Search)
+    let  results = action.moviesResult.Search ;
+//    let check=  results.map((movie,index)=>{return [movie.imdbID,index]});
+//    check.indexOf();
+//    check.filter((el, index)=>{
+//        check.indexOf(el) === index
+//    })
+const uniqueSearchResult = Array.from(new Set(results.map(a => a.imdbID)))
+ .map(id => {
+   return results.find(a => a.imdbID === id)
+ })
+//  console.log(uniqueSearchResult)
+
+   
+    
+    const  updatedState={moviesResult: uniqueSearchResult , loading: {value: false}};
     return updateState(state,updatedState)
 }
 
@@ -40,9 +54,21 @@ const setMoreMovies=(state,action)=>{
     // const updatedState={...state.moviesResult.Search,...action.moviesResult.Search};
 
     const newArray = state.moviesResult.slice();
-    newArray.splice(newArray.length, 0,...action.moviesResult.Search);
-    console.log(newArray)
-   const updatedState={moviesResult: newArray};
+    const results = action.moviesResult.Search;
+    const uniqueSearchResult = Array.from(new Set(results.map(a => a.imdbID)))
+ .map(id => {
+   return results.find(a => a.imdbID === id)
+ })
+ 
+    
+    newArray.splice(newArray.length, 0,...uniqueSearchResult);
+    const uniqueResult = Array.from(new Set(newArray.map(a => a.imdbID)))
+ .map(id => {
+   return newArray.find(a => a.imdbID === id)
+ })
+    
+    // console.log(uniqueResult)
+   const updatedState={moviesResult: uniqueResult};
    return updateState(state,updatedState)
 
 }

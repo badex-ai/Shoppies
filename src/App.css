@@ -6,9 +6,11 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  background-size: contain;
+  background-size: auto;
+  /* background-color: rgba(255, 255, 255, 0), url(./assets/movie-background.jpg); */
+
   background-image: linear-gradient(
-      rgba(0, 0, 0, 0.687) 5%,
+      rgba(0, 0, 0, 0.782) 5%,
       rgba(255, 255, 255, 0)
     ),
     url(./assets/movie-background.jpg);
@@ -306,10 +308,12 @@ a {
   }
 }
 .complete {
-  text-align: center;
   height: 20rem;
   margin-top: 9.5rem;
   font: bold 1.8rem Arimo;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .completeOverlay {
   width: 63rem;
@@ -330,9 +334,9 @@ a {
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
   .completeOverlay {
-    -webkit-backdrop-filter: blur(3.5px);
-    backdrop-filter: blur(3.5px);
-    background-color: rgba(201, 200, 200, 0.75);
+    /* -webkit-backdrop-filter: blur(3.5px);
+    backdrop-filter: blur(3.5px); */
+    background-color: rgba(201, 200, 200, 0.932);
   }
 }
 
@@ -491,9 +495,12 @@ a {
     height: 82vh;
     overflow: auto;
   }
+  .try {
+    color: green;
+  }
   .completeOverlay {
     width: 100%;
-    height: 97.4%;
+    height: 99%;
     margin: 8px 0;
 
     position: absolute;
@@ -581,6 +588,7 @@ a {
   .cont {
     display: block;
     position: fixed;
+    z-index: 5;
     width: 100vw;
     height: 75vh;
     background-color: #fbf7ed;

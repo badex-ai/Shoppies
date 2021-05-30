@@ -40,7 +40,7 @@ export const SearchResult = (props) => {
                 
               
                     setNominated(true)
-                    console.log(nominated)
+                    // console.log(nominated)
                     props.onSetNominatedMovie(props.movieInfo)
                 }
                }  

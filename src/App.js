@@ -4,7 +4,7 @@ import SearchResult from './containers/searchResult'
 import SearchMovies from './containers/searchMovies';
 import Loader from './components/shared/loader';
 import classes from './App.css';
- import {useState,useEffect} from 'react'
+ import {useState,useEffect,useRef,useLayoutEffect} from 'react'
  import completeImg from './animoj.png'
 
 import {connect} from 'react-redux';
@@ -15,7 +15,122 @@ import nominatedMovies from './containers/nominatedMovies';
 
 function App(props) {
   
+  let loadingRef = useRef();
+  // console.log(loadingRef);
+  const [prevY, setPrevY] = useState(0)
+  const [socials, setSocials] = useState({openSocials: false});
+   const [loading, setLoading] = useState({value:false});
+   const [notif, setNotif] = useState(false);
+   const [searchTerm, setSearchTerm] = useState('Movie Title')
+   const [moviesRemain, setMoviesRemain] = useState(true);
+   const [page, setPage] = useState(1);
+    const [show, setShow] = useState(false)
 
+
+    // useLayoutEffect(() => {
+    //   console.log(resultRef,'layout')
+    //   console.log(document.querySelector('.UtfQkt42AIMXhp_9B2Em6'),"layout")
+      
+    // }, [props.searchResults]);
+    
+ 
+  useEffect(() => {
+    console.log(prevY);
+    let y;
+    const root = document.getElementById('cover').firstChild;
+    const observedBar = root.lastChild;
+    if(props.searchResults){
+
+      const onLoadMoreMovies=()=>{
+        const newpage = page + 1;
+        setPage(newpage);
+        console.log(page,newpage);
+        if(moviesRemain){
+          console.log("loading more movies")
+        }
+        props.fetchMoreMovies(searchTerm,newpage)
+        // props.fetchMoreMovies()
+      }
+
+    
+      // const root = document.getElementById('cover').firstChild;
+      // console.log(root);
+
+      
+
+      // console.log(observedBar);
+      
+      var options = {
+            root: root,
+            rootMargin: '0px',
+            threshold: 1
+          };
+
+
+        let observer = new IntersectionObserver(
+      (entities)=>{
+        console.log("inersection observer works")
+       y = entities[0].boundingClientRect.y;
+      console.log(y)
+     
+      setPrevY(y)
+      if (prevY > y) {
+        console.log(y)
+      console.log("ask for more")
+      onLoadMoreMovies()
+      } 
+      console.log( moviesRemain,  page,  prevY, props.searchResults, searchTerm)
+      }, //callback
+      options
+      
+    );
+    
+    
+      if(loadingRef.current){
+        observer.observe(loadingRef.current)
+      }
+    ;
+  }
+  
+  }, [moviesRemain, page, prevY, props, props.searchResults, searchTerm])
+
+  // useEffect(() => {
+  //   if(props.searchResults !== null){
+  //     // console.log(resultRef)
+  //     // console.log(document.querySelector('.UtfQkt42AIMXhp_9B2Em6'))
+  //   }
+  //   // onsole.log(document.getElementById('scrollableDiv'))c;
+  //   // console.log(resultRef,"this is the ref")
+  //   // var options = {
+  //   //   root: document.getElementById('cover').firstChild,
+  //   //   // rootMargin: '0px',
+  //   //   threshold: 0.75
+  //   // };
+  //   // const bar = document.getElementById('try')
+  //   // Create an observer
+  //   // console.log(resultRef)
+  //   // let observer = new IntersectionObserver(
+  //   //   (entities)=>{
+  //   //     const y = entities[0].boundingClientRect.y;
+  //   // if (prevY > y) {
+  //   //   console.log("ask for more")
+  //   // }
+  
+  //   // setPrevY(y)
+  //   //   }, //callback
+  //   //   options
+  //   // );
+  //   // //Observ the `loadingRef`
+      
+  //   // if(bar){
+  //   //   observer.observe(bar);
+  //   // }
+        
+      
+  //    ;
+    
+   
+  // },[props.searchResults])
 
   useEffect(() => {
     if(props.searchResults != null){
@@ -31,6 +146,21 @@ function App(props) {
     
   },[props.searchResults, props.totalMoviesNumber])
 
+  
+
+  // useEffect(() => {
+  //   const input= document.getElementsByClassName("DFJnxivdc6OX74yZpmkrk")[0].firstChild;
+  //     input.addEventListener("focus",()=>{
+  //       console.log("i have been focused on")
+  //       setTimeout(() => {
+  //         document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "-.9rem";
+  //       }, 300);
+  //     })
+    
+  // }, [])
+
+ 
+
 useEffect(() => {
   // console.log(props.nominationComplete);
   setNotif(props.nominationComplete)
@@ -39,40 +169,46 @@ useEffect(() => {
   
 }, [props.nominationComplete])
 
-   const [socials, setSocials] = useState({openSocials: false});
-   const [loading, setLoading] = useState({value:false});
-   const [notif, setNotif] = useState(false);
-   const [searchTerm, setSearchTerm] = useState('Movie Title')
-   const [moviesRemain, setMoviesRemain] = useState(true);
-   const [page, setPage] = useState(2);
-    const [show, setShow] = useState(false)
+   
+    
+
+    
+    
 
   // if(props.searchResults.totalResults > props.searchResults.moviesResult){
   //   setMoviesRemain(true);
   // }
 
+  // const handleObserver = (entities, observer)=>{
+  //   const y = entities[0].boundingClientRect.y;
+  //   if (prevY > y) {
+  //     onLoadMoreMovies()
+  //   }
   
-  const onLoadMoreMovies=()=>{
-    const newpage = page + 1;
-    setPage(newpage);
-    console.log(page);
-    if(moviesRemain){
-      console.log("loading more movies")
-    }
-    props.fetchMoreMovies(searchTerm,page)
-    // props.fetchMoreMovies()
-  }
+  //   setPrevY(y)
+  // }
+  
+ 
 
   // console.log(window.screen.width)
-  
+
+ 
   window.onscroll = function() {
     if(window.screen.width <= 480){
       scrollmobileFunction();
+      // console.log(document.querySelector("._1KURnOvqTfYNdcdxee_CV6"))
+      
+      // console.log(document.getElementsByClassName("DFJnxivdc6OX74yZpmkrk")[0].firstChild)
+      // 
+      
+      
+      
+      
      
     }else{
       scrollDeskFunction()
     }
-    };
+  }
 
   
   function scrollmobileFunction() {
@@ -82,6 +218,8 @@ useEffect(() => {
     document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "-10rem";
   }
 }
+
+
   function scrollDeskFunction() {
   if (document.body.scrollTop > 290 || document.documentElement.scrollTop > 290) {
     document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "0";
@@ -90,8 +228,22 @@ useEffect(() => {
   }
 }
 
-
-
+const ondecoy=()=>{
+  return
+}
+const onFocusInput=()=>{
+  // console.log("it has been focused on")
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        console.log('ios')
+        setTimeout(() => {
+          document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "-.9rem";
+        }, 300);
+        
+        // return "iOS";
+       
+      }else return
+}
 const onCloseNotif=()=>{
   setNotif(false)
 }
@@ -138,10 +290,10 @@ const onHandleLoading=(event)=>{
         
      })
     // setLoading({value: false});
-    searchResults =<div id="scrollableDiv" className={classes.scrollableDiv}>
-    <InfiniteScroll
-        dataLength={props.totalMoviesNumber}
-        hasMore={moviesRemain}
+    searchResults =<div  id="scrollableDiv" className={classes.scrollableDiv}>
+    {/* <InfiniteScroll
+        dataLength={0}
+        hasMore={true}
         next={onLoadMoreMovies}
         loader={<h4>Loading...</h4>}
         scrollableTarget="scrollableDiv"
@@ -152,7 +304,15 @@ const onHandleLoading=(event)=>{
         }
       >
         {results}
-      </InfiniteScroll>
+      </InfiniteScroll> */}
+      {results}
+      <div
+      className={classes.try}
+      ref={loadingRef}
+      id="try"
+      >
+        <span>Loading...</span>
+      </div>
     </div>
          
       }
@@ -445,12 +605,12 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
           </g>
         </svg>
 
-          </span><SearchMovies className={classes.searchMov}  onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies></div>
+          </span><SearchMovies focus={(event)=>onFocusInput(event)} className={classes.searchMov}  onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies></div>
    <div className={classes.links}>
      <div>
        
      <a className={classes.active} href="/">
-     Home
+       Home
      </a>
      </div>
      <div>
@@ -586,7 +746,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
         </svg>
 
           </span><span className={classes.searchBox}>
-            <SearchMovies className={classes.search} onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies>
+            <SearchMovies focus={(event)=>{ondecoy()}} className={classes.search} onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies>
           </span></div>
         
 
@@ -618,10 +778,10 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
         <div className={classes.focus}>
         <div className={classes.searchResultSide} >
           <div className={classes.resultDescription}>Results for:<span className={classes.searchTerm}>{searchTerm}</span></div>
-          <div className={classes.searchResults}>
-            
-            {completeOverlay}
+          <div id="cover" className={classes.searchResults}>
             {content}
+            {completeOverlay}
+            
           
           </div>
           

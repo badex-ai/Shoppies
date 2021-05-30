@@ -15,6 +15,11 @@ function SearchMovies(props) {
 
   }
 
+  const move=(event)=>{
+    props.focus(event)
+   
+  }
+
   const onSearchHandler=(e)=>{
     e.preventDefault()
     // console.log(title.value);
@@ -28,7 +33,7 @@ function SearchMovies(props) {
     return (
         
           <form className={classes.form} onSubmit={(e)=>onSearchHandler(e)}>
-          <input className={classes.input} type="text" name="title" onChange={(e)=>{inputChangeHandler(e)}} value={title.value} placeholder="Enter movie title"></input>
+          <input onFocus={move} className={classes.input} type="text" name="title" onChange={(e)=>{inputChangeHandler(e)}} value={title.value} placeholder="Enter movie title"></input>
           {/* <button type="submit" > search</button> */}
         </form>
     )

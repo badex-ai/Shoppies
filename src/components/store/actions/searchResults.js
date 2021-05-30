@@ -52,10 +52,10 @@ export const searchMovie=(movieTitle)=>{
 
 export const fetchMoreMovies=(movieTitle,page)=>{
     return dispatch=>{
-        console.log("i am fetching more results")
+        // console.log("i am fetching more results")
         axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=cf59c518&s&s=${movieTitle}&page=${page}`).then(
             response=>{
-               console.log(response.data)
+            //    console.log(response.data)
                 dispatch(setMoreMovies(response.data))
             }
         ).catch(error=>{ 
