@@ -6,14 +6,19 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   /* background-color: rgba(255, 255, 255, 0), url(./assets/movie-background.jpg); */
 
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.782) 5%,
-      rgba(255, 255, 255, 0)
+  background-image:
+   /* linear-gradient(#000000c7 5%, rgba(255, 255, 255, 0.006)), */ linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.8) 100%
     ),
-    url(./assets/movie-background.jpg);
+    url(./assets/movie\ image\ sharp.jpg);
 }
 
 .topNav {
@@ -45,8 +50,10 @@ a {
   width: auto;
   height: 5rem;
   display: flex;
-  color: white;
-  font: normal normal bold 2rem Arimo;
+  color: #57cc06;
+
+  font-size: 3.2rem;
+  font-family: Monoton;
   align-items: center;
   justify-content: space-between;
 }
@@ -60,6 +67,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: Roboto;
+  font-weight: normal;
 }
 
 .profileImg {
@@ -75,28 +84,34 @@ a {
 }
 
 .jumbo {
-  margin: 6rem 0;
+  margin: 4rem 0;
 }
 
 .bigCaption {
   width: 50rem;
-  height: 4.7rem;
-  font: normal normal bold 5.1rem/5.1rem Worksans;
+  height: auto;
+  font-family: 'DMSerifDisplay';
+  font-size: 5.1rem;
+  line-height: 1.2;
 }
 
 .smallCaption {
   width: 48rem;
-  height: 5.2rem;
+  height: auto;
   text-align: left;
   letter-spacing: 0px;
   opacity: 1;
-  color: white;
-  font: normal normal normal 1.9rem/2.8rem Arimo;
+  color: #57cc06;
+  margin-bottom: 0.4rem;
+  font-family: RobotoCondensed;
+  font-size: 1.6rem;
+  margin-left: 2px;
+  margin-top: 1.2rem;
 }
 
 .searchBar {
   width: 68rem;
-  height: 5rem;
+  height: auto;
   background-color: #ffffff;
   border-radius: 0.5rem;
   opacity: 0.8;
@@ -143,7 +158,7 @@ a {
   flex-direction: column;
   text-align: left;
   width: 67.2rem;
-  height: 20rem;
+  height: auto;
   color: white;
   margin-left: -12.8rem;
 }
@@ -175,7 +190,7 @@ a {
   /* position: absolute;
   top: 10rem; */
   font: bold 1.2rem Arimo;
-  margin-left: 133rem;
+  margin-left: calc(100vw - 18rem);
   color: #004c3f;
   right: 0;
   z-index: 15;
@@ -196,17 +211,20 @@ a {
   justify-content: center;
 }
 .focus {
-  width: 111.8rem;
+  /* width: 111.8rem; */
+  min-width: 68%;
   height: 66rem;
   display: grid;
-  grid-template-columns: 65rem 45.8rem;
+  /* grid-template-columns: 65rem 45.8rem; */
+  grid-template-columns: 58% 41%;
   grid-column-gap: 0.8rem;
   /* background-color: red; */
 }
 
 .resultDescription {
   margin: 1.7rem 0;
-  font: 1.6rem Arimo;
+  font: 1.6rem Roboto;
+  font-stretch: condensed;
   font-weight: 500;
   color: rgb(52, 52, 52);
 }
@@ -215,12 +233,19 @@ a {
   color: #254a44;
   margin-left: 0.3rem;
   text-transform: capitalize;
-  font-weight: 600;
+  font-family: Roboto;
+  font-stretch: normal;
+  font-weight: 700;
+}
+.resultContainer {
+  overflow-y: auto;
+  height: 58rem;
 }
 
 .loaderCont {
   width: 100%;
-  height: 70%;
+  /* height: 70%; */
+  margin-top: 9.5rem;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -238,6 +263,7 @@ a {
   position: relative;
 }
 .searchResultSide {
+  width: 100%;
 }
 
 /* reach */
@@ -249,6 +275,7 @@ a {
 }
 .nominatedSide {
   /* height: auto; */
+  width: 100%;
 }
 .nominatedSideMob {
   display: none;
@@ -265,14 +292,16 @@ a {
 }
 
 .green {
-  font: normal normal bold 1.6rem Arimo;
+  font: 1.6rem Roboto;
+  font-stretch: condensed;
   font-weight: 500;
   letter-spacing: 0px;
   color: #004c3f;
 }
 .share {
-  font: 1.5rem Arimo;
-  letter-spacing: 0px;
+  font: 1.5rem Roboto;
+  font-stretch: condensed;
+  font-weight: 500;
   color: #1a1a1a;
   cursor: pointer;
   position: absolute;
@@ -280,7 +309,7 @@ a {
   top: 43.65rem;
 }
 .share:hover {
-  color: rgb(124, 179, 66);
+  color: #57cc06;
 }
 
 .initial {
@@ -316,8 +345,8 @@ a {
   align-items: center;
 }
 .completeOverlay {
-  width: 63rem;
-  height: 97.4%;
+  width: 98%;
+  height: 98%;
   margin: 8px 0;
 
   position: absolute;
@@ -345,7 +374,7 @@ a {
   fill: #9dc29d82;
 }
 .initialText {
-  font: 1.6rem Arimo;
+  font: 1.6rem Roboto;
   color: #1a1a1a;
   width: 21rem;
   text-align: center;
@@ -362,8 +391,8 @@ a {
 }
 .socials {
   position: absolute;
-  width: 14rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 1rem 0.2rem #00000029;
   border-radius: 0.5rem;
@@ -403,14 +432,34 @@ a {
   background-color: #004c3f;
 }
 
+@media screen and (max-width: 1280px) {
+  .focus {
+    width: 80%;
+    grid-template-columns: 58% 41%;
+    grid-column-gap: 1%;
+  }
+  .nominatedMovies {
+    width: calc(100% - 1.6rem);
+  }
+
+  .searchResults {
+    /* overflow: auto; */
+
+    height: 58rem;
+    padding: 0.4rem;
+    width: 100%;
+    position: relative;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .caption {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     /* flex-direction: column; */
-    align-items: center;
+    /* align-items: center; */
     text-align: left;
-    width: 38rem;
+    width: 36rem;
     height: auto;
     color: white;
     margin-left: 0;
@@ -478,6 +527,7 @@ a {
     position: relative;
   }
   .downArrow {
+    fill: #004c3f;
     height: 38px;
     display: flex;
     font-size: 16px;
@@ -486,10 +536,14 @@ a {
     align-items: center;
     /* margin-top: 8px; */
     background-color: pink;
-    padding: 0px 16px;
-    border-bottom: 1px solid rgba(98, 98, 98, 0.551);
+    padding: 0px 22px;
+    border-bottom: 1px solid #d6d6d6;
     background-color: #cbddcb;
     border-radius: 20px 20px 0 0;
+  }
+  .resultContainer {
+    height: 82vh;
+    overflow: auto;
   }
   .scrollableDiv {
     height: 82vh;
@@ -518,18 +572,21 @@ a {
   .bigCaption {
     width: 100%;
     height: auto;
-    text-align: center;
-    font: bold 6rem Worksans;
+    text-align: ce;
+    font: bold 6rem;
   }
   .smallCaption {
     width: 85%;
     height: auto;
     text-align: justify;
     letter-spacing: 0.1px;
-    margin: 15px 0;
+    margin-top: 30px;
+    margin-bottom: 0.5rem;
     opacity: 1;
-    color: white;
-    font: normal 2.2rem Arimo;
+    color: #57cc06;
+
+    /* color: white; */
+    font: bold 2.2rem Roboto;
   }
   .searchBar {
     width: 36rem;
@@ -558,6 +615,17 @@ a {
   .searchMov {
     width: 28rem;
   }
+  #overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.36);
+    z-index: 5;
+    top: 0;
+    right: 0;
+    opacity: 1;
+  }
   .mob {
     width: auto;
     display: flex;
@@ -566,7 +634,7 @@ a {
     justify-content: space-between;
   }
   .jumbo {
-    margin: 3.5rem auto;
+    margin-top: 9.2rem;
   }
   .total {
     /* height: calc(100vh + 50vh); */
@@ -576,7 +644,7 @@ a {
   }
 
   .header {
-    height: 50vh;
+    height: 62vh;
     width: 100vw;
   }
   .share {
@@ -595,7 +663,7 @@ a {
     bottom: 0;
     right: 0;
     border-radius: 20px 20px 0 0;
-    border: 1px solid rgb(98, 98, 98);
+    border: 1px solid #d6d6d6;
   }
   .star {
     width: 25px;
@@ -639,5 +707,6 @@ a {
   }
   .resultDescription {
     margin: 1.7rem 1rem;
+    font-size: 2rem;
   }
 }

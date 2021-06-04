@@ -15,7 +15,7 @@ import nominatedMovies from './containers/nominatedMovies';
 
 function App(props) {
   
-  let loadingRef = useRef();
+  let resultRef = useRef();
   // console.log(loadingRef);
   const [prevY, setPrevY] = useState(0)
   const [socials, setSocials] = useState({openSocials: false});
@@ -69,29 +69,25 @@ function App(props) {
 
         let observer = new IntersectionObserver(
       (entities)=>{
-        console.log("inersection observer works")
+        console.log("ingersection observer works")
        y = entities[0].boundingClientRect.y;
       console.log(y)
-     
       setPrevY(y)
       if (prevY > y) {
         console.log(y)
       console.log("ask for more")
       onLoadMoreMovies()
       } 
-      console.log( moviesRemain,  page,  prevY, props.searchResults, searchTerm)
       }, //callback
       options
       
     );
     
     
-      if(loadingRef.current){
-        observer.observe(loadingRef.current)
-      }
-    ;
+
+    observer.observe(observedBar);
   }
-  
+   console.log( moviesRemain,  page,  prevY, props.searchResults, searchTerm)
   }, [moviesRemain, page, prevY, props, props.searchResults, searchTerm])
 
   // useEffect(() => {
@@ -249,10 +245,25 @@ const onCloseNotif=()=>{
 }
 const onShowNominated=()=>{
   // console.log(show)
-  setShow(!show)
+ document.getElementById("_1VD8IVh3pdJAVVq2RCsWsS").style.display="block";
+ document.getElementById("_1VD8IVh3pdJAVVq2RCsWsS").style.opacity= "1"
+
+ document.getElementById("_1VD8IVh3pdJAVVq2RCsWsS").style.transition="opacity .3s ease";
+
+  setShow(true)
+}
+const onCloseNominated=()=>{
+  // console.log(show)
+ document.getElementById("_1VD8IVh3pdJAVVq2RCsWsS").style.display= "none"
+ document.getElementById("_1VD8IVh3pdJAVVq2RCsWsS").style.opacity= "0"
+
+ document.getElementById("_1VD8IVh3pdJAVVq2RCsWsS").style.transition="opacity .3s ease";
+
+  setShow(false)
 }
 const onHandleLoading=(event)=>{
   setLoading({value:true})
+  
   
    setSearchTerm(event);
 }
@@ -271,6 +282,21 @@ const onHandleLoading=(event)=>{
   
   const completeOverlay = notif ? <div className={classes.completeOverlay}>
     <div className={classes.complete}>
+       <div onClick={onCloseNotif} className={classes.cancelNotif}>
+
+     <svg id="Remove_with_background" data-name="Remove with background" xmlns="http://www.w3.org/2000/svg" width="25" height="36" viewBox="0 0 36 36">
+  <g id="Group_38" data-name="Group 38" transform="translate(-1026.43 -590.43)">
+    <rect id="Rectangle_36" data-name="Rectangle 36" width="36" height="36" rx="18" transform="translate(1026.43 590.43)" fill="#fbf7ed"/>
+  </g>
+  <g id="Remove_Icon" data-name="Remove Icon" transform="translate(2 2)">
+    <rect id="Rectangle_44" data-name="Rectangle 44" width="32" height="32" fill="none"/>
+    <g id="Group_50" data-name="Group 50">
+      <line id="Line_2" data-name="Line 2" x1="12" y2="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
+      <line id="Line_3" data-name="Line 3" x1="12" y1="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
+    </g>
+  </g>
+</svg>
+     </div>
       <div className={classes.animoj}>
       <img style={{width: '15rem'}}src={completeImg} alt="complete" />
       </div>
@@ -290,7 +316,7 @@ const onHandleLoading=(event)=>{
         
      })
     // setLoading({value: false});
-    searchResults =<div  id="scrollableDiv" className={classes.scrollableDiv}>
+    searchResults =<div ref={node=>{resultRef=node}} id="scrollableDiv" className={classes.scrollableDiv}>
     {/* <InfiniteScroll
         dataLength={0}
         hasMore={true}
@@ -308,7 +334,6 @@ const onHandleLoading=(event)=>{
       {results}
       <div
       className={classes.try}
-      ref={loadingRef}
       id="try"
       >
         <span>Loading...</span>
@@ -508,21 +533,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
    let nominationComplete = notif ? 
    <div className={classes.notif}>
      <p>Nominations complete !</p>
-     <div onClick={onCloseNotif} className={classes.cancelNotif}>
-
-     <svg id="Remove_with_background" data-name="Remove with background" xmlns="http://www.w3.org/2000/svg" width="25" height="36" viewBox="0 0 36 36">
-  <g id="Group_38" data-name="Group 38" transform="translate(-1026.43 -590.43)">
-    <rect id="Rectangle_36" data-name="Rectangle 36" width="36" height="36" rx="18" transform="translate(1026.43 590.43)" fill="#fbf7ed"/>
-  </g>
-  <g id="Remove_Icon" data-name="Remove Icon" transform="translate(2 2)">
-    <rect id="Rectangle_44" data-name="Rectangle 44" width="32" height="32" fill="none"/>
-    <g id="Group_50" data-name="Group 50">
-      <line id="Line_2" data-name="Line 2" x1="12" y2="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
-      <line id="Line_3" data-name="Line 3" x1="12" y1="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
-    </g>
-  </g>
-</svg>
-     </div>
+    
      
 
    </div>: null;
@@ -569,7 +580,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
 	C480.224,136.96,497.728,118.496,512,97.248z"/></svg>
        </div>
     
-       <div>To twitter</div>
+       {/* <div>To twitter</div> */}
      </a>
      
     
@@ -579,8 +590,8 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
    let movableNav= <div className={classes.topNavMov}>
    <div className={classes.logo}>
    <div>
-
-   <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="50px"><path fill="#7cb342" 
+   REFLICK
+   {/* <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="50px"><path fill="#7cb342" 
    d="M37.216,11.78c-0.023-0.211-0.211-0.305-0.351-0.305s-3.21-0.234-3.21-0.234s-2.132-2.132-2.39-2.343
      c-0.234-0.234-0.68-0.164-0.867-0.117c-0.023,0-0.469,0.141-1.195,0.375c-0.726-2.086-1.968-3.984-4.194-3.984h-0.211
        C24.187,4.375,23.391,4,22.735,4c-5.155,0-7.639,6.444-8.412,9.725c-2.015,0.633-3.445,1.054-3.609,1.125	c-1.125,0.351-1.148,
@@ -591,7 +602,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
        <path fill="#558b2f" d="M36.865,11.428c-0.141,0-3.21-0.234-3.21-0.234s-2.132-2.132-2.39-2.343	C31.17,8.757,31.053,8.71,30.96,8.71L29.249,44l12.373-2.671c0,0-4.335-29.338-4.359-29.549	C37.169,11.569,37.005,11.475,36.865,11.428z"/>
        <path fill="#fff" d="M24.792,18.593l-1.475,4.449c0,0-1.337-0.715-2.927-0.715c-2.374,0-2.489,1.498-2.489,1.867	c0,2.028,5.301,2.812,5.301,7.583c0,3.757-2.374,6.177-5.578,6.177c-3.872,0-5.808-2.397-5.808-2.397l1.037-3.411	c0,0,2.028,1.752,3.734,1.752c1.129,0,1.59-0.876,
        1.59-1.521c0-2.651-4.333-2.766-4.333-7.145c0-3.665,2.628-7.214,7.952-7.214	C23.777,17.994,24.792,18.593,24.792,18.593z"/>
-   </svg>
+   </svg> */}
    </div>
    {/* <div className={classes.sitename} >The Shoppies</div> */}
    </div>
@@ -610,7 +621,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
      <div>
        
      <a className={classes.active} href="/">
-       Home
+     Home
      </a>
      </div>
      <div>
@@ -659,12 +670,15 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
 
   return (
     <div className={classes.total}>
+  <div id={classes.overlay}></div>
+
       <header className={classes.header}>
         <div className={classes.topNav}>
           <div className={classes.logo}>
           <div>
+            REFLICK
 
-          <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path fill="#7cb342" 
+          {/* <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path fill="#7cb342" 
           d="M37.216,11.78c-0.023-0.211-0.211-0.305-0.351-0.305s-3.21-0.234-3.21-0.234s-2.132-2.132-2.39-2.343
           	c-0.234-0.234-0.68-0.164-0.867-0.117c-0.023,0-0.469,0.141-1.195,0.375c-0.726-2.086-1.968-3.984-4.194-3.984h-0.211
             	C24.187,4.375,23.391,4,22.735,4c-5.155,0-7.639,6.444-8.412,9.725c-2.015,0.633-3.445,1.054-3.609,1.125	c-1.125,0.351-1.148,
@@ -675,7 +689,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
               <path fill="#558b2f" d="M36.865,11.428c-0.141,0-3.21-0.234-3.21-0.234s-2.132-2.132-2.39-2.343	C31.17,8.757,31.053,8.71,30.96,8.71L29.249,44l12.373-2.671c0,0-4.335-29.338-4.359-29.549	C37.169,11.569,37.005,11.475,36.865,11.428z"/>
               <path fill="#fff" d="M24.792,18.593l-1.475,4.449c0,0-1.337-0.715-2.927-0.715c-2.374,0-2.489,1.498-2.489,1.867	c0,2.028,5.301,2.812,5.301,7.583c0,3.757-2.374,6.177-5.578,6.177c-3.872,0-5.808-2.397-5.808-2.397l1.037-3.411	c0,0,2.028,1.752,3.734,1.752c1.129,0,1.59-0.876,
               1.59-1.521c0-2.651-4.333-2.766-4.333-7.145c0-3.665,2.628-7.214,7.952-7.214	C23.777,17.994,24.792,18.593,24.792,18.593z"/>
-          </svg>
+          </svg> */}
           </div>
           {/* <div >The Shoppies</div> */}
           </div>
@@ -687,7 +701,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
             </div>
             <div>
             <a href="/">
-              About
+            About
             </a>
             </div>
             <div className={classes.profileImg}>
@@ -733,8 +747,8 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
         </div>
         <div className={classes.jumbo}>
         <div className={classes.caption}>
-        <div className={classes.bigCaption}>The Shoppies Awards</div>
-        <div className={classes.smallCaption}>Search your favourite movies and recommend them to friends</div>
+        <div className={classes.bigCaption}>Share amazing movies with friends</div>
+        <div className={classes.smallCaption}>GET STARTED</div>
         <div className={classes.searchBar}><span className={classes.searchIcon}>
 
         <svg id="Search_Icon" data-name="Search Icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -825,7 +839,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
       <div style={{transform: show ? 'translateY(0)': 'translateY(85vh)', transition: 'transform .5s '}} className={classes.cont}>
       <div className={classes.downArrow}>
         <div>Nomination List</div>
-        <div onClick={onShowNominated}>
+        <div onClick={onCloseNominated}>
           <svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"

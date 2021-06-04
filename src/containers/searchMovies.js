@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState,useRef} from 'react';
 // import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classes from './searchMovies.css'
 import * as actions from '../components/store/actions/index'
 
 function SearchMovies(props) {
-
+  const input = useRef(null)
   const [title, setTitle] = useState({value:''});
 
   const inputChangeHandler=(e)=>{
@@ -17,6 +17,7 @@ function SearchMovies(props) {
 
   const move=(event)=>{
     props.focus(event)
+
    
   }
 
@@ -25,15 +26,18 @@ function SearchMovies(props) {
     // console.log(title.value);
     props.onSubmit(title.value)
     props.onSearchMovie(title.value);
+  
     // console.log(props.loadingState, "this checks the loading state");
-    setTitle({value:''})
+     setTitle({value:''});
+     input.current.blur()
+     e.target.reset()
   }
   
 
     return (
         
           <form className={classes.form} onSubmit={(e)=>onSearchHandler(e)}>
-          <input onFocus={move} className={classes.input} type="text" name="title" onChange={(e)=>{inputChangeHandler(e)}} value={title.value} placeholder="Enter movie title"></input>
+          <input ref={input} onFocus={move} className={classes.input} type="text" name="title" onChange={(e)=>{inputChangeHandler(e)}} value={title.value} placeholder="Enter movie title"></input>
           {/* <button type="submit" > search</button> */}
         </form>
     )

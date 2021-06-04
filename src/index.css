@@ -46,7 +46,42 @@ input[type='text'] {
   top: 0;
   background-color: rgba(0, 0, 0, 0.353);
 }
+@font-face {
+  font-family: 'DMSerifDisplay';
+  src: local('DMSerifDisplay-Regular.ttf'),
+    url('./assets/fonts/DMSerifDisplay-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Monoton';
+  src: local('Monoton-Regular.ttf'),
+    url('./assets/fonts/Monoton-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'RobotoCondensed';
+  src: local('RobotoCondensed-Bold.ttf'),
+    url('./assets/fonts/RobotoCondensed-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto-Bold.ttf'),
+    url('./assets/fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto-Regular.ttf'),
+    url('./assets/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
 
+@media screen and (max-width: 1280px) {
+  html {
+    font-size: 56%;
+  }
+}
 @media screen and (max-width: 480px) {
   html {
     font-size: 50.5%;

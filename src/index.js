@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './assets/fonts/DMSerifDisplay-Regular.ttf';
+import './assets/fonts/Monoton-Regular.ttf';
+import './assets/fonts/RobotoCondensed-Bold.ttf';
+import './assets/fonts/Roboto-Regular.ttf';
+import './assets/fonts/Roboto-Bold.ttf';
+
 import {createStore, applyMiddleware,compose,combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 

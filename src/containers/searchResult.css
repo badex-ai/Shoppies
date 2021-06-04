@@ -19,14 +19,23 @@
 }
 
 .title {
-  font: normal normal bold 2rem Arimo;
+  font: normal normal bold 2rem Roboto;
   color: #004c3f;
   max-width: 90%;
 }
 .year {
-  font: 1.6rem Arimo;
+  font: 1.6rem Roboto;
   margin-top: 1.6rem;
   color: #a5a5a5;
+}
+@media screen and (max-width: 1280px) {
+  .movie {
+    width: calc(100% - 4rem);
+    height: 8.8rem;
+    margin: 0.6rem;
+    background-color: #f2f2f2;
+    padding: 1.4rem;
+  }
 }
 @media screen and (max-width: 480px) {
   .movie {
