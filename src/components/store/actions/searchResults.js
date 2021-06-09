@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes'
 import axios from 'axios';
-import searchMovies from '../../../containers/searchMovies';
+// import searchMovies from '../../../containers/searchMovies';
 
 
 export const searchMovieFailed=()=>{
