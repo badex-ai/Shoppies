@@ -4,156 +4,99 @@ import SearchResult from './containers/searchResult'
 import SearchMovies from './containers/searchMovies';
 import Loader from './components/shared/loader';
 import classes from './App.css';
- import {useState,useEffect,useRef,useLayoutEffect} from 'react'
+ import {useState,useEffect} from 'react'
  import completeImg from './animoj.png'
+//  import MovieResultContainer from './containers/movieResultContainer';
 
 import {connect} from 'react-redux';
 import * as actions from './components/store/actions/index'
-import InfiniteScroll from "react-infinite-scroll-component";
-import nominatedMovies from './containers/nominatedMovies';
 
 
 function App(props) {
   
-  let resultRef = useRef();
+  // let resultRef = useRef();
   // console.log(loadingRef);
   const [prevY, setPrevY] = useState(0)
   const [socials, setSocials] = useState({openSocials: false});
    const [loading, setLoading] = useState({value:false});
    const [notif, setNotif] = useState(false);
    const [searchTerm, setSearchTerm] = useState('Movie Title')
-   const [moviesRemain, setMoviesRemain] = useState(true);
+  //  const [moviesRemain, setMoviesRemain] = useState(true);
    const [page, setPage] = useState(1);
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
+    // const [showNoResult, setShowNoResult] = useState(false);
 
 
-    // useLayoutEffect(() => {
-    //   console.log(resultRef,'layout')
-    //   console.log(document.querySelector('.UtfQkt42AIMXhp_9B2Em6'),"layout")
-      
-    // }, [props.searchResults]);
+
+
     
  
   useEffect(() => {
-    console.log(prevY);
     let y;
     const root = document.getElementById('cover').firstChild;
     const observedBar = root.lastChild;
+
     if(props.searchResults){
 
       const onLoadMoreMovies=()=>{
         const newpage = page + 1;
         setPage(newpage);
         console.log(page,newpage);
-        if(moviesRemain){
-          console.log("loading more movies")
-        }
         props.fetchMoreMovies(searchTerm,newpage)
-        // props.fetchMoreMovies()
+        
       }
-
-    
-      // const root = document.getElementById('cover').firstChild;
-      // console.log(root);
-
-      
-
-      // console.log(observedBar);
-      
       var options = {
             root: root,
             rootMargin: '0px',
             threshold: 1
           };
 
-
         let observer = new IntersectionObserver(
       (entities)=>{
-        console.log("ingersection observer works")
+        console.log("intersection observer works")
        y = entities[0].boundingClientRect.y;
       console.log(y)
       setPrevY(y)
       if (prevY > y) {
-        console.log(y)
       console.log("ask for more")
       onLoadMoreMovies()
       } 
       }, //callback
       options
-      
     );
-    
-    
-
     observer.observe(observedBar);
   }
-   console.log( moviesRemain,  page,  prevY, props.searchResults, searchTerm)
-  }, [moviesRemain, page, prevY, props, props.searchResults, searchTerm])
+  }, [page, prevY, props, props.searchResults, searchTerm])
 
-  // useEffect(() => {
-  //   if(props.searchResults !== null){
-  //     // console.log(resultRef)
-  //     // console.log(document.querySelector('.UtfQkt42AIMXhp_9B2Em6'))
-  //   }
-  //   // onsole.log(document.getElementById('scrollableDiv'))c;
-  //   // console.log(resultRef,"this is the ref")
-  //   // var options = {
-  //   //   root: document.getElementById('cover').firstChild,
-  //   //   // rootMargin: '0px',
-  //   //   threshold: 0.75
-  //   // };
-  //   // const bar = document.getElementById('try')
-  //   // Create an observer
-  //   // console.log(resultRef)
-  //   // let observer = new IntersectionObserver(
-  //   //   (entities)=>{
-  //   //     const y = entities[0].boundingClientRect.y;
-  //   // if (prevY > y) {
-  //   //   console.log("ask for more")
-  //   // }
-  
-  //   // setPrevY(y)
-  //   //   }, //callback
-  //   //   options
-  //   // );
-  //   // //Observ the `loadingRef`
-      
-  //   // if(bar){
-  //   //   observer.observe(bar);
-  //   // }
-        
-      
-  //    ;
-    
-   
-  // },[props.searchResults])
+
+
+ 
 
   useEffect(() => {
+    // console.log(props.searchResults, props.totalMoviesNumber,props.noResult)
+
+     if(props.noResult){
+      setLoading({value: false})
+      // setShowNoResult(true)
+      
+    }
     if(props.searchResults != null){
 
       setLoading({value: false})
       if(props.totalMoviesNumber === props.searchResults.length){
         console.log(props.totalMoviesNumber === (props.searchResults.length), "yes they are equal")
-        setMoviesRemain(true)
+        // setMoviesRemain(true)
         
       }
+      
     }
     
     
-  },[props.searchResults, props.totalMoviesNumber])
+  },[props.searchResults, props.totalMoviesNumber, props.noResult])
 
   
 
-  // useEffect(() => {
-  //   const input= document.getElementsByClassName("DFJnxivdc6OX74yZpmkrk")[0].firstChild;
-  //     input.addEventListener("focus",()=>{
-  //       console.log("i have been focused on")
-  //       setTimeout(() => {
-  //         document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "-.9rem";
-  //       }, 300);
-  //     })
-    
-  // }, [])
+  
 
  
 
@@ -208,7 +151,7 @@ useEffect(() => {
 
   
   function scrollmobileFunction() {
-  if (document.body.scrollTop > 220 || document.documentElement.scrollTop > 220) {
+  if (document.body.scrollTop > 290 || document.documentElement.scrollTop > 290) {
     document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "0rem";
   } else {
     document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "-10rem";
@@ -229,11 +172,15 @@ const ondecoy=()=>{
 }
 const onFocusInput=()=>{
   // console.log("it has been focused on")
+  console.log(window.innerHeight)
   var userAgent = navigator.userAgent || navigator.vendor || window.opera;
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         console.log('ios')
+        // document.querySelector("#iq").style.paddingBottom="10rem"
         setTimeout(() => {
-          document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "-.9rem";
+          document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "-0rem";
+          // document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.position = "fixed";
+
         }, 300);
         
         // return "iOS";
@@ -263,10 +210,13 @@ const onCloseNominated=()=>{
 }
 const onHandleLoading=(event)=>{
   setLoading({value:true})
+  // setShowNoResult(false);
+  console.log("i just set show no result to false")
   
   
    setSearchTerm(event);
 }
+
   const onShareHandler=()=>{
      setSocials({openSocials:!socials.openSocials})
   }
@@ -282,55 +232,38 @@ const onHandleLoading=(event)=>{
   
   const completeOverlay = notif ? <div className={classes.completeOverlay}>
     <div className={classes.complete}>
-       <div onClick={onCloseNotif} className={classes.cancelNotif}>
+    <div onClick={onCloseNotif} className={classes.cancelNotif}>
 
-     <svg id="Remove_with_background" data-name="Remove with background" xmlns="http://www.w3.org/2000/svg" width="25" height="36" viewBox="0 0 36 36">
-  <g id="Group_38" data-name="Group 38" transform="translate(-1026.43 -590.43)">
-    <rect id="Rectangle_36" data-name="Rectangle 36" width="36" height="36" rx="18" transform="translate(1026.43 590.43)" fill="#fbf7ed"/>
-  </g>
-  <g id="Remove_Icon" data-name="Remove Icon" transform="translate(2 2)">
-    <rect id="Rectangle_44" data-name="Rectangle 44" width="32" height="32" fill="none"/>
-    <g id="Group_50" data-name="Group 50">
-      <line id="Line_2" data-name="Line 2" x1="12" y2="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
-      <line id="Line_3" data-name="Line 3" x1="12" y1="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
-    </g>
-  </g>
-</svg>
-     </div>
+    <svg id="Remove_Icon" data-name="Remove Icon" xmlns="http://www.w3.org/2000/svg" width="2.2rem" height="2.2rem" viewBox="0 0 32 32">
+            <rect id="Rectangle_44" data-name="Rectangle 44" width="32" height="32" fill="none"/>
+            <g id="Group_50" data-name="Group 50">
+                <line id="Line_2" data-name="Line 2" x1="12" y2="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
+                <line id="Line_3" data-name="Line 3" x1="12" y1="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
+            </g>
+            </svg>
+</div>
       <div className={classes.animoj}>
       <img style={{width: '15rem'}}src={completeImg} alt="complete" />
       </div>
-      <p>Thanks you for nominating</p>
+      <p>Thank you for nominating</p>
     </div>
+    
    
     
-  </div> : null
-  
+  </div> : null;
 
-  if(props.searchResults ){
-    // console.log(props.searchResults)
+
+   if(props.searchResults ){
 
    const results = props.searchResults.map((mov)=>{
-      // console.log(mov)
       return <SearchResult key={mov.imdbID} title={mov.Title} movieInfo={mov}></SearchResult>
         
      })
     // setLoading({value: false});
-    searchResults =<div ref={node=>{resultRef=node}} id="scrollableDiv" className={classes.scrollableDiv}>
-    {/* <InfiniteScroll
-        dataLength={0}
-        hasMore={true}
-        next={onLoadMoreMovies}
-        loader={<h4>Loading...</h4>}
-        scrollableTarget="scrollableDiv"
-        endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
-          </p>
-        }
-      >
-        {results}
-      </InfiniteScroll> */}
+    searchResults =
+    //  <MovieResultContainer passedSearchTerm={searchTerm}>{results}</MovieResultContainer>
+    <div id="scrollableDiv" className={classes.scrollableDiv}>
+    
       {results}
       <div
       className={classes.try}
@@ -338,8 +271,15 @@ const onHandleLoading=(event)=>{
       >
         <span>Loading...</span>
       </div>
-    </div>
-         
+    </div> 
+      }else if(props.noResult){
+    
+        // setLoading({value: false});
+        searchResults = <div className={classes.initial}>
+      <div className={classes.initialSvg}>
+      </div>
+      <div className={classes.initialText}>No result found </div>
+      </div>
       }
     else{searchResults =
      <div className={classes.initial}>
@@ -524,13 +464,14 @@ const onHandleLoading=(event)=>{
   
   <div className={classes.initialText}>Your search results will appear here </div>
   </div>;}
+  
 
 const content = loading.value ? <div className={classes.loaderCont}><Loader/></div> : searchResults;
 
  
   
 
-   let nominationComplete = notif ? 
+   let nominationComplete = props.nominatedMovies.length === 5 ? 
    <div className={classes.notif}>
      <p>Nominations complete !</p>
     
@@ -541,7 +482,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
 
     
    
-   let nominatedMovieslist = props.nominatedMovies.length>0 ? props.nominatedMovies.map((el)=>{
+   let nominatedMovieslist = props.nominatedMovies.length > 0 ? props.nominatedMovies.map((el)=>{
      return <NominatedMovies  key={el.imdbID} movie={el}></NominatedMovies>
    }): <div className={classes.initialNominated}>
      <div>
@@ -587,24 +528,21 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
         
         
    </div> : null;
+   let logo;
+
+   if(window.screen.width <= 480){
+     
+     logo = 'R'
+   }else {
+     logo = 'REFLICK'
+   }
+   
    let movableNav= <div className={classes.topNavMov}>
    <div className={classes.logo}>
    <div>
-   REFLICK
-   {/* <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="50px"><path fill="#7cb342" 
-   d="M37.216,11.78c-0.023-0.211-0.211-0.305-0.351-0.305s-3.21-0.234-3.21-0.234s-2.132-2.132-2.39-2.343
-     c-0.234-0.234-0.68-0.164-0.867-0.117c-0.023,0-0.469,0.141-1.195,0.375c-0.726-2.086-1.968-3.984-4.194-3.984h-0.211
-       C24.187,4.375,23.391,4,22.735,4c-5.155,0-7.639,6.444-8.412,9.725c-2.015,0.633-3.445,1.054-3.609,1.125	c-1.125,0.351-1.148,
-       0.375-1.289,1.429c-0.117,0.797-3.046,23.456-3.046,23.456L29.179,44l12.373-2.671	C41.575,41.282,37.24,11.991,37.216,11.78z M27.937,
-       9.483c-0.562,0.164-1.242,0.375-1.921,0.609V9.671	c0-1.265-0.164-2.296-0.469-3.117C26.718,6.695,27.445,7.984,27.937,9.483L27.937,
-       9.483z M24.117,6.812	c0.305,0.797,0.516,1.922,0.516,3.468v0.234c-1.265,0.398-2.601,0.797-3.984,1.242C21.422,8.804,22.899,7.351,24.117,6.812	L24.117,
-       6.812z M22.617,5.359c0.234,0,0.469,0.094,0.656,0.234c-1.664,0.773-3.421,2.718-4.148,6.655	c-1.101,0.351-2.156,0.656-3.163,0.984C16.806,10.233,18.915,5.359,22.617,5.359z"/>
-       <path fill="#558b2f" d="M36.865,11.428c-0.141,0-3.21-0.234-3.21-0.234s-2.132-2.132-2.39-2.343	C31.17,8.757,31.053,8.71,30.96,8.71L29.249,44l12.373-2.671c0,0-4.335-29.338-4.359-29.549	C37.169,11.569,37.005,11.475,36.865,11.428z"/>
-       <path fill="#fff" d="M24.792,18.593l-1.475,4.449c0,0-1.337-0.715-2.927-0.715c-2.374,0-2.489,1.498-2.489,1.867	c0,2.028,5.301,2.812,5.301,7.583c0,3.757-2.374,6.177-5.578,6.177c-3.872,0-5.808-2.397-5.808-2.397l1.037-3.411	c0,0,2.028,1.752,3.734,1.752c1.129,0,1.59-0.876,
-       1.59-1.521c0-2.651-4.333-2.766-4.333-7.145c0-3.665,2.628-7.214,7.952-7.214	C23.777,17.994,24.792,18.593,24.792,18.593z"/>
-   </svg> */}
+   {logo}
+   
    </div>
-   {/* <div className={classes.sitename} >The Shoppies</div> */}
    </div>
    <div className={classes.searchBarMov}><span className={classes.searchIcon}>
 
@@ -669,7 +607,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
  </div>
 
   return (
-    <div className={classes.total}>
+    <div id="iq" className={classes.total}>
   <div id={classes.overlay}></div>
 
       <header className={classes.header}>
@@ -678,18 +616,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
           <div>
             REFLICK
 
-          {/* <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path fill="#7cb342" 
-          d="M37.216,11.78c-0.023-0.211-0.211-0.305-0.351-0.305s-3.21-0.234-3.21-0.234s-2.132-2.132-2.39-2.343
-          	c-0.234-0.234-0.68-0.164-0.867-0.117c-0.023,0-0.469,0.141-1.195,0.375c-0.726-2.086-1.968-3.984-4.194-3.984h-0.211
-            	C24.187,4.375,23.391,4,22.735,4c-5.155,0-7.639,6.444-8.412,9.725c-2.015,0.633-3.445,1.054-3.609,1.125	c-1.125,0.351-1.148,
-              0.375-1.289,1.429c-0.117,0.797-3.046,23.456-3.046,23.456L29.179,44l12.373-2.671	C41.575,41.282,37.24,11.991,37.216,11.78z M27.937,
-              9.483c-0.562,0.164-1.242,0.375-1.921,0.609V9.671	c0-1.265-0.164-2.296-0.469-3.117C26.718,6.695,27.445,7.984,27.937,9.483L27.937,
-              9.483z M24.117,6.812	c0.305,0.797,0.516,1.922,0.516,3.468v0.234c-1.265,0.398-2.601,0.797-3.984,1.242C21.422,8.804,22.899,7.351,24.117,6.812	L24.117,
-              6.812z M22.617,5.359c0.234,0,0.469,0.094,0.656,0.234c-1.664,0.773-3.421,2.718-4.148,6.655	c-1.101,0.351-2.156,0.656-3.163,0.984C16.806,10.233,18.915,5.359,22.617,5.359z"/>
-              <path fill="#558b2f" d="M36.865,11.428c-0.141,0-3.21-0.234-3.21-0.234s-2.132-2.132-2.39-2.343	C31.17,8.757,31.053,8.71,30.96,8.71L29.249,44l12.373-2.671c0,0-4.335-29.338-4.359-29.549	C37.169,11.569,37.005,11.475,36.865,11.428z"/>
-              <path fill="#fff" d="M24.792,18.593l-1.475,4.449c0,0-1.337-0.715-2.927-0.715c-2.374,0-2.489,1.498-2.489,1.867	c0,2.028,5.301,2.812,5.301,7.583c0,3.757-2.374,6.177-5.578,6.177c-3.872,0-5.808-2.397-5.808-2.397l1.037-3.411	c0,0,2.028,1.752,3.734,1.752c1.129,0,1.59-0.876,
-              1.59-1.521c0-2.651-4.333-2.766-4.333-7.145c0-3.665,2.628-7.214,7.952-7.214	C23.777,17.994,24.792,18.593,24.792,18.593z"/>
-          </svg> */}
+        
           </div>
           {/* <div >The Shoppies</div> */}
           </div>
@@ -747,7 +674,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
         </div>
         <div className={classes.jumbo}>
         <div className={classes.caption}>
-        <div className={classes.bigCaption}>Share amazing movies with friends</div>
+        <div className={classes.bigCaption}><span>Share amazing</span> <span>movies with friends</span></div>
         <div className={classes.smallCaption}>GET STARTED</div>
         <div className={classes.searchBar}><span className={classes.searchIcon}>
 
@@ -785,9 +712,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
       
       {/* onClick={onCloseSocials} */}
       <main onClick={onCloseSocials}  className={classes.body}>
-        {/* <div className={classes.notifBar}>
-        {nominationComplete}
-        </div> */}
+        
       
         <div className={classes.focus}>
         <div className={classes.searchResultSide} >
@@ -800,17 +725,7 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
           </div>
           
         </div>
-        {/* <div>
-        <InfiniteScroll
-            dataLength={props.searchResults.}
-            next={onLoadMoreMovies}
-            hasMore={true}
-            loader={<h4>Loading...</h4>}
-            scrollableTarget="scrollableDiv"
-          >
-            {searchResults}
-          </InfiniteScroll>
-        </div> */}
+      
 
         
         {/* HAMBURGER SVG */}
@@ -885,7 +800,8 @@ const mapStateToProps = (state) => ({
   searchResults: state.searchResults.moviesResult,
   nominatedMovies: state.nominatedMovies.nominatedMovies,
   nominationComplete: state.nominatedMovies.nominationComplete,
-  totalMoviesNumber: state.searchResults.moviesTotal
+  totalMoviesNumber: state.searchResults.moviesTotal,
+  noResult: state.searchResults.noResult
   
   
 })

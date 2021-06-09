@@ -1,0 +1,13 @@
+.try {
+  color: green;
+}
+.scrollableDiv {
+  height: 58rem;
+  overflow: auto;
+}
+@media screen and (max-width: 480px) and (orientation: portrait) {
+  .scrollableDiv {
+    height: 82vh;
+    overflow: auto;
+  }
+}

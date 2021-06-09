@@ -24,13 +24,16 @@ function SearchMovies(props) {
   const onSearchHandler=(e)=>{
     e.preventDefault()
     // console.log(title.value);
-    props.onSubmit(title.value)
+    // console.log(title.value.trim)
+    if(title.value.trim() !== ''){
+      props.onSubmit(title.value)
     props.onSearchMovie(title.value);
   
-    // console.log(props.loadingState, "this checks the loading state");
      setTitle({value:''});
+    }
+    
      input.current.blur()
-     e.target.reset()
+    //  e.target.reset()
   }
   
 

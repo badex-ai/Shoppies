@@ -1,18 +1,20 @@
 import * as actionTypes from './actionTypes'
 import axios from 'axios';
+import searchMovies from '../../../containers/searchMovies';
 
 
-export const searchMoviesFailed=()=>{
+export const searchMovieFailed=()=>{
     return {
         type: actionTypes.SEARCH_MOVIE_FAILED
     }
 }
 
-export const searchMoviesSuccess=()=>{
+export const searchMovieSuccess=()=>{
     return{
         type: actionTypes.SEARCH_MOVIE_SUCCESS
     }
 }
+
 
 export const setMovies=(movies)=>{
     return{
@@ -26,6 +28,12 @@ export const setMoreMovies=(movies)=>{
         moviesResult: movies
     }
 }
+export const setNoResult=()=>{
+    // console.log("here")
+    return{
+        type: actionTypes.SET_NO_RESULT
+    }
+}
 
 export const nominateMovie=(movie)=>{
     return{
@@ -34,16 +42,27 @@ export const nominateMovie=(movie)=>{
     }
 }
 
+
+
+
+
 export const searchMovie=(movieTitle)=>{
     return dispatch=>{
+
+        
      
         axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=cf59c518&s=${movieTitle}`).then(
             response=>{
-               
-                dispatch(setMovies(response.data))
+                
+                
+                    
+                
+                    dispatch(setMovies(response.data))
+                
+                
             }
         ).catch(error=>{ 
-          dispatch(searchMoviesFailed()) 
+          dispatch(searchMovieFailed()) 
         })
     }
     
@@ -59,7 +78,7 @@ export const fetchMoreMovies=(movieTitle,page)=>{
                 dispatch(setMoreMovies(response.data))
             }
         ).catch(error=>{ 
-          dispatch(searchMoviesFailed()) 
+          dispatch(searchMovieFailed()) 
         })
     }
     

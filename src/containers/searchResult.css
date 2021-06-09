@@ -1,9 +1,12 @@
 .movie {
-  width: 57.2rem;
+  /* width: 57.2rem; */
   height: 8.8rem;
   margin: 1.3rem;
   background-color: #f2f2f2;
   padding: 1.4rem;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px,
+    rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
 }
 
 .movieInfo {
@@ -28,7 +31,7 @@
   margin-top: 1.6rem;
   color: #a5a5a5;
 }
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1280px) and (orientation: landscape) {
   .movie {
     width: calc(100% - 4rem);
     height: 8.8rem;
@@ -37,7 +40,7 @@
     padding: 1.4rem;
   }
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) and (orientation: portrait) {
   .movie {
     width: auto;
     height: 8.8rem;

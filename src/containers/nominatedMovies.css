@@ -1,5 +1,5 @@
 .card {
-  width: 41.6rem;
+  /* width: 41.6rem; */
   height: 9.5rem;
   margin: 1rem;
   background-color: #ffffff;
@@ -9,6 +9,7 @@
   font-size: 1.6rem;
   border-radius: 0.5rem;
   padding: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .description {
   display: flex;
@@ -45,12 +46,12 @@ img {
   width: 6.32rem;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1280px) and (orientation: landscape) {
   .card {
     width: auto;
   }
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) and (orientation: portrait) {
   .card {
     width: auto;
   }

@@ -16,6 +16,7 @@ input:focus {
   display: flex;
   align-items: center;
   height: 100%;
+  width: 98%;
 }
 
 ::-webkit-input-placeholder {
@@ -40,6 +41,6 @@ input:focus {
 @media screen and (max-width: 480px) {
   input {
     width: calc(100% - 1.7rem);
-    height: 96%;
+    height: 90%;
   }
 }

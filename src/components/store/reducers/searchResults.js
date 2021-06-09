@@ -1,20 +1,24 @@
 import * as actionTypes from '../actions/actionTypes';
 import updateState from '../../shared/utility';
+// import { setNoResult } from '../actions/searchResults';
 
-const initialState={
+const initialState = {
     moviesResult: null,
     moviesTotal: null,
     error: false,
     nominated: false,
+    noResult: false
 
 }
 
 const searchMovie=(state, action)=>{
-    const updatedState= {error: false};
+    const updatedState= {error: false, noResult: false};
+    // console.log("searching")
     return updatedState(state, updatedState )
     
 
 }
+
 const fetchMoreMovies=(state, action)=>{
     const updatedState= {error: false};
     return updatedState(state, updatedState )
@@ -25,8 +29,13 @@ const fetchMoreMovies=(state, action)=>{
 
 
 const searchMoviesFailed =(state,action)=>{
-   const  updatedState={error: true}
+   const  updatedState={error: true, noResult: true,moviesResult: null}
     return updateState(state,updatedState)
+}
+
+const setNoResult = (state,action)=>{
+    const updatedState={noResult: true, moviesResult:null}
+    return updateState(state, updatedState)
 }
 
 const setMovies = (state,action)=>{
@@ -45,7 +54,7 @@ const uniqueSearchResult = Array.from(new Set(results.map(a => a.imdbID)))
 
    
     
-    const  updatedState={moviesResult: uniqueSearchResult , loading: {value: false}};
+    const  updatedState={moviesResult: uniqueSearchResult, noResult: false};
     return updateState(state,updatedState)
 }
 
@@ -92,6 +101,8 @@ const reducer = (state=initialState, action) => {
         case actionTypes.SET_MOVIES: return setMovies(state,action)
 
         case actionTypes.SET_MORE_MOVIES: return setMoreMovies(state,action)
+
+        case actionTypes.SET_NO_RESULT: return setNoResult(state,action)
 
         default: return  state
     }

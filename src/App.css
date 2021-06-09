@@ -68,7 +68,7 @@ a {
   align-items: center;
   justify-content: space-between;
   font-family: Roboto;
-  font-weight: normal;
+  font-weight: bolder;
 }
 
 .profileImg {
@@ -92,7 +92,7 @@ a {
   height: auto;
   font-family: 'DMSerifDisplay';
   font-size: 5.1rem;
-  line-height: 1.2;
+  line-height: 1.05;
 }
 
 .smallCaption {
@@ -123,7 +123,7 @@ a {
 
 .searchIcon {
   width: 15%;
-  height: 5.2rem;
+  height: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,9 +176,6 @@ a {
   align-content: center;
   /* position: relative; */
 }
-.star {
-  /* display: none; */
-}
 
 .notif {
   height: 4rem;
@@ -201,9 +198,22 @@ a {
 
 .cancelNotif {
   /* position: absolute; */
+  background-color: rgba(54, 54, 54, 0.183);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: -2px;
+  top: 5.1%;
+  right: 5.1%;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  border: 2px solid #d6d6d6;
   /*margin-top: 0.2rem; */
   cursor: pointer;
+}
+.cancelNotif:hover {
+  background-color: rgba(0, 0, 0, 0.197);
 }
 .body {
   width: 100%;
@@ -259,7 +269,8 @@ a {
   background-color: #fafafa;
   height: 58rem;
   padding: 0.8rem;
-  width: 63.4rem;
+  border: 1px solid #d6d6d61d;
+  /* width: 63.4rem; */
   position: relative;
 }
 .searchResultSide {
@@ -268,10 +279,11 @@ a {
 
 /* reach */
 .nominatedMovies {
-  width: 44.2rem;
+  /* width: 44.2rem; */
   height: 58rem;
   background-color: #fbf7ed;
   padding: 0.8rem;
+  border: 1px solid #d6d6d61d;
 }
 .nominatedSide {
   /* height: auto; */
@@ -337,7 +349,7 @@ a {
   }
 }
 .complete {
-  height: 20rem;
+  height: auto;
   margin-top: 9.5rem;
   font: bold 1.8rem Arimo;
   display: flex;
@@ -432,7 +444,7 @@ a {
   background-color: #004c3f;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1280px) and (orientation: landscape) {
   .focus {
     width: 80%;
     grid-template-columns: 58% 41%;
@@ -452,7 +464,7 @@ a {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) and (orientation: portrait) {
   .caption {
     display: flex;
     justify-content: space-between;
@@ -473,7 +485,7 @@ a {
   }
 
   .topNavMov {
-    width: 94%;
+    width: 98%;
     height: 5rem;
     display: flex;
     align-items: center;
@@ -534,6 +546,7 @@ a {
     justify-content: space-between;
     font-weight: bold;
     align-items: center;
+    font-family: Roboto;
     /* margin-top: 8px; */
     background-color: pink;
     padding: 0px 22px;
@@ -601,13 +614,13 @@ a {
     width: 85%;
   }
   .searchBarMov {
-    height: 5rem;
+    height: 4.5rem;
     background-color: #fff;
     border-radius: 0.5rem;
     opacity: 0.8;
     display: flex;
     font-size: 16px;
-    width: auto;
+    width: 78%;
   }
   .search {
     width: 32rem;
@@ -634,7 +647,8 @@ a {
     justify-content: space-between;
   }
   .jumbo {
-    margin-top: 9.2rem;
+    /* margin-top: 5.2rem; */
+    margin-top: 20%;
   }
   .total {
     /* height: calc(100vh + 50vh); */
@@ -644,7 +658,7 @@ a {
   }
 
   .header {
-    height: 62vh;
+    height: 62rem;
     width: 100vw;
   }
   .share {
@@ -660,7 +674,8 @@ a {
     width: 100vw;
     height: 75vh;
     background-color: #fbf7ed;
-    bottom: 0;
+    /* bottom: 0; */
+    top: 25vh;
     right: 0;
     border-radius: 20px 20px 0 0;
     border: 1px solid #d6d6d6;
@@ -695,7 +710,7 @@ a {
     height: 2rem;
     width: 2rem;
     background-color: black;
-    color: white;
+    color: #fff;
     top: -6px;
     right: -6px;
     border-radius: 50%;
