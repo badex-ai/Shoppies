@@ -30,7 +30,7 @@ const rootReducer = combineReducers({
                                       nominatedMovies:nominatedMoviesReducer,
   
                                     }) 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 // composeEnhancers(applyMiddleware(thunk))
 // applyMiddleware(thunk)
 

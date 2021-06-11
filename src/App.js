@@ -21,9 +21,9 @@ function App(props) {
  const [initialLoad, setInitialLoad] = useState(true)
   document.onreadystatechange = function() {
     if (document.readyState !== "complete") {
-       console.log("not yet complete")
+      //  console.log("not yet complete")
     } else {
-        console.log("completed")
+        // console.log("completed")
         setInitialLoad(false)
     }
 };
@@ -35,15 +35,14 @@ function App(props) {
   //  const [moviesRemain, setMoviesRemain] = useState(true);
    const [page, setPage] = useState(1);
     const [show, setShow] = useState(false);
-    const [pageIsLoading, setPageIsLoading] = useState(true)
     // const [showNoResult, setShowNoResult] = useState(false);
 
 
 
 
-    useEffect(() => {
-      console.log("Testing the loading")
-    }, [])
+    // useEffect(() => {
+    //   // console.log("Testing the loading")
+    // }, [])
  
   useEffect(() => {
     if(!initialLoad){
@@ -56,7 +55,7 @@ function App(props) {
         const onLoadMoreMovies=()=>{
           const newpage = page + 1;
           setPage(newpage);
-          console.log(page,newpage);
+          // console.log(page,newpage);
           props.fetchMoreMovies(searchTerm,newpage)
           
         }
@@ -68,9 +67,9 @@ function App(props) {
   
           let observer = new IntersectionObserver(
         (entities)=>{
-          console.log("intersection observer works")
+          // console.log("intersection observer works")
          y = entities[0].boundingClientRect.y;
-        console.log(y)
+        // console.log(y)
         setPrevY(y)
         if (prevY > y) {
         console.log("ask for more")
@@ -84,7 +83,7 @@ function App(props) {
 
     }
     
-  }, [page, prevY, props, props.searchResults, searchTerm])
+  }, [initialLoad, page, prevY, props, props.searchResults, searchTerm])
 
 
 
@@ -102,7 +101,7 @@ function App(props) {
 
       setLoading({value: false})
       if(props.totalMoviesNumber === props.searchResults.length){
-        console.log(props.totalMoviesNumber === (props.searchResults.length), "yes they are equal")
+        // console.log(props.totalMoviesNumber === (props.searchResults.length), "yes they are equal")
         // setMoviesRemain(true)
         
       }
@@ -149,29 +148,29 @@ useEffect(() => {
 
   // console.log(window.screen.width)
 
-  const preloadImages = images => {
-    return new Promise(resolve => {
-      if (!images.length) {
-        return resolve('loaded');
-      }
+  // const preloadImages = images => {
+  //   return new Promise(resolve => {
+  //     if (!images.length) {
+  //       return resolve('loaded');
+  //     }
   
-      let loadedImages = 0;
-      const onImageRequestComplete = () => {
-        loadedImages++;
+  //     let loadedImages = 0;
+  //     const onImageRequestComplete = () => {
+  //       loadedImages++;
   
-        if (loadedImages === images.length) {
-          resolve('loaded');
-        }
-      };
+  //       if (loadedImages === images.length) {
+  //         resolve('loaded');
+  //       }
+  //     };
   
-      images.forEach(image => {
-        const img = new Image();
-        img.onload = onImageRequestComplete;
-        img.onerror = onImageRequestComplete;
-        img.src = image;
-      });
-    });
-  };
+  //     images.forEach(image => {
+  //       const img = new Image();
+  //       img.onload = onImageRequestComplete;
+  //       img.onerror = onImageRequestComplete;
+  //       img.src = image;
+  //     });
+  //   });
+  // };
 
  
   window.onscroll = function() {
@@ -214,10 +213,10 @@ const ondecoy=()=>{
 }
 const onFocusInput=()=>{
   // console.log("it has been focused on")
-  console.log(window.innerHeight)
+  // console.log(window.innerHeight)
   var userAgent = navigator.userAgent || navigator.vendor || window.opera;
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        console.log('ios')
+        // console.log('ios')
         // document.querySelector("#iq").style.paddingBottom="10rem"
         setTimeout(() => {
           document.querySelector("._1KURnOvqTfYNdcdxee_CV6").style.top = "-0rem";
@@ -253,7 +252,7 @@ const onCloseNominated=()=>{
 const onHandleLoading=(event)=>{
   setLoading({value:true})
   // setShowNoResult(false);
-  console.log("i just set show no result to false")
+  // console.log("i just set show no result to false")
   
   
    setSearchTerm(event);
