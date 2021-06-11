@@ -1,21 +1,32 @@
 import './App.css';
+import completeImg from './animoj.png'
 import NominatedMovies from  './containers/nominatedMovies';
 import SearchResult from './containers/searchResult'
 import SearchMovies from './containers/searchMovies';
 import Loader from './components/shared/loader';
 import classes from './App.css';
  import {useState,useEffect} from 'react'
- import completeImg from './animoj.png'
+ 
 //  import MovieResultContainer from './containers/movieResultContainer';
 
 import {connect} from 'react-redux';
 import * as actions from './components/store/actions/index'
 
 
+
 function App(props) {
   
   // let resultRef = useRef();
   // console.log(loadingRef);
+ const [initialLoad, setInitialLoad] = useState(true)
+  document.onreadystatechange = function() {
+    if (document.readyState !== "complete") {
+       console.log("not yet complete")
+    } else {
+        console.log("completed")
+        setInitialLoad(false)
+    }
+};
   const [prevY, setPrevY] = useState(0)
   const [socials, setSocials] = useState({openSocials: false});
    const [loading, setLoading] = useState({value:false});
@@ -24,48 +35,55 @@ function App(props) {
   //  const [moviesRemain, setMoviesRemain] = useState(true);
    const [page, setPage] = useState(1);
     const [show, setShow] = useState(false);
+    const [pageIsLoading, setPageIsLoading] = useState(true)
     // const [showNoResult, setShowNoResult] = useState(false);
 
 
 
 
-    
+    useEffect(() => {
+      console.log("Testing the loading")
+    }, [])
  
   useEffect(() => {
-    let y;
-    const root = document.getElementById('cover').firstChild;
-    const observedBar = root.lastChild;
+    if(!initialLoad){
+      let y;
+      const root = document.getElementById('cover').firstChild;
+      const observedBar = root.lastChild;
+  
+      if(props.searchResults){
+  
+        const onLoadMoreMovies=()=>{
+          const newpage = page + 1;
+          setPage(newpage);
+          console.log(page,newpage);
+          props.fetchMoreMovies(searchTerm,newpage)
+          
+        }
+        var options = {
+              root: root,
+              rootMargin: '0px',
+              threshold: 1
+            };
+  
+          let observer = new IntersectionObserver(
+        (entities)=>{
+          console.log("intersection observer works")
+         y = entities[0].boundingClientRect.y;
+        console.log(y)
+        setPrevY(y)
+        if (prevY > y) {
+        console.log("ask for more")
+        onLoadMoreMovies()
+        } 
+        }, //callback
+        options
+      );
+      observer.observe(observedBar);
+    }
 
-    if(props.searchResults){
-
-      const onLoadMoreMovies=()=>{
-        const newpage = page + 1;
-        setPage(newpage);
-        console.log(page,newpage);
-        props.fetchMoreMovies(searchTerm,newpage)
-        
-      }
-      var options = {
-            root: root,
-            rootMargin: '0px',
-            threshold: 1
-          };
-
-        let observer = new IntersectionObserver(
-      (entities)=>{
-        console.log("intersection observer works")
-       y = entities[0].boundingClientRect.y;
-      console.log(y)
-      setPrevY(y)
-      if (prevY > y) {
-      console.log("ask for more")
-      onLoadMoreMovies()
-      } 
-      }, //callback
-      options
-    );
-    observer.observe(observedBar);
-  }
+    }
+    
   }, [page, prevY, props, props.searchResults, searchTerm])
 
 
@@ -130,6 +148,30 @@ useEffect(() => {
  
 
   // console.log(window.screen.width)
+
+  const preloadImages = images => {
+    return new Promise(resolve => {
+      if (!images.length) {
+        return resolve('loaded');
+      }
+  
+      let loadedImages = 0;
+      const onImageRequestComplete = () => {
+        loadedImages++;
+  
+        if (loadedImages === images.length) {
+          resolve('loaded');
+        }
+      };
+  
+      images.forEach(image => {
+        const img = new Image();
+        img.onload = onImageRequestComplete;
+        img.onerror = onImageRequestComplete;
+        img.src = image;
+      });
+    });
+  };
 
  
   window.onscroll = function() {
@@ -607,131 +649,177 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
  </div>
 
   return (
-    <div id="iq" className={classes.total}>
-  <div id={classes.overlay}></div>
+    <div>
+      {initialLoad ? <Loader/> : 
 
-      <header className={classes.header}>
-        <div className={classes.topNav}>
-          <div className={classes.logo}>
+<div id="iq" className={classes.total}>
+      
+
+
+<div id={classes.overlay}></div>
+
+    <header className={classes.header}>
+      <div className={classes.topNav}>
+        <div className={classes.logo}>
+        <div>
+          REFLICK
+
+      
+        </div>
+        {/* <div >The Shoppies</div> */}
+        </div>
+        <div className={classes.links}>
           <div>
-            REFLICK
-
-        
+          <a className={classes.active} href="/">
+          Home
+          </a>
           </div>
-          {/* <div >The Shoppies</div> */}
+          <div>
+          <a href="/">
+          About
+          </a>
           </div>
-          <div className={classes.links}>
-            <div>
-            <a className={classes.active} href="/">
-            Home
-            </a>
-            </div>
-            <div>
-            <a href="/">
-            About
-            </a>
-            </div>
-            <div className={classes.profileImg}>
-              
-            </div>
+          <div className={classes.profileImg}>
+            
           </div>
-          <div className={classes.mob}>
-     {/* <div className={classes.hamburger}>
-     <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path></svg>
-
-     </div> */}
-     
-        
-        <div onClick={onShowNominated} style={{position:"relative",width: "3rem", height: "3rem"}}>
-        <div className={classes.fave}>
-            {props.nominatedMovies.length}
-          </div>
-          <div className={classes.star}>
-
-            <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  x="0"
-                  y="0"
-                  enableBackground="new 0 0 512.001 512.001"
-                  version="1.1"
-                  viewBox="0 0 512.001 512.001"
-                  xmlSpace="preserve"
-                >
-                  <path
-            fill="#FFDC64"
-            d="M499.92 188.26l-165.839-15.381L268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348L256 413.188l143.207 85.034c10.027 5.954 22.314-2.972 19.75-14.348l-36.619-162.476 125.126-109.922c8.761-7.696 4.068-22.139-7.544-23.216z"
-                  ></path>
-                  <path
-            fill="#FFC850"
-            d="M268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348l31.963-18.979c4.424-182.101 89.034-310.338 156.022-383.697L268.205 19.91z"
-                  ></path>
-                </svg>
-          </div>
-          
         </div>
-   </div>
+        <div className={classes.mob}>
+   {/* <div className={classes.hamburger}>
+   <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path></svg>
 
+   </div> */}
+   
+      
+      <div onClick={onShowNominated} style={{position:"relative",width: "3rem", height: "3rem"}}>
+      <div className={classes.fave}>
+          {props.nominatedMovies.length}
         </div>
-        <div className={classes.jumbo}>
-        <div className={classes.caption}>
-        <div className={classes.bigCaption}><span>Share amazing</span> <span>movies with friends</span></div>
-        <div className={classes.smallCaption}>GET STARTED</div>
-        <div className={classes.searchBar}><span className={classes.searchIcon}>
+        <div className={classes.star}>
 
-        <svg id="Search_Icon" data-name="Search Icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <rect id="Rectangle_34" data-name="Rectangle 34" width="24" height="24" fill="none"/>
-          <g id="Group_15" data-name="Group 15">
-            <line id="Line_1" data-name="Line 1" x1="6.344" y1="6.344" transform="translate(15.656 15.656)" fill="none" stroke="#004C3F" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
-            <circle id="Ellipse_3" data-name="Ellipse 3" cx="8" cy="8" r="8" transform="translate(2 2)" fill="none" stroke="#004C3F" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
-          </g>
-        </svg>
-
-          </span><span className={classes.searchBox}>
-            <SearchMovies focus={(event)=>{ondecoy()}} className={classes.search} onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies>
-          </span></div>
-        
-
-        </div>
+          <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0"
+                y="0"
+                enableBackground="new 0 0 512.001 512.001"
+                version="1.1"
+                viewBox="0 0 512.001 512.001"
+                xmlSpace="preserve"
+              >
+                <path
+          fill="#FFDC64"
+          d="M499.92 188.26l-165.839-15.381L268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348L256 413.188l143.207 85.034c10.027 5.954 22.314-2.972 19.75-14.348l-36.619-162.476 125.126-109.922c8.761-7.696 4.068-22.139-7.544-23.216z"
+                ></path>
+                <path
+          fill="#FFC850"
+          d="M268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348l31.963-18.979c4.424-182.101 89.034-310.338 156.022-383.697L268.205 19.91z"
+                ></path>
+              </svg>
         </div>
         
-      </header>
+      </div>
+ </div>
 
+      </div>
+      <div className={classes.jumbo}>
+      <div className={classes.caption}>
+      <div className={classes.bigCaption}><span>Share amazing</span> <span>movies with friends</span></div>
+      <div className={classes.smallCaption}>GET STARTED</div>
+      <div className={classes.searchBar}><span className={classes.searchIcon}>
+
+      <svg id="Search_Icon" data-name="Search Icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <rect id="Rectangle_34" data-name="Rectangle 34" width="24" height="24" fill="none"/>
+        <g id="Group_15" data-name="Group 15">
+          <line id="Line_1" data-name="Line 1" x1="6.344" y1="6.344" transform="translate(15.656 15.656)" fill="none" stroke="#004C3F" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
+          <circle id="Ellipse_3" data-name="Ellipse 3" cx="8" cy="8" r="8" transform="translate(2 2)" fill="none" stroke="#004C3F" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
+        </g>
+      </svg>
+
+        </span><span className={classes.searchBox}>
+          <SearchMovies focus={(event)=>{ondecoy()}} className={classes.search} onSubmit={(e)=>{onHandleLoading(e)}}></SearchMovies>
+        </span></div>
+      
+
+      </div>
+      </div>
+      
+    </header>
+
+
+  
+
+    <div className={classes.movableNav}>
+      {movableNav}
+    </div>
+    <div className={classes.notifBar}>
+    {nominationComplete}
+    </div>
+    {/* {nominationComplete} */}
 
     
-
-      <div className={classes.movableNav}>
-        {movableNav}
-      </div>
-      <div className={classes.notifBar}>
-      {nominationComplete}
-      </div>
-      {/* {nominationComplete} */}
-
+    
+    
+    {/* onClick={onCloseSocials} */}
+    <main onClick={onCloseSocials}  className={classes.body}>
       
-      
-      
-      {/* onClick={onCloseSocials} */}
-      <main onClick={onCloseSocials}  className={classes.body}>
+    
+      <div className={classes.focus}>
+      <div className={classes.searchResultSide} >
+        <div className={classes.resultDescription}>Results for:<span className={classes.searchTerm}>{searchTerm}</span></div>
+        <div id="cover" className={classes.searchResults}>
+          {content}
+          {completeOverlay}
+          
         
-      
-        <div className={classes.focus}>
-        <div className={classes.searchResultSide} >
-          <div className={classes.resultDescription}>Results for:<span className={classes.searchTerm}>{searchTerm}</span></div>
-          <div id="cover" className={classes.searchResults}>
-            {content}
-            {completeOverlay}
-            
-          
-          </div>
-          
         </div>
+        
+      </div>
+    
+
+      
+      {/* HAMBURGER SVG */}
+     
+     <div className={classes.nominatedSide}>
+       <div className={classes.sectionDescription}>
+         <div className={classes.green}> Your Nominations</div>
+         {/* <div onClick={()=>onShareHandler()}  className = {classes.share}>
+           Share
+         </div> */}
+         {socialsSection}
+       </div>
+       <div className={classes.nominatedMovies}>
+       {nominatedMovieslist}
+       </div>
+      
+    </div>
+      </div>
+     
       
 
-        
-        {/* HAMBURGER SVG */}
-       
-       <div className={classes.nominatedSide}>
-         <div className={classes.sectionDescription}>
+    </main>
+    <div onClick={()=>onShareHandler()}  className = {classes.share}>
+           Share
+    </div>
+    <div style={{transform: show ? 'translateY(0)': 'translateY(85vh)', transition: 'transform .5s '}} className={classes.cont}>
+    <div className={classes.downArrow}>
+      <div>Nomination List</div>
+      <div onClick={onCloseNominated}>
+        <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        x="0"
+        y="0"
+        enableBackground="new 0 0 451.847 451.847"
+        version="1.1"
+        viewBox="0 0 451.847 451.847"
+        xmlSpace="preserve"
+            >
+        <path d="M225.923 354.706c-8.098 0-16.195-3.092-22.369-9.263L9.27 151.157c-12.359-12.359-12.359-32.397 0-44.751 12.354-12.354 32.388-12.354 44.748 0l171.905 171.915 171.906-171.909c12.359-12.354 32.391-12.354 44.744 0 12.365 12.354 12.365 32.392 0 44.751L248.292 345.449c-6.177 6.172-14.274 9.257-22.369 9.257z"></path>
+            </svg>
+      </div>
+    </div>
+      <div className={classes.nominatedSideMob}>
+      <div className={classes.sectionDescription}>
            <div className={classes.green}> Your Nominations</div>
            {/* <div onClick={()=>onShareHandler()}  className = {classes.share}>
              Share
@@ -741,56 +829,23 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
          <div className={classes.nominatedMovies}>
          {nominatedMovieslist}
          </div>
-        
       </div>
-        </div>
-       
-        
-
-      </main>
-      <div onClick={()=>onShareHandler()}  className = {classes.share}>
-             Share
-      </div>
-      <div style={{transform: show ? 'translateY(0)': 'translateY(85vh)', transition: 'transform .5s '}} className={classes.cont}>
-      <div className={classes.downArrow}>
-        <div>Nomination List</div>
-        <div onClick={onCloseNominated}>
-          <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          x="0"
-          y="0"
-          enableBackground="new 0 0 451.847 451.847"
-          version="1.1"
-          viewBox="0 0 451.847 451.847"
-          xmlSpace="preserve"
-              >
-          <path d="M225.923 354.706c-8.098 0-16.195-3.092-22.369-9.263L9.27 151.157c-12.359-12.359-12.359-32.397 0-44.751 12.354-12.354 32.388-12.354 44.748 0l171.905 171.915 171.906-171.909c12.359-12.354 32.391-12.354 44.744 0 12.365 12.354 12.365 32.392 0 44.751L248.292 345.449c-6.177 6.172-14.274 9.257-22.369 9.257z"></path>
-              </svg>
-        </div>
-      </div>
-        <div className={classes.nominatedSideMob}>
-        <div className={classes.sectionDescription}>
-             <div className={classes.green}> Your Nominations</div>
-             {/* <div onClick={()=>onShareHandler()}  className = {classes.share}>
-               Share
-             </div> */}
-             {socialsSection}
-           </div>
-           <div className={classes.nominatedMovies}>
-           {nominatedMovieslist}
-           </div>
-        </div>
-      </div>
-      
-      
-       
-      
+    </div>
+    
+    
+     
+    
 {/* <div class="MobileLoader_loader__1dBJf"><div class="MobileLoader_loaderProgressBar__2kARO"><div class="MobileLoader_loadProgress__1LGoL" style="transform: scaleX(1); transform-origin: left center;"></div></div></div> */}
-      
+    
+    
+  </div>
+  
+
+      }
       
     </div>
+
+    
     
     );
 }

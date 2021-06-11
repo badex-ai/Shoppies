@@ -18,7 +18,7 @@
       rgba(0, 0, 0, 0) 60%,
       rgba(0, 0, 0, 0.8) 100%
     ),
-    url(./assets/movie\ image\ sharp.jpg);
+    url(./assets/movie-image.jpg);
 }
 
 .topNav {
@@ -53,7 +53,7 @@ a {
   color: #57cc06;
 
   font-size: 3.2rem;
-  font-family: Monoton;
+  font-family: 'Monoton';
   align-items: center;
   justify-content: space-between;
 }
@@ -67,7 +67,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: Roboto;
+  font-family: 'Roboto';
   font-weight: bolder;
 }
 
@@ -91,6 +91,7 @@ a {
   width: 50rem;
   height: auto;
   font-family: 'DMSerifDisplay';
+  font-weight: 400;
   font-size: 5.1rem;
   line-height: 1.05;
 }
@@ -103,7 +104,7 @@ a {
   opacity: 1;
   color: #57cc06;
   margin-bottom: 0.4rem;
-  font-family: RobotoCondensed;
+  font-family: 'Roboto Condensed';
   font-size: 1.6rem;
   margin-left: 2px;
   margin-top: 1.2rem;
@@ -233,7 +234,7 @@ a {
 
 .resultDescription {
   margin: 1.7rem 0;
-  font: 1.6rem Roboto;
+  font: 1.6rem 'Roboto';
   font-stretch: condensed;
   font-weight: 500;
   color: rgb(52, 52, 52);
@@ -243,7 +244,7 @@ a {
   color: #254a44;
   margin-left: 0.3rem;
   text-transform: capitalize;
-  font-family: Roboto;
+  font-family: 'Roboto';
   font-stretch: normal;
   font-weight: 700;
 }
@@ -546,7 +547,7 @@ a {
     justify-content: space-between;
     font-weight: bold;
     align-items: center;
-    font-family: Roboto;
+    font-family: 'Roboto-Bold';
     /* margin-top: 8px; */
     background-color: pink;
     padding: 0px 22px;
