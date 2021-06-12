@@ -37,13 +37,23 @@ a {
   color: white;
 }
 
-.links a:hover,
-.links:active {
+a:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   color: rgb(124, 179, 66);
 }
 
+/* .links,
+.links:active {
+  color: rgb(124, 179, 66);
+} */
+
 .active {
   color: white !important;
+}
+.active:hover {
+  color: rgba(255, 255, 255, 0.857) !important;
 }
 
 .logo {
@@ -682,8 +692,7 @@ a {
     border: 1px solid #d6d6d6;
   }
   .star {
-    width: 25px;
-    height: 25px;
+    fill: white;
   }
   .nominatedSide {
     display: none;
@@ -708,16 +717,18 @@ a {
   }
   .fave {
     position: absolute;
-    height: 2rem;
-    width: 2rem;
-    background-color: black;
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: #000;
     color: #fff;
     top: -6px;
     right: -6px;
     border-radius: 50%;
+    border: 1px solid #d6d6d623;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Roboto';
     font-size: 12px;
     font-weight: bold;
   }

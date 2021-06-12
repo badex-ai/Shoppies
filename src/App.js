@@ -308,7 +308,7 @@ const onHandleLoading=(event)=>{
       {results}
       <div
       className={classes.try}
-      id="try"
+      // id="try"
       >
         <span>Loading...</span>
       </div>
@@ -620,24 +620,21 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
             {props.nominatedMovies.length}
           </div>
           <div className={classes.star}>
-            <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  x="0"
-                  y="0"
-                  enableBackground="new 0 0 512.001 512.001"
-                  version="1.1"
-                  viewBox="0 0 512.001 512.001"
-                  xmlSpace="preserve"
-                >
-                  <path
-            fill="#FFDC64"
-            d="M499.92 188.26l-165.839-15.381L268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348L256 413.188l143.207 85.034c10.027 5.954 22.314-2.972 19.75-14.348l-36.619-162.476 125.126-109.922c8.761-7.696 4.068-22.139-7.544-23.216z"
-                  ></path>
-                  <path
-            fill="#FFC850"
-            d="M268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348l31.963-18.979c4.424-182.101 89.034-310.338 156.022-383.697L268.205 19.91z"
-                  ></path>
-                </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" 
+        width="25"
+        height="25"
+        viewBox="0 0 74.87 51.05">
+      <g data-name="Layer 2">
+        <g data-name="Layer 1">
+          <path d="M17.02 42.54H74.87V49.35H17.02z"></path>
+          <path d="M17.02 22.12H68.07V28.93H17.02z"></path>
+          <path d="M17.02 1.7H74.87V8.51H17.02z"></path>
+          <circle fill="#FFC850" cx="5.1" cy="5.1" r="5.1"></circle>
+          <circle fill="#FFDC64" cx="5.1" cy="25.52" r="5.1"></circle>
+          <circle fill="#FFC850" cx="5.1" cy="45.94" r="5.1"></circle>
+        </g>
+      </g>
+    </svg>
                
           </div>
           
@@ -689,30 +686,44 @@ const content = loading.value ? <div className={classes.loaderCont}><Loader/></d
    </div> */}
    
       
-      <div onClick={onShowNominated} style={{position:"relative",width: "3rem", height: "3rem"}}>
+      <div onClick={onShowNominated} style={{position:"relative"}}>
       <div className={classes.fave}>
           {props.nominatedMovies.length}
         </div>
         <div className={classes.star}>
+       
+        <svg xmlns="http://www.w3.org/2000/svg" 
+        width="25"
+        height="25"
+        viewBox="0 0 74.87 51.05">
+      <g data-name="Layer 2">
+        <g data-name="Layer 1">
+          <path d="M17.02 42.54H74.87V49.35H17.02z"></path>
+          <path d="M17.02 22.12H68.07V28.93H17.02z"></path>
+          <path d="M17.02 1.7H74.87V8.51H17.02z"></path>
+          <circle fill="#FFC850" cx="5.1" cy="5.1" r="5.1"></circle>
+          <circle fill="#FFDC64" cx="5.1" cy="25.52" r="5.1"></circle>
+          <circle fill="#FFC850" cx="5.1" cy="45.94" r="5.1"></circle>
+        </g>
+      </g>
+    </svg>
 
-          <svg
-                xmlns="http://www.w3.org/2000/svg"
-                x="0"
-                y="0"
-                enableBackground="new 0 0 512.001 512.001"
-                version="1.1"
-                viewBox="0 0 512.001 512.001"
-                xmlSpace="preserve"
-              >
-                <path
-          fill="#FFDC64"
-          d="M499.92 188.26l-165.839-15.381L268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348L256 413.188l143.207 85.034c10.027 5.954 22.314-2.972 19.75-14.348l-36.619-162.476 125.126-109.922c8.761-7.696 4.068-22.139-7.544-23.216z"
-                ></path>
-                <path
-          fill="#FFC850"
-          d="M268.205 19.91c-4.612-10.711-19.799-10.711-24.411 0l-65.875 152.97L12.08 188.26c-11.612 1.077-16.305 15.52-7.544 23.216l125.126 109.922-36.618 162.476c-2.564 11.376 9.722 20.302 19.749 14.348l31.963-18.979c4.424-182.101 89.034-310.338 156.022-383.697L268.205 19.91z"
-                ></path>
-              </svg>
+
+    {/* <svg xmlns="http://www.w3.org/2000/svg" 
+     width="30"
+     height="30"
+    viewBox="0 0 83.67 60.05">
+      <g data-name="Layer 2">
+        <g data-name="Layer 1">
+          <path d="M19.02 47.54H83.67V55.15H19.02z"></path>
+          <path d="M19.02 24.72H76.07V32.33H19.02z"></path>
+          <path d="M19.02 1.9H83.67V9.51H19.02z"></path>
+          <circle fill="#FFC850" cx="5.7" cy="5.7" r="5.7"></circle>
+          <circle  fill="#FFDC64" cx="5.7" cy="28.52" r="5.7"></circle>
+          <circle  fill="#FFC850" cx="5.7" cy="51.34" r="5.7"></circle>
+        </g>
+      </g>
+    </svg> */}
         </div>
         
       </div>
