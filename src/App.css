@@ -18,7 +18,7 @@
       rgba(0, 0, 0, 0) 60%,
       rgba(0, 0, 0, 0.8) 100%
     ),
-    url(./assets/movie-image.jpg);
+    url(https://res.cloudinary.com/dkxbadex/image/upload/v1623577508/Reflick/movie-image.jpg);
 }
 
 .topNav {
@@ -27,21 +27,6 @@
   height: 4.4rem;
   width: 90vw;
   /* margin: 1.2rem; */
-}
-
-a {
-  /* margin-left: 0.8rem */
-  text-decoration: none;
-  padding: 1rem 2rem;
-  font-size: 1.6rem;
-  color: white;
-}
-
-a:hover {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  color: rgb(124, 179, 66);
 }
 
 /* .links,
@@ -72,22 +57,35 @@ a:hover {
 }
 
 .links {
-  width: 24rem;
+  width: 20rem;
   height: 4.4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: 'Roboto', sans-serif;
-  font-weight: bolder;
+  font-weight: normal;
+}
+
+.links a {
+  text-decoration: none;
+  padding: 1rem 1rem;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.links a:hover {
+  color: rgb(124, 179, 66);
 }
 
 .profileImg {
   border-radius: 50%;
   background-image: url(./assets/profile-placeholder.png);
+  background-repeat: no-repeat;
+  background-size: contain;
   border: 1px solid green;
   background-size: contain;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
 }
 .mob {
   display: none;
@@ -101,9 +99,43 @@ a:hover {
   width: 50rem;
   height: auto;
   font-family: 'DMSerifDisplay', sans-serif;
-  font-weight: 400;
+  font-weight: normal;
   font-size: 5.1rem;
   line-height: 1.05;
+}
+p {
+  animation: show 1s linear 1;
+}
+@keyframes animateletter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.section {
+  height: 5.1rem;
+  overflow-y: hidden;
+}
+.animateUp {
+  animation: animateletter 0.7s linear 1;
+  display: block;
+
+  /* background-color: black; */
+}
+
+@keyframes animateletter {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1s cubic-bezier(0.2, 0.6, 0.35, 1) 0.1s,
+      transform 1s cubic-bezier(0.2, 0.6, 0.35, 1) 0.1s,
+      -webkit-transform 1s cubic-bezier(0.2, 0.6, 0.35, 1) 0.1s;
+  }
 }
 
 .smallCaption {
@@ -130,6 +162,7 @@ a:hover {
 }
 .downArrow {
   display: none;
+  color: rgb(0, 76, 63);
 }
 
 .searchIcon {
@@ -138,6 +171,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-right: 1px solid #d6d6d6;
 }
 
 .search {
@@ -155,13 +189,14 @@ a:hover {
 }
 
 .searchBarMov {
-  height: 5rem;
+  height: 4.56rem;
   background-color: #fff;
   border-radius: 0.5rem;
   opacity: 0.8;
   display: flex;
   font-size: 16px;
   width: 70rem;
+  border: 1px solid #d6d6d6;
 }
 .caption {
   display: flex;
@@ -322,7 +357,7 @@ a:hover {
   color: #004c3f;
 }
 .share {
-  font: 1.5rem 'Roboto,sans-serif';
+  font: 1.5rem 'Roboto', sans-serif;
   font-stretch: condensed;
   font-weight: 500;
   color: #1a1a1a;
@@ -350,9 +385,6 @@ a:hover {
   fill: #f5c517;
   animation: push 0.3s linear 1;
 }
-/* .animoj:hover {
-  animation: wiggle 0.5s linear;
-} */
 
 @keyframes push {
   50% {
@@ -397,27 +429,18 @@ a:hover {
   fill: #9dc29d82;
 }
 .initialText {
-  font: 1.6rem 'Roboto,sans-serif';
+  font: 1.6rem 'Roboto', sans-serif;
   color: #1a1a1a;
   width: 21rem;
   text-align: center;
 }
-.shareSection {
-  display: flex;
-  width: 12rem;
-  height: 8rem;
-  justify-content: space-around;
-  align-items: center;
-  font: 1.6rem Arimo;
-  color: #1a1a1a;
-  z-index: 10;
-}
+
 .socials {
   position: absolute;
-  width: 4rem;
-  height: 4rem;
+  width: auto;
+  height: auto;
   background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 1rem 0.2rem #00000029;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-radius: 0.5rem;
   top: 2.5rem;
   right: 0;
@@ -426,6 +449,10 @@ a:hover {
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+.socialsicon {
+  padding: 2px;
+  margin: 3px 0;
 }
 .initialNominated {
   width: 100%;
@@ -437,8 +464,8 @@ a:hover {
 }
 
 .small {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
   margin-left: -0.2rem;
 }
 
@@ -452,7 +479,9 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #004c3f;
+  background-color: #025d4e;
+  /* background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
 }
 
 @media screen and (max-width: 1280px) and (orientation: landscape) {
@@ -593,11 +622,59 @@ a:hover {
     backdrop-filter: blur(10px); */
   }
 
+  p {
+    animation: show 1s linear 1;
+  }
+  @keyframes animateletter {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   .bigCaption {
     width: 100%;
     height: auto;
-    text-align: ce;
+    text-align: left;
     font: bold 6rem;
+  }
+
+  p {
+    animation: show 1s linear 1;
+  }
+
+  @keyframes animateletter {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .section {
+    height: 5.1rem;
+    overflow-y: hidden;
+  }
+  .animateUp {
+    animation: animateletter 0.7s linear 1;
+    display: block;
+
+    /* background-color: black; */
+  }
+
+  @keyframes animateletter {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1s cubic-bezier(0.2, 0.6, 0.35, 1) 0.1s,
+        transform 1s cubic-bezier(0.2, 0.6, 0.35, 1) 0.1s,
+        -webkit-transform 1s cubic-bezier(0.2, 0.6, 0.35, 1) 0.1s;
+    }
   }
   .smallCaption {
     width: 85%;
@@ -715,6 +792,7 @@ a:hover {
   .sectionDescription {
     display: none;
   }
+
   .fave {
     position: absolute;
     height: 1.5rem;

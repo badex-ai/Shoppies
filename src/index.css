@@ -48,33 +48,48 @@ input[type='text'] {
 }
 @font-face {
   font-family: 'DMSerifDisplay';
-  src: local('DMSerifDisplay-Regular.ttf'),
+  src: local('DMSerifDisplay-Regular.woff2'),
+    url('./assets/fonts/DMSerifDisplay-Regular.woff2') format('woff2'),
     url('./assets/fonts/DMSerifDisplay-Regular.ttf') format('truetype');
   font-weight: normal;
+  font-display: block;
+  font-style: normal;
 }
 @font-face {
   font-family: 'Monoton';
-  src: local('Monoton-Regular.ttf'),
+  src: local('Monoton-Regular.woff2'),
+    url('./assets/fonts/Monoton-Regular.woff2') format('woff2'),
     url('./assets/fonts/Monoton-Regular.ttf') format('truetype');
+  font-display: block;
   font-weight: normal;
+  font-style: normal;
 }
 @font-face {
   font-family: 'RobotoCondensed';
-  src: local('RobotoCondensed-Bold.ttf'),
+  src: local('RobotoCondensed-Bold.woff2'),
+    url('./assets/fonts/RobotoCondensed-Bold.woff2') format('woff2'),
     url('./assets/fonts/RobotoCondensed-Bold.ttf') format('truetype');
   font-weight: bold;
+  font-display: block;
+  font-style: normal;
 }
 @font-face {
   font-family: 'Roboto';
-  src: local('Roboto-Bold.ttf'),
+  src: local('Roboto-Bold.woff2'),
+    url('./assets/fonts/Roboto-Bold.woff2') format('woff2'),
     url('./assets/fonts/Roboto-Bold.ttf') format('truetype');
   font-weight: bold;
+  font-display: block;
+  font-style: normal;
 }
 @font-face {
   font-family: 'Roboto';
-  src: local('Roboto-Regular.ttf'),
+  src: local('Roboto-Regular.woff2'),
+    url('./assets/fonts/Roboto-Regular.woff2') format('woff2'),
     url('./assets/fonts/Roboto-Regular.ttf') format('truetype');
   font-weight: normal;
+  font-display: block;
+  font-style: normal;
 }
 
 @media screen and (max-width: 1280px) and (orientation: landscape) {

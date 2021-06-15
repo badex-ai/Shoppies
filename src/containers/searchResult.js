@@ -78,11 +78,11 @@ export const SearchResult = (props) => {
     return (
         <div className={classes.movie} onClick={()=>{onNominateMovie()}}>
             <div className={classes.movieInfo}>
-                <div className={classes.title}><p>{props.title}</p></div>
-                <div className={classes.year}><p>{props.movieInfo.Year}</p></div>
-                <div className={classes.tag}>
+                <p className={classes.title}><p>{props.title}</p></p>
+                <p className={classes.year}><p>{props.movieInfo.Year}</p></p>
+                <p className={classes.tag}>
                     {tag}
-                </div>
+                </p>
             
             </div>
             
