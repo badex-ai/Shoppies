@@ -3,9 +3,10 @@ import axios from 'axios';
 // import searchMovies from '../../../containers/searchMovies';
 
 
-export const searchMovieFailed=()=>{
+export const searchMovieFailed=(error)=>{
     return {
-        type: actionTypes.SEARCH_MOVIE_FAILED
+        type: actionTypes.SEARCH_MOVIE_FAILED,
+        error
     }
 }
 
@@ -53,16 +54,16 @@ export const searchMovie=(movieTitle)=>{
      
         axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=cf59c518&s=${movieTitle}`).then(
             response=>{
-                
-                
-                    
-                
+                 
+                dispatch(searchMovieSuccess())
+
                     dispatch(setMovies(response.data))
                 
                 
             }
         ).catch(error=>{ 
-          dispatch(searchMovieFailed()) 
+            console.log(error)
+          dispatch(searchMovieFailed(error)) 
         })
     }
     
@@ -75,10 +76,12 @@ export const fetchMoreMovies=(movieTitle,page)=>{
         axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=cf59c518&s&s=${movieTitle}&page=${page}`).then(
             response=>{
             //    console.log(response.data)
+                dispatch(searchMovieSuccess())
                 dispatch(setMoreMovies(response.data))
             }
         ).catch(error=>{ 
-          dispatch(searchMovieFailed()) 
+            console.log(error)
+          dispatch(searchMovieFailed(error)) 
         })
     }
     

@@ -1,0 +1,14 @@
+@keyframes fadeaway {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.space {
+  animation: fadeaway 1s ease;
+  animation-delay: 2.8s;
+}

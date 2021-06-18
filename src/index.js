@@ -8,7 +8,6 @@ import './assets/fonts/Monoton-Regular.ttf';
 import './assets/fonts/RobotoCondensed-Bold.ttf';
 import './assets/fonts/Roboto-Regular.ttf';
 import './assets/fonts/Roboto-Bold.ttf';
-// import WebFont from 'webfontloader';
 
 
 
@@ -19,17 +18,16 @@ import searchResultReducer from './components/store/reducers/searchResults';
 import nominatedMoviesReducer from './components/store/reducers/nominatedMovies'
 import thunk from 'redux-thunk';
 
-// WebFont.load({
-//   google: {
-//     families: ['Monoton:400','DM Serif Display: 400','Roboto: 400, 700','RobotoCondensed: 700', 'sans-serif']
-//   }
-// });
+
+
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+
 const rootReducer = combineReducers({
                                       searchResults: searchResultReducer,
                                       nominatedMovies:nominatedMoviesReducer,
   
                                     }) 
+
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 // composeEnhancers(applyMiddleware(thunk))
 // applyMiddleware(thunk)
