@@ -2,7 +2,7 @@ import classes from './App.css';
 
  import  InitialPage  from './containers/initialPage';
  import MainContent from './containers/mainContent'
- import {useState,useEffect} from 'react';
+ import {useState} from 'react';
 
  
 
