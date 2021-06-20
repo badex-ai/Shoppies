@@ -3,8 +3,7 @@ import classes from './App.css';
  import  InitialPage  from './containers/initialPage';
  import MainContent from './containers/mainContent'
  import {useState,useEffect} from 'react';
-//  import logoBig form './assets/SVG/Logo_big'
-//  import animationData from './assets/data.json';
+
  
 
 
@@ -20,12 +19,7 @@ function App(props) {
 
 
 
-
-
-// const loader = document.getElementById("loader");
-
-useEffect(() => {
-  window.onload = function() {
+ window.onload = function() {
    
 
   setTimeout(() => {
@@ -34,8 +28,8 @@ useEffect(() => {
 };
 
 
-  
-}, [])
+
+
 
 
 
