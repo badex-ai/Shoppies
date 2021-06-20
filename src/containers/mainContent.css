@@ -244,7 +244,7 @@ p {
   display: flex;
   position: sticky;
   position: -webkit-sticky;
-  top: 7rem;
+  top: 6.5rem;
   align-content: center;
   /* position: relative; */
 }

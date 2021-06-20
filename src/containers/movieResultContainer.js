@@ -7,8 +7,6 @@ import classes from './movieResultContainer.css'
 
 
 export const MovieResultContainer = (props) => {
-    console.log(props)
-  // let resultRef = useRef(null);
  
   const [isFinished, setIsFinished] = useState(false)
 
@@ -29,15 +27,11 @@ export const MovieResultContainer = (props) => {
       const onLoadMoreMovies=()=>{
                 const newpage = page + 1;
                 setPage(newpage);
-                //  console.log(page,newpage);
                 props.fetchMoreMovies(props.passedSearchTerm,newpage)
                 
       }
-      console.log(props.totalMoviesNumber)
-      console.log(props.searchResults.length)
       if(props.totalMoviesNumber > props.searchResults.length ){
         if (inView) {
-          console.log("visible");
           onLoadMoreMovies()
         }
       }else{

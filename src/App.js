@@ -18,7 +18,7 @@ function App(props) {
  const [initialLoad, setInitialLoad] = useState(true)
 
 
-console.log(document.readyState)
+
 
 
 
@@ -26,37 +26,19 @@ console.log(document.readyState)
 
 useEffect(() => {
   window.onload = function() {
-    // document.getElementById("loader").style.transform=`scaleX(.99)`
+   
 
   setTimeout(() => {
     setInitialLoad(false)
   }, 4000);
 };
-//   let value;
-//    switch (document.readyState) {
-//      case "interactive":
-//           value = 0.75
-//        break;
-//      case "complete":
-//        value = 0.99
-//        break;
-//     default: value = 0.2
-//        break;
-    
-//    }
 
-   
-//    console.log(document.readyState)
-  
-//   document.addEventListener('readystatechange', () => {
-//     document.getElementById("loader").style.transform=`scaleX(${value})`;
-// });
 
   
 }, [])
 
 
-// style={{transform: "scaleX(1)",transformOrigin: "left center"}}
+
   
   return (
     <div>
@@ -64,11 +46,11 @@ useEffect(() => {
         <div className={classes.cont}>
        
           <InitialPage/>
-          {/* <div className={classes.rightLayer}></div>  */}
+         
           
             
                 
-          {/* <div className={classes.rightLayer}></div>   */}
+         
           
         </div>
           

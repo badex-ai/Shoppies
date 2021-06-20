@@ -19,7 +19,6 @@ export const SearchResult = (props) => {
                 props.onSetNominatedMovie(props.movieInfo)
             }
             if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-                // console.log('mobile device');
                 if(nomList.length > 0 ){
                 
                     
@@ -40,7 +39,6 @@ export const SearchResult = (props) => {
                 
               
                     setNominated(true)
-                    // console.log(nominated)
                     props.onSetNominatedMovie(props.movieInfo)
                 }
                }  

@@ -12,7 +12,6 @@ const initialState = {
 
 const searchMovie=(state, action)=>{
     const updatedState= {error: false, noResult: false};
-    // console.log("searching")
     return updatedState(state, updatedState )
     
 
@@ -33,7 +32,6 @@ const searchMoviesFailed =(state,action)=>{
 }
 
 const searchMoviesSuccess =(state,action)=>{
-    console.log(action.set)
    const  updatedState={error: false}
     return updateState(state,updatedState)
 }
@@ -44,20 +42,13 @@ const setNoResult = (state,action)=>{
 }
 
 const setMovies = (state,action)=>{
-    // console.log(action.moviesResult.Search)
     let  results = action.moviesResult.Search ;
-    console.log(action.moviesResult)
     const moviesTotalNumber = action.moviesResult.totalResults
-//    let check=  results.map((movie,index)=>{return [movie.imdbID,index]});
-//    check.indexOf();
-//    check.filter((el, index)=>{
-//        check.indexOf(el) === index
-//    })
+
 const uniqueSearchResult = Array.from(new Set(results.map(a => a.imdbID)))
  .map(id => {
    return results.find(a => a.imdbID === id)
  })
-//  console.log(uniqueSearchResult)
 
    
     
@@ -67,7 +58,6 @@ const uniqueSearchResult = Array.from(new Set(results.map(a => a.imdbID)))
 
 const setMoreMovies=(state,action)=>{
 
-    // const updatedState={...state.moviesResult.Search,...action.moviesResult.Search};
 
     const newArray = state.moviesResult.slice();
     const results = action.moviesResult.Search;
@@ -83,7 +73,6 @@ const setMoreMovies=(state,action)=>{
    return newArray.find(a => a.imdbID === id)
  })
     
-    // console.log(uniqueResult)
    const updatedState={moviesResult: uniqueResult};
    return updateState(state,updatedState)
 

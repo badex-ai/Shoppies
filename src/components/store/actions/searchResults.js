@@ -30,7 +30,7 @@ export const setMoreMovies=(movies)=>{
     }
 }
 export const setNoResult=()=>{
-    // console.log("here")
+    
     return{
         type: actionTypes.SET_NO_RESULT
     }
@@ -62,7 +62,7 @@ export const searchMovie=(movieTitle)=>{
                 
             }
         ).catch(error=>{ 
-            console.log(error)
+           
           dispatch(searchMovieFailed(error)) 
         })
     }
@@ -72,15 +72,12 @@ export const searchMovie=(movieTitle)=>{
 
 export const fetchMoreMovies=(movieTitle,page)=>{
     return dispatch=>{
-        // console.log("i am fetching more results")
         axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=cf59c518&s&s=${movieTitle}&page=${page}`).then(
             response=>{
-            //    console.log(response.data)
                 dispatch(searchMovieSuccess())
                 dispatch(setMoreMovies(response.data))
             }
         ).catch(error=>{ 
-            console.log(error)
           dispatch(searchMovieFailed(error)) 
         })
     }

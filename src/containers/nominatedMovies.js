@@ -6,7 +6,7 @@ import classes from './nominatedMovies.css'
 
 
  function nominatedMovies(props) {
-    let img = props.movie.Poster ? <img className={classes.img} src={props.movie.Poster} alt=""/> :<div className={classes.defaultImg}>
+    let img = props.movie.Poster === "N/A"?  <div className={classes.defaultImg}>
         {/* <img src="../assets/clapperbrd.svg" alt="" />\ */}
         
              <div className={classes.defaultsvg}>
@@ -30,7 +30,7 @@ import classes from './nominatedMovies.css'
                          </svg>
              </div>
         
-    </div>
+    </div>: <img className={classes.img} src={props.movie.Poster} alt=""/>
 
 
     return (

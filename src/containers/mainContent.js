@@ -33,7 +33,6 @@ function MainContent(props){
      const [loading, setLoading] = useState({value:false});
      const [notif, setNotif] = useState(false);
      const [searchTerm, setSearchTerm] = useState('Movie Title')
-    //  const [moviesRemain, setMoviesRemain] = useState(true);
       const [show, setShow] = useState(false);
 
 
@@ -46,11 +45,9 @@ function MainContent(props){
      
     
       useEffect(() => {
-        // console.log(props.searchResults, props.totalMoviesNumber,props.noResult)
     
          if(props.noResult){
           setLoading({value: false})
-          // setShowNoResult(true)
           
         }
         if(props.searchResults != null){
@@ -72,7 +69,6 @@ function MainContent(props){
      
     
     useEffect(() => {
-      // console.log(props.nominationComplete);
       setNotif(props.nominationComplete)
       
       
@@ -89,40 +85,12 @@ function MainContent(props){
       
      
     
-      // console.log(window.screen.width)
-    
-      // const preloadImages = images => {
-      //   return new Promise(resolve => {
-      //     if (!images.length) {
-      //       return resolve('loaded');
-      //     }
-      
-      //     let loadedImages = 0;
-      //     const onImageRequestComplete = () => {
-      //       loadedImages++;
-      
-      //       if (loadedImages === images.length) {
-      //         resolve('loaded');
-      //       }
-      //     };
-      
-      //     images.forEach(image => {
-      //       const img = new Image();
-      //       img.onload = onImageRequestComplete;
-      //       img.onerror = onImageRequestComplete;
-      //       img.src = image;
-      //     });
-      //   });
-      // };
+     
     
      
       window.onscroll = function() {
         if(window.screen.width <= 480){
           scrollmobileFunction();
-          // console.log(document.querySelector("._1KURnOvqTfYNdcdxee_CV6"))
-          
-          // console.log(document.getElementsByClassName("DFJnxivdc6OX74yZpmkrk")[0].firstChild)
-          // 
           
           
           
@@ -135,10 +103,8 @@ function MainContent(props){
     
       
       function scrollmobileFunction() {
-        // console.log(window.scroll)
       if (document.body.scrollTop > 290 || document.documentElement.scrollTop > 290 || window.scrollY > 290) {
         document.getElementById("movableNav").style.top = "0rem";
-        // document.getElementById("demo")
       } else {
         document.getElementById("movableNav").style.top = "-10rem";
       }
@@ -152,26 +118,20 @@ function MainContent(props){
         document.getElementById("movableNav").style.top = "-10rem";
       }
     }
-    // _32fVUngdNXL-YELkD8wXZk
     const ondecoy=()=>{
       return
     }
 
 
     const onFocusInput=()=>{
-      // console.log("it has been focused on")
-      // console.log(window.innerHeight)
       var userAgent = navigator.userAgent || navigator.vendor || window.opera;
           if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            // console.log('ios')
-            // document.querySelector("#iq").style.paddingBottom="10rem"
             setTimeout(() => {
               document.getElementById("movableNav").style.top = "-0rem";
               document.getElementById("movableNav").style.position = "fixed";
     
             }, 300);
             
-            // return "iOS";
            
           }else return
     }
@@ -180,7 +140,6 @@ function MainContent(props){
       setNotif(false)
     }
     const onShowNominated=()=>{
-      // console.log(show)
      document.getElementById("overlay").style.display="block";
      document.getElementById("overlay").style.opacity= "1"
     
@@ -190,15 +149,9 @@ function MainContent(props){
     }
 
 
-    // ANIMATION**********************///////////
     
-    
-    
-    
-    //*********************************** */
     
     const onCloseNominated=()=>{
-      // console.log(show)
      document.getElementById("overlay").style.display= "none"
      document.getElementById("overlay").style.opacity= "0"
     
@@ -209,8 +162,6 @@ function MainContent(props){
     
     const onHandleLoading=(event)=>{
       setLoading({value:true})
-      // setShowNoResult(false);
-      // console.log("i just set show no result to false")
       
       
        setSearchTerm(event);

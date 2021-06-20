@@ -1,5 +1,5 @@
 import React, {useState,useRef} from 'react';
-// import PropTypes from 'prop-types';
+
 import classes from './searchMovies.css'
 import {connect} from 'react-redux';
 import * as actions from '../components/store/actions/index'
@@ -10,8 +10,7 @@ function SearchMovies(props) {
 
   const inputChangeHandler=(e)=>{
     setTitle({value: e.target.value})
-    // props.onChange(title)
-    // console.log(title)
+    
 
   }
 
@@ -23,11 +22,8 @@ function SearchMovies(props) {
 
   const onSearchHandler=(e)=>{
     e.preventDefault()
-    // console.log(title.value);
-    // console.log(title.value.trim)
-  //  const searchterm = title.value.split(' ').join('+').trim()
   const searchterm = title.value.trim()
-   console.log(searchterm) 
+   
     if(searchterm !== ''){
       props.onSubmit(title.value)
     props.onSearchMovie(title.value);
@@ -36,7 +32,7 @@ function SearchMovies(props) {
     }
     
      input.current.blur()
-    //  e.target.reset()
+  
   }
   
 
