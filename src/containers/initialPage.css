@@ -10,5 +10,6 @@
 
 .space {
   animation: fadeaway 1s ease;
-  animation-delay: 2.8s;
+  animation-fill-mode: forwards;
+  animation-delay: 3s;
 }

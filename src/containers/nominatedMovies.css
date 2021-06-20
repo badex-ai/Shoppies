@@ -14,7 +14,6 @@
 .description {
   display: flex;
 
-  flex-direction: column;
   justify-content: space-evenly;
   /* padding: 20px 0; */
 }
@@ -42,6 +41,25 @@
   display: flex;
   font: normal normal normal 1.3rem Arimo;
 }
+.defaultImg {
+  width: 6.32rem;
+  height: 9.395rem;
+  background-color: cyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.defaultsvg {
+  width: 4rem;
+}
+
+.descriptCont {
+  justify-content: space-around;
+  flex-direction: column;
+  display: flex;
+}
+
 img {
   width: 6.32rem;
 }

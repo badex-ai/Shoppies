@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
 }
 * {
   margin: 0;
@@ -83,21 +84,6 @@ input[type='text'] {
   src: local('Roboto-Regular.ttf'),
     url('./assets/fonts/Roboto-Regular.ttf') format('truetype');
   font-weight: normal;
-  font-display: block;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Gaveliana';
-  src: local('Gaveliana.ttf'),
-    url('./assets/fonts/Gaveliana.ttf') format('truetype');
-  font-weight: normal;
-  font-display: block;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Futura';
-  src: local('Futura.otf'), url('./assets/fonts/Futura.otf') format('opentype');
-  font-weight: bold;
   font-display: block;
   font-style: normal;
 }

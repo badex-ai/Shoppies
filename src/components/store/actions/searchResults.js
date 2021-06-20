@@ -54,7 +54,7 @@ export const searchMovie=(movieTitle)=>{
      
         axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=cf59c518&s=${movieTitle}`).then(
             response=>{
-                 
+                
                 dispatch(searchMovieSuccess())
 
                     dispatch(setMovies(response.data))

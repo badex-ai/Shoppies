@@ -6,8 +6,35 @@
   position: fixed;
   justify-content: center;
   align-items: center;
+  animation: fade 1s 3s 1;
+  animation-delay: 3s;
+  /* flex-direction: column; */
+}
+.enter {
+  animation: enter 5s 1;
 }
 
+@keyframes enter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+
+    /* opacity: 0; */
+    /* display: none; */
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 .rightLayer {
   /* content: ' '; */
   position: absolute;
@@ -36,5 +63,15 @@
   100% {
     transform: translateX(-100%);
     opacity: 1;
+  }
+}
+
+@keyframes fade {
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.99;
   }
 }
