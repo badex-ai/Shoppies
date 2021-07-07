@@ -59,14 +59,16 @@ import classes from './nominatedMovies.css'
             
             </div>
             
-            <div className={classes.remove} onClick={()=>{props.onRemoveNominated(props.movie)}} >
-            <svg id="Remove_Icon" data-name="Remove Icon" xmlns="http://www.w3.org/2000/svg" width="3.2rem" height="3.2rem" viewBox="0 0 32 32">
-            <rect id="Rectangle_44" data-name="Rectangle 44" width="32" height="32" fill="none"/>
-            <g id="Group_50" data-name="Group 50">
-                <line id="Line_2" data-name="Line 2" x1="12" y2="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
-                <line id="Line_3" data-name="Line 3" x1="12" y1="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
-            </g>
-            </svg>
+            <div className={classes.remove}  >
+            <button className={classes.removeCont} onClick={()=>{props.onRemoveNominated(props.movie)}} >
+                <svg id="Remove_Icon" data-name="Remove Icon" xmlns="http://www.w3.org/2000/svg" width="3.2rem" height="3rem" viewBox="0 0 32 32">
+                <rect id="Rectangle_44" data-name="Rectangle 44" width="32" height="32" fill="none"/>
+                <g id="Group_50" data-name="Group 50">
+                    <line id="Line_2" data-name="Line 2" x1="12" y2="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
+                    <line id="Line_3" data-name="Line 3" x1="12" y1="12" transform="translate(10 10)" fill="none" stroke="#004c3f" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2"/>
+                </g>
+                </svg>
+            </button>
             </div>
         </div>
     )

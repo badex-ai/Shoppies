@@ -74,7 +74,7 @@ export const SearchResult = (props) => {
   
 
     return (
-        <div className={classes.movie} onClick={()=>{onNominateMovie()}}>
+        <li className={classes.movie} onClick={()=>{onNominateMovie()}}>
             <div className={classes.movieInfo}>
                 <p className={classes.title}>{props.title}</p>
                 <p className={classes.year}>{props.movieInfo.Year}</p>
@@ -83,7 +83,7 @@ export const SearchResult = (props) => {
             </div>
             
            {/* <img src={props.movieInfo.Poster} alt="Logo" /> */}
-        </div>
+        </li>
         
     )
 }

@@ -1,7 +1,37 @@
+:root {
+  --main-color: #025d4e;
+  --secondary-color: #fbf7ed;
+  --accent: #5ddb06;
+  --empty: #00ffff;
+  --num-color: #a5a5a5;
+  --light-grey: #fafafa;
+  --dark-grey: #f2f2f2;
+  --border: #d6d6d61d;
+}
+
 html {
   box-sizing: border-box;
   font-size: 62.5%;
   -webkit-font-smoothing: antialiased;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
+button,
+input[type='submit'],
+input[type='reset'] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 * {
   margin: 0;
@@ -46,46 +76,6 @@ input[type='text'] {
   position: absolute;
   top: 0;
   background-color: rgba(0, 0, 0, 0.353);
-}
-@font-face {
-  font-family: 'DMSerifDisplay';
-  src: local('DMSerifDisplay-Regular.ttf'),
-    url('./assets/fonts/DMSerifDisplay-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-display: block;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Monoton';
-  src: local('Monoton-Regular.ttf'),
-    url('./assets/fonts/Monoton-Regular.ttf') format('truetype');
-  font-display: block;
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'RobotoCondensed';
-  src: local('RobotoCondensed-Bold.ttf'),
-    url('./assets/fonts/RobotoCondensed-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-display: block;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Roboto';
-  src: local('Roboto-Bold.ttf'),
-    url('./assets/fonts/Roboto-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-display: block;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Roboto';
-  src: local('Roboto-Regular.ttf'),
-    url('./assets/fonts/Roboto-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-display: block;
-  font-style: normal;
 }
 
 @media screen and (max-width: 1280px) and (orientation: landscape) {

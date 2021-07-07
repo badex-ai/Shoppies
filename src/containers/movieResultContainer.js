@@ -80,7 +80,7 @@ export const MovieResultContainer = (props) => {
   </div>
 
     return (
-        <div inView={inView} 
+        <ul inView={inView} 
         // id="scrollableDiv"
          className={classes.scrollableDiv}>
    
@@ -94,7 +94,7 @@ export const MovieResultContainer = (props) => {
           >
             {load} 
           </div>
-        </div>
+        </ul>
     )
 }
 

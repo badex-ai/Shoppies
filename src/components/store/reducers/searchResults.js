@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import updateState from '../../shared/utility';
 
 const initialState = {
-    moviesResult: null,
+    moviesResult: [],
     moviesTotal: null,
     error: false,
     nominated: false,
@@ -11,15 +11,15 @@ const initialState = {
 }
 
 const searchMovie=(state, action)=>{
-    const updatedState= {error: false, noResult: false};
-    return updatedState(state, updatedState )
+    // const updatedState= {noResult: false};
+    // return updatedState(state, updatedState )
     
 
 }
 
 const fetchMoreMovies=(state, action)=>{
-    const updatedState= {error: false};
-    return updatedState(state, updatedState )
+    // const updatedState= {noResult: false};
+    // return updatedState(state, updatedState )
     
 
 }
@@ -27,12 +27,12 @@ const fetchMoreMovies=(state, action)=>{
 
 
 const searchMoviesFailed =(state,action)=>{
-   const  updatedState={error: true}
+   const  updatedState={ noResult: true, moviesResult: null}
     return updateState(state,updatedState)
 }
 
 const searchMoviesSuccess =(state,action)=>{
-   const  updatedState={error: false}
+   const  updatedState={noResult: false}
     return updateState(state,updatedState)
 }
 

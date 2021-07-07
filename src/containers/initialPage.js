@@ -1,11 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Lottie from 'react-lottie';
 import reflickGlow from '../assets/data.json'
 import classes from './initialPage.css'
-// import 
-// import {useState,useEffect} from 'react';
+
 
 
 
@@ -33,9 +32,9 @@ export const InitialPage = (props) => {
     )
 }
 
-InitialPage.propTypes = {
-    props: PropTypes
-}
+// InitialPage.propTypes = {
+//     props: PropTypes
+// }
 
 const mapStateToProps = (state) => ({
     
