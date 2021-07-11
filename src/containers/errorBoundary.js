@@ -10,7 +10,7 @@ export class ErrorBoundary extends Component {
 
     static getDerivedStateFromError(error) {
       // Update state to show the fallback UI during the next render phase
-      console.log("something happened")
+      // console.log("something happened")
       // return this.setState({
       //   error: error,
       // })

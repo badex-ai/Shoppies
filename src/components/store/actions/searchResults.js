@@ -98,7 +98,7 @@ export const fetchMoreMovies=(movieTitle,page)=>{
        
                 // console.log("fetched more")
                 if(!response.data.Error){
-                 console.log('fetched')
+                //  console.log('fetched')
                     
                     dispatch(searchMovieSuccess())
                     dispatch(setMoreMovies(response.data))
@@ -108,7 +108,7 @@ export const fetchMoreMovies=(movieTitle,page)=>{
                 
             }
         ).catch(error=>{ 
-            console.log(error)
+            // console.log(error)
                
        })
     }
