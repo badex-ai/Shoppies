@@ -126,9 +126,9 @@
     opacity: 1;
   }
 } */
-p {
-  animation: show 0.2s linear;
-  /* animation-delay: 1s; */
+li > p {
+  animation: show 0.1s linear 1;
+
   animation-fill-mode: forwards;
 }
 @keyframes show {
@@ -682,10 +682,6 @@ p {
     align-content: center;
   }
 
-  p {
-    animation: show 1s linear 1;
-  }
-
   .bigCaption {
     width: 100%;
     height: auto;
@@ -695,7 +691,7 @@ p {
   }
 
   p {
-    animation: show 1s linear 1;
+    animation: show 0.2s linear 1;
   }
 
   .smallCaption {

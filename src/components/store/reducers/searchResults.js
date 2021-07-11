@@ -4,8 +4,8 @@ import updateState from '../../shared/utility';
 const initialState = {
     moviesResult: [],
     moviesTotal: null,
-    error: false,
     nominated: false,
+    error: false,
     noResult: false
 
 }
@@ -24,7 +24,10 @@ const fetchMoreMovies=(state, action)=>{
 
 }
 
-
+const setError =(state,action) =>{
+    const updatedState ={error: action.error}
+    return updateState(state,updatedState)
+}
 
 const searchMoviesFailed =(state,action)=>{
    const  updatedState={ noResult: true, moviesResult: null}
@@ -101,6 +104,9 @@ const reducer = (state=initialState, action) => {
         case actionTypes.SET_MORE_MOVIES: return setMoreMovies(state,action)
 
         case actionTypes.SET_NO_RESULT: return setNoResult(state,action)
+
+        case actionTypes.SET_ERROR: return setError(state,action)
+
 
         default: return  state
     }

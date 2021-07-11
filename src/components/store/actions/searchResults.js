@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes'
 import axios from 'axios';
+// import {useErrorHandler} from 'react-error-boundary'
 // import searchMovies from '../../../containers/searchMovies';
 
 
@@ -43,6 +44,13 @@ export const nominateMovie=(movie)=>{
     }
 }
 
+export const setError=(error)=>{
+    return {
+        type: actionTypes.SET_ERROR,
+        error:error
+    }
+}
+
 
 
 
@@ -54,10 +62,13 @@ export const searchMovie=(movieTitle)=>{
      
         axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=cf59c518&s=${movieTitle}`).then(
             response=>{
-                if(response.data.Error ){
-                // console.log(response.data, "this is the failed first function")
+                if(response.data.Error === "Movie not found!"){
 
+                // console.log(response.data, "this is the failed first function")
                     dispatch(searchMovieFailed("error")) 
+                
+                    
+                    // useErrorHandler(response.data.Error)
                 }else{
                 // console.log(response.data, "this is the result of the succesful first function")
 
@@ -71,13 +82,9 @@ export const searchMovie=(movieTitle)=>{
                 
             }
         ).catch(error=>{ 
-
-        //    console.log(error, "This is the error from the first fetch")
-           dispatch(searchMovieFailed("error")) 
-            throw new Error()
-           
-           
-       
+            dispatch(setError(error))
+             console.log(error)
+                
         })
     }
     
@@ -90,18 +97,20 @@ export const fetchMoreMovies=(movieTitle,page)=>{
             response=>{
        
                 // console.log("fetched more")
-                // console.log(response)
                 if(!response.data.Error){
+                 console.log('fetched')
+                    
                     dispatch(searchMovieSuccess())
                     dispatch(setMoreMovies(response.data))
                 }
                 
                 
+                
             }
         ).catch(error=>{ 
-            // console.log(error,"This is the error from the fetchmore function")
-          dispatch(searchMovieFailed(error)) 
-        })
+            console.log(error)
+               
+       })
     }
     
 }
