@@ -45,7 +45,7 @@
   width: auto;
   height: 5rem;
   display: flex;
-  color: #57cc06;
+  color: var(--accent);
 
   font-size: 3.2rem;
   font-family: 'Monoton', sans-serif;
@@ -182,7 +182,7 @@ li > p {
   text-align: left;
   letter-spacing: 0px;
   opacity: 1;
-  color: #57cc06;
+  color: var(--accent);
   margin-bottom: 0.4rem;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 1.6rem;
@@ -264,7 +264,7 @@ li > p {
 .notif {
   height: 4rem;
   width: 18rem;
-  background: #fbf7ed;
+  background: var(--secondary-color);
   /* position: sticky;
     position: -webkit-sticky;
     top: 7rem; */
@@ -350,10 +350,10 @@ li > p {
 }
 .searchResults {
   /* overflow: auto; */
-  background-color: #fafafa;
+  background-color: var(--light-grey);
   height: 58rem;
   padding: 0.8rem;
-  border: 1px solid #d6d6d61d;
+  border: 1px solid var(--border);
   /* width: 63.4rem; */
   position: relative;
 }
@@ -365,9 +365,9 @@ li > p {
 .nominatedMovies {
   /* width: 44.2rem; */
   height: 58rem;
-  background-color: #fbf7ed;
+  background-color: var(--secondary-color);
   padding: 0.8rem;
-  border: 1px solid #d6d6d61d;
+  border: 1px solid var(--border);
   position: relative;
 }
 .nominatedSide {
@@ -409,7 +409,7 @@ li > p {
   /* right: 21rem;
   top: 43.65rem; */
   height: 2.8rem;
-  background-color: #025d4e;
+  background-color: var(--main-color);
   width: 7.8rem;
   display: flex;
   justify-content: center;
@@ -532,7 +532,7 @@ li > p {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #025d4e;
+  background-color: var(--main-color);
   /* background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
 }
@@ -612,7 +612,7 @@ li > p {
   .notif {
     height: 4rem;
     /* width: 100%; */
-    background: #fbf7ed;
+    background: var(--secondary-color);
     /* position: sticky;
       position: -webkit-sticky;
       top: 7rem; */
@@ -635,7 +635,7 @@ li > p {
   }
   .searchResults {
     /* overflow: auto; */
-    background-color: #fafafa;
+    background-color: var(--light-grey);
     height: 82vh;
     padding: 0.8rem 0;
     width: 100%;
@@ -702,7 +702,7 @@ li > p {
     margin-top: 30px;
     margin-bottom: 0.5rem;
     opacity: 1;
-    color: #57cc06;
+    color: var(--accent);
 
     /* color: white; */
     font: bold 2.2rem 'Roboto', sans-serif;
@@ -780,7 +780,7 @@ li > p {
     z-index: 5;
     width: 100vw;
     height: 75vh;
-    background-color: #fbf7ed;
+    background-color: var(--secondary-color);
     /* bottom: 0; */
     top: 25vh;
     right: 0;
@@ -832,5 +832,30 @@ li > p {
   .resultDescription {
     margin: 1.7rem 1rem;
     font-size: 2rem;
+  }
+}
+
+/* for the sharing loader */
+/* <div class="loading"></div> */
+
+.loading {
+  height: 0;
+  width: 0;
+  padding: 15px;
+  border: 6px solid #ccc;
+  border-right-color: #888;
+  border-radius: 22px;
+  animation: rotate 1s infinite linear;
+  /* left, top and position just for the demo! */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+@keyframes rotate {
+  /* 100% keyframe for  clockwise. 
+     use 0% instead for anticlockwise */
+  100% {
+    -webkit-transform: rotate(360deg);
   }
 }

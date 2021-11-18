@@ -39,12 +39,12 @@
   z-index: 6;
   border-radius: 8px;
   color: white;
-  background-color: #025d4e;
+  background-color: var(--main-color);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   font: bold 1.3rem 'Roboto', sans-serif;
-  border: 1px solid #025d4e49;
+  border: 1px solid var(--main-color) 49;
 }
 
 @keyframes fadein {

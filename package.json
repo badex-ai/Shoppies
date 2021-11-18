@@ -67,6 +67,7 @@
     "terser-webpack-plugin": "4.2.3",
     "ts-pnp": "1.2.0",
     "url-loader": "4.1.1",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.1",
     "webfontloader": "^1.6.28",
     "webpack": "4.44.2",
@@ -82,7 +83,9 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "jsx-a11y/recommended"
+
     ]
   },
   "browserslist": {

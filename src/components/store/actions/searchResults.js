@@ -30,6 +30,17 @@ export const setMoreMovies=(movies)=>{
         moviesResult: movies
     }
 }
+
+// export errorHandler=(error)={
+//     switch (error) {
+//         case value:
+            
+//             break;
+    
+//         default:
+//             break;
+//     }
+// }
 export const setNoResult=()=>{
     
     return{

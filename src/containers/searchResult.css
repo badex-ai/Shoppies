@@ -1,7 +1,7 @@
 .movie {
   height: 8.8rem;
   margin: 1.3rem;
-  background-color: #f2f2f2;
+  background-color: var(--dark-grey);
   padding: 1.4rem;
   border-radius: 4px;
   box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px,
@@ -28,14 +28,14 @@
 .year {
   font: 1.6rem Roboto;
   margin-top: 1.6rem;
-  color: #a5a5a5;
+  color: var(--num-color);
 }
 @media screen and (max-width: 1280px) and (orientation: landscape) {
   .movie {
     width: calc(100% - 4rem);
     height: 8.8rem;
     margin: 0.6rem;
-    background-color: #f2f2f2;
+    background-color: var(--dark-grey);
     padding: 1.4rem;
   }
 }
@@ -44,7 +44,7 @@
     width: auto;
     height: 8.8rem;
     margin: 1.3rem;
-    background-color: #f2f2f2;
+    background-color: var(--dark-grey);
     padding: 1.4rem;
   }
 }

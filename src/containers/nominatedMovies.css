@@ -55,7 +55,7 @@
 .year {
   margin: 0 0.8rem;
   font: 1.3rem Arimo;
-  color: #a5a5a5;
+  color: var(--num-color);
 }
 
 .rating {
