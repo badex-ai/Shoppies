@@ -15,6 +15,11 @@ import FacebookIcon from "../components/icons/facebook_icon";
 import WhatsappIcon from "../components/icons/whatsapp_icon";
 import Twitter from "../components/icons/twitter_icon";
 import { v4 as uuidv4 } from "uuid";
+import BigLogo from "../assets/SVG/bigLogo";
+import Reflick from "../assets/SVG/reflick";
+import SmallLogo from "../assets/SVG/smallLogo";
+import SmallReflick from "../assets/SVG/smallReflick";
+import Smallref from "../assets/SVG/smallref";
 
 import classes from "./mainContent.css";
 
@@ -155,9 +160,13 @@ function MainContent(props) {
 	const completeOverlay = notif ? (
 		<div className={classes.completeOverlay}>
 			<div className={classes.complete}>
-				<div onClick={onCloseNotif} className={classes.cancelNotif}>
+				<button
+					onClick={onCloseNotif}
+					onKeyPress={onCloseNotif}
+					className={classes.cancelNotif}
+				>
 					<CancelIcon size={"2.2rem"} color={"#000"} />
-				</div>
+				</button>
 				<div className={classes.animoj}>
 					<img
 						style={{ width: "15rem" }}
@@ -277,16 +286,16 @@ function MainContent(props) {
 
 	let logo;
 	if (window.screen.width <= 480) {
-		logo = "R";
+		// logo = "R";
+		// logo = <SmallReflick />;
+		logo = <Smallref />;
 	} else {
-		logo = "REFLICK";
+		logo = <Reflick />;
 	}
 
 	let movableNav = (
 		<div id="movNav" className={classes.topNavMov}>
-			<div className={classes.logo}>
-				<div>{logo}</div>
-			</div>
+			<div className={classes.logo}>{logo}</div>
 
 			<div className={classes.searchBarMov}>
 				<span className={classes.searchIcon}>
@@ -390,7 +399,7 @@ function MainContent(props) {
 				<header className={classes.header}>
 					<div className={classes.topNav}>
 						<div className={classes.logo}>
-							<div>REFLICK</div>
+							<Reflick />
 							{/* <div >The Shoppies</div> */}
 						</div>
 						<div className={classes.links}>
