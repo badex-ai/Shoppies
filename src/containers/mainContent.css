@@ -77,12 +77,17 @@
 .links a {
   text-decoration: none;
   padding: 1rem 1rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: white;
+  transition: 0.05s;
+  font-weight: 550;
 }
 
 .links a:hover {
-  color: rgb(124, 179, 66);
+  color: #5ddb06;
+  font-weight: 600;
+  
+
 }
 
 .profileImg {

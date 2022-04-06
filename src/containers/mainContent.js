@@ -15,10 +15,8 @@ import FacebookIcon from "../components/icons/facebook_icon";
 import WhatsappIcon from "../components/icons/whatsapp_icon";
 import Twitter from "../components/icons/twitter_icon";
 import { v4 as uuidv4 } from "uuid";
-import BigLogo from "../assets/SVG/bigLogo";
 import Reflick from "../assets/SVG/reflick";
-import SmallLogo from "../assets/SVG/smallLogo";
-import SmallReflick from "../assets/SVG/smallReflick";
+
 import Smallref from "../assets/SVG/smallref";
 
 import classes from "./mainContent.css";
@@ -28,26 +26,12 @@ import MovieResultContainer from "./movieResultContainer";
 
 function MainContent(props) {
 	const [socials, setSocials] = useState({ openSocials: false });
-	const [loading, setLoading] = useState({ value: false });
 	const [notif, setNotif] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("Movie Title");
 	const [show, setShow] = useState(false);
-	const [noResult, setNoResult] = useState(false);
 	const [showShare, setShowShare] = useState(false);
 
-	useEffect(() => {
-		// console.log(props.noResult)
-
-		if (props.searchResults != null) {
-			setLoading({ value: false });
-			setNoResult(false);
-		}
-
-		if (props.searchResults == null) {
-			setLoading({ value: false });
-			setNoResult(true);
-		}
-	}, [props.searchResults, noResult, props.reduxNoResult]);
+	useEffect(() => {}, [props.reduxLoader]);
 
 	useEffect(() => {
 		// console.log(props.nominatedMovies," shows the nominated movies")
@@ -133,11 +117,7 @@ function MainContent(props) {
 	};
 
 	const onHandleLoading = (event) => {
-		setLoading({ value: true });
-		if (props.searchResults === null) {
-			setNoResult(false);
-		}
-
+		//
 		setSearchTerm(event);
 	};
 
@@ -157,6 +137,7 @@ function MainContent(props) {
 
 	let searchResults;
 
+	// completin overlay Area
 	const completeOverlay = notif ? (
 		<div className={classes.completeOverlay}>
 			<div className={classes.complete}>
@@ -180,7 +161,9 @@ function MainContent(props) {
 		</div>
 	) : null;
 
+	// requested movies display Area
 	if (props.searchResults === null) {
+		console.log(props.searchResults);
 		// setLoading({value: false});
 		searchResults = (
 			<div className={classes.initial}>
@@ -189,6 +172,8 @@ function MainContent(props) {
 			</div>
 		);
 	} else if (props.searchResults.length > 0) {
+		console.log(props.searchResults);
+
 		const results = props.searchResults.map((mov) => {
 			return (
 				<SearchResult
@@ -218,7 +203,7 @@ function MainContent(props) {
 		);
 	}
 
-	const content = loading.value ? (
+	const content = props.reduxLoader ? (
 		<div className={classes.loaderCont}>
 			<Loader />
 		</div>
@@ -241,16 +226,20 @@ function MainContent(props) {
 			</li>
 
 			{/* FACEBOOK */}
-			<li key={uuidv4()} className={classes.socialsicon}>
+			{/* <li key={uuidv4()} className={classes.socialsicon}>
 				<a href="/">
 					<FacebookIcon />
 				</a>
-			</li>
+			</li> */}
 
 			{/*  whatsapp */}
 
 			<li key={uuidv4()} className={classes.socialsicon}>
-				<a href="/">
+				<a
+					href="whatsapp://send?text=This is WhatsApp sharing example using link"
+					data-action="share/whatsapp/share"
+					target="_blank"
+				>
 					<WhatsappIcon />
 				</a>
 			</li>
@@ -264,6 +253,7 @@ function MainContent(props) {
 			</div>
 		) : null;
 
+	// selected Movies Area
 	let nominatedMovieslist =
 		props.nominatedMovies.length > 0 ? (
 			props.nominatedMovies.map((el) => {
@@ -286,8 +276,6 @@ function MainContent(props) {
 
 	let logo;
 	if (window.screen.width <= 480) {
-		// logo = "R";
-		// logo = <SmallReflick />;
 		logo = <Smallref />;
 	} else {
 		logo = <Reflick />;
@@ -353,15 +341,14 @@ function MainContent(props) {
 			</div>
 
 			<nav className={classes.links}>
-				<div>
+				{/* <div>
 					<a className={classes.active} href="/">
 						Home
 					</a>
-				</div>
+				</div> */}
 				<div>
-					<a href="/">About</a>
+					<a href="/">ABOUT</a>
 				</div>
-				<div className={classes.profileImg}></div>
 			</nav>
 
 			<div onClick={onShowNominated} className={classes.mob}>
@@ -400,18 +387,16 @@ function MainContent(props) {
 					<div className={classes.topNav}>
 						<div className={classes.logo}>
 							<Reflick />
-							{/* <div >The Shoppies</div> */}
 						</div>
 						<div className={classes.links}>
-							<div>
+							{/* <div>
 								<a className={classes.active} href="/">
 									Home
 								</a>
-							</div>
+							</div> */}
 							<div>
-								<a href="/">About</a>
+								<a href="/">ABOUT</a>
 							</div>
-							<div className={classes.profileImg}></div>
 						</div>
 						<div className={classes.mob}>
 							<div onClick={onShowNominated} style={{ position: "relative" }}>
@@ -622,6 +607,7 @@ const mapStateToProps = (state) => {
 		nominationComplete: state.nominatedMovies.nominationComplete,
 		// totalMoviesNumber: state.searchResults.moviesTotal,
 		reduxNoResult: state.searchResults.noResult,
+		reduxLoader: state.searchResults.reduxLoader,
 	};
 };
 

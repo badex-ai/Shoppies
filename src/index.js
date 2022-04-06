@@ -20,7 +20,6 @@ const rootReducer = combineReducers({
 	searchResults: searchResultReducer,
 	nominatedMovies: nominatedMoviesReducer,
 });
-console.log(composeEnhancers);
 const store = createStore(
 	rootReducer,
 	composeEnhancers(applyMiddleware(thunk))

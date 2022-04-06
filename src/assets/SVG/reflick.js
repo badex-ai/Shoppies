@@ -5,8 +5,8 @@ function reflick() {
 		<React.Fragment>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				width="20.0rem"
-				height="5.0rem"
+				width="150px"
+				height="3.8rem"
 				version="1"
 				viewBox="0 0 15.0rem 3.75rem"
 			>
