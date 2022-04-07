@@ -1,0 +1,39 @@
+
+
+  .logo {
+    width: auto;
+    height: 5rem;
+    display: flex;
+    color: var(--accent);
+  
+    font-size: 3.2rem;
+    font-family: 'Monoton', sans-serif;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .links {
+    width: 20rem;
+    height: 4.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+  }
+  
+  .links a {
+    text-decoration: none;
+    padding: 1rem 1rem;
+    font-size: 1.4rem;
+    color: white;
+    transition: 0.05s;
+    font-weight: 550;
+  }
+  
+  .links a:hover {
+    color: #5ddb06;
+    font-weight: 600;
+    
+  
+  }

@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import searchResultReducer from "./components/store/reducers/searchResults";
 import nominatedMoviesReducer from "./components/store/reducers/nominatedMovies";
 import thunk from "redux-thunk";
-
+import { BrowserRouter } from "react-router-dom";
 const composeEnhancers =
 	process.env.NODE_ENV === "development"
 		? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -30,7 +30,9 @@ const store = createStore(
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<App />
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById("root")

@@ -9,7 +9,7 @@ import Loader from "../components/shared/loader";
 
 import * as actions from "../components/store/actions/index";
 import InitialIcon from "../components/icons/initail_Icon";
-import EmptySelectionIcon from "../components/icons/emtpySelection_icon";
+import EmptySelectionIcon from "../components/icons/emptySelection_icon";
 import CancelIcon from "../components/icons/cancel_icon";
 import FacebookIcon from "../components/icons/facebook_icon";
 import WhatsappIcon from "../components/icons/whatsapp_icon";
@@ -18,8 +18,13 @@ import { v4 as uuidv4 } from "uuid";
 import Reflick from "../assets/SVG/reflick";
 
 import Smallref from "../assets/SVG/smallref";
+import { NavLink } from "react-router-dom";
 
 import classes from "./mainContent.css";
+import SearchIcon from "../components/icons/search_icon";
+import MobileListIcon from "../components/icons/mobileList_icon";
+import Ok from "../components/icons/ok";
+import HeaderNav from "./header";
 
 // import * as actions from '../components/store/actions/index'
 import MovieResultContainer from "./movieResultContainer";
@@ -287,49 +292,7 @@ function MainContent(props) {
 
 			<div className={classes.searchBarMov}>
 				<span className={classes.searchIcon}>
-					<svg
-						id="Search_Icon"
-						data-name="Search Icon"
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-					>
-						<rect
-							id="Rectangle_34"
-							data-name="Rectangle 34"
-							width="24"
-							height="24"
-							fill="none"
-						/>
-						<g id="Group_15" data-name="Group 15">
-							<line
-								id="Line_1"
-								data-name="Line 1"
-								x1="6.344"
-								y1="6.344"
-								transform="translate(15.656 15.656)"
-								fill="none"
-								stroke="#707070"
-								strokeLinecap="square"
-								strokeMiterlimit="10"
-								strokeWidth="2"
-							/>
-							<circle
-								id="Ellipse_3"
-								data-name="Ellipse 3"
-								cx="8"
-								cy="8"
-								r="8"
-								transform="translate(2 2)"
-								fill="none"
-								stroke="#707070"
-								strokeLinecap="square"
-								strokeMiterlimit="10"
-								strokeWidth="2"
-							/>
-						</g>
-					</svg>
+					<SearchIcon />
 				</span>
 				<SearchMovies
 					focus={(event) => onFocusInput(event)}
@@ -341,13 +304,8 @@ function MainContent(props) {
 			</div>
 
 			<nav className={classes.links}>
-				{/* <div>
-					<a className={classes.active} href="/">
-						Home
-					</a>
-				</div> */}
 				<div>
-					<a href="/">ABOUT</a>
+					<NavLink to="/about">ABOUT</NavLink>
 				</div>
 			</nav>
 
@@ -355,23 +313,7 @@ function MainContent(props) {
 				<div style={{ position: "relative", width: "3rem", height: "3rem" }}>
 					<div className={classes.fave}>{props.nominatedMovies.length}</div>
 					<div className={classes.star}>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="25"
-							height="25"
-							viewBox="0 0 74.87 51.05"
-						>
-							<g data-name="Layer 2">
-								<g data-name="Layer 1">
-									<path d="M17.02 42.54H74.87V49.35H17.02z"></path>
-									<path d="M17.02 22.12H68.07V28.93H17.02z"></path>
-									<path d="M17.02 1.7H74.87V8.51H17.02z"></path>
-									<circle fill="#FFC850" cx="5.1" cy="5.1" r="5.1"></circle>
-									<circle fill="#FFDC64" cx="5.1" cy="25.52" r="5.1"></circle>
-									<circle fill="#FFC850" cx="5.1" cy="45.94" r="5.1"></circle>
-								</g>
-							</g>
-						</svg>
+						<MobileListIcon />
 					</div>
 				</div>
 			</div>
@@ -385,57 +327,14 @@ function MainContent(props) {
 
 				<header className={classes.header}>
 					<div className={classes.topNav}>
-						<div className={classes.logo}>
-							<Reflick />
-						</div>
-						<div className={classes.links}>
-							{/* <div>
-								<a className={classes.active} href="/">
-									Home
-								</a>
-							</div> */}
-							<div>
-								<a href="/">ABOUT</a>
-							</div>
-						</div>
+						<HeaderNav />
 						<div className={classes.mob}>
 							<div onClick={onShowNominated} style={{ position: "relative" }}>
 								<div className={classes.fave}>
 									{props.nominatedMovies.length}
 								</div>
 								<div className={classes.star}>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="25"
-										height="25"
-										viewBox="0 0 74.87 51.05"
-									>
-										<g data-name="Layer 2">
-											<g data-name="Layer 1">
-												<path d="M17.02 42.54H74.87V49.35H17.02z"></path>
-												<path d="M17.02 22.12H68.07V28.93H17.02z"></path>
-												<path d="M17.02 1.7H74.87V8.51H17.02z"></path>
-												<circle
-													fill="#FFC850"
-													cx="5.1"
-													cy="5.1"
-													r="5.1"
-												></circle>
-												<circle
-													fill="#FFDC64"
-													cx="5.1"
-													cy="25.52"
-													r="5.1"
-												></circle>
-												<circle
-													fill="#FFC850"
-													cx="5.1"
-													cy="45.94"
-													r="5.1"
-												></circle>
-											</g>
-										</g>
-									</svg>
+									<MobileListIcon />
 								</div>
 							</div>
 						</div>
@@ -456,49 +355,7 @@ function MainContent(props) {
 							<h2 className={classes.smallCaption}>Search then share</h2>
 							<div className={classes.searchBar}>
 								<span className={classes.searchIcon}>
-									<svg
-										id="Search_Icon"
-										data-name="Search Icon"
-										xmlns="http://www.w3.org/2000/svg"
-										width="24"
-										height="24"
-										viewBox="0 0 24 24"
-									>
-										<rect
-											id="Rectangle_34"
-											data-name="Rectangle 34"
-											width="24"
-											height="24"
-											fill="none"
-										/>
-										<g id="Group_15" data-name="Group 15">
-											<line
-												id="Line_1"
-												data-name="Line 1"
-												x1="6.344"
-												y1="6.344"
-												transform="translate(15.656 15.656)"
-												fill="none"
-												stroke="#004C3F"
-												strokeLinecap="square"
-												strokeMiterlimit="10"
-												strokeWidth="2"
-											/>
-											<circle
-												id="Ellipse_3"
-												data-name="Ellipse 3"
-												cx="8"
-												cy="8"
-												r="8"
-												transform="translate(2 2)"
-												fill="none"
-												stroke="#004C3F"
-												strokeLinecap="square"
-												strokeMiterlimit="10"
-												strokeWidth="2"
-											/>
-										</g>
-									</svg>
+									<SearchIcon />
 								</span>
 								<span className={classes.searchBox}>
 									<SearchMovies
@@ -559,19 +416,7 @@ function MainContent(props) {
 				>
 					<div className={classes.downArrow}>
 						<div onClick={onCloseNominated}>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="18"
-								height="18"
-								x="0"
-								y="0"
-								enableBackground="new 0 0 451.847 451.847"
-								version="1.1"
-								viewBox="0 0 451.847 451.847"
-								xmlSpace="preserve"
-							>
-								<path d="M225.923 354.706c-8.098 0-16.195-3.092-22.369-9.263L9.27 151.157c-12.359-12.359-12.359-32.397 0-44.751 12.354-12.354 32.388-12.354 44.748 0l171.905 171.915 171.906-171.909c12.359-12.354 32.391-12.354 44.744 0 12.365 12.354 12.365 32.392 0 44.751L248.292 345.449c-6.177 6.172-14.274 9.257-22.369 9.257z"></path>
-							</svg>
+							<Ok />
 						</div>
 
 						<p>Share</p>

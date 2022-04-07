@@ -1,0 +1,99 @@
+
+  .topNavMov {
+    width: 94%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* margin: 1.2rem; */
+  }
+
+  .header {
+    width: 100%;
+    height: 6.2rem;
+    padding-top: 1.2rem;
+  
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: rgba(255, 255, 255, 0), url(./assets/movie-background.jpg); */
+  
+    background-image:
+       /* linear-gradient(#000000c7 5%, rgba(255, 255, 255, 0.006)), */
+        linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8) 0,
+        rgba(0, 0, 0, 0) 60%,
+        rgba(0, 0, 0, 0.8) 100%
+      ),
+      url(https://res.cloudinary.com/dkxbadex/image/upload/v1623577508/Reflick/movie-image.jpg);
+  }
+ 
+  .mob {
+    display: none;
+  }
+
+  .topNav {
+    display: flex;
+    justify-content: space-between;
+    height: 4.4rem;
+    width: 90vw;
+    /* margin: 1.2rem; */
+  }
+
+  .bx{
+      width: 64%;
+      height: auto;
+      /* margin: 0 auto; */
+      padding: 1.4rem;
+      font-family: 'poppins' ;
+      font-size: 3.5rem;
+      background-color: blue;
+  }
+      
+  .sec{
+      height: calc(100vh - 18rem );
+      padding-top: 10rem;
+      padding-left: 6.8rem;
+      background-color: yellow;
+
+
+  }
+  .txt{
+    font-size: 1.8rem;
+    font-weight: normal;
+    font-family: 'roboto';
+      margin-top: 2rem;
+      line-height: 2.8rem;
+     
+  }
+
+  .socials{
+      width: 10rem;
+      background-color: red;
+      height: 4rem;
+      display: flex;
+      margin-top: 2rem;
+  }
+  a{
+      text-decoration: none;
+  }
+  .foot{
+      background-color: #025d4e;
+      text-align: center;
+      font-size: 1.6rem;
+      height: 4rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'roboto';
+      
+
+      
+  }
+
+  

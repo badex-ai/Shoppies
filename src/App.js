@@ -3,10 +3,11 @@ import classes from "./App.css";
 import InitialPage from "./containers/initialPage";
 import MainContent from "./containers/mainContent";
 import { useState, useEffect } from "react";
-//  import {ErrorBoundary} from 'react-error-boundary'
 import ErrorBoundary from "./containers/errorBoundary";
 import Alert from "./components/alert";
 import { connect } from "react-redux";
+import { Routes, Route, Navigate } from "react-router-dom";
+import About from "./containers/about";
 
 function App(props) {
 	const [initialLoad, setInitialLoad] = useState(true);
@@ -32,18 +33,24 @@ function App(props) {
 
 	return (
 		<div>
-			{initialLoad ? (
-				<div className={classes.cont}>
-					<InitialPage />
-				</div>
-			) : (
-				<div>
-					{alert}
-					<ErrorBoundary>
-						<MainContent />
-					</ErrorBoundary>
-				</div>
-			)}
+			{alert}
+			<ErrorBoundary>
+				<Routes>
+					<Route path="/about" element={<About />}></Route>
+					<Route
+						path="/"
+						element={
+							initialLoad ? (
+								<div className={classes.cont}>
+									<InitialPage />
+								</div>
+							) : (
+								<MainContent />
+							)
+						}
+					></Route>
+				</Routes>
+			</ErrorBoundary>
 		</div>
 	);
 }
@@ -58,3 +65,19 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 // App
+
+{
+	/* <div>
+		{initialLoad ? (
+			<div className={classes.cont}>
+				<InitialPage />
+			</div>
+		) : (
+			<div>
+				{alert}
+
+				
+			</div>
+		)}
+	</div> */
+}
