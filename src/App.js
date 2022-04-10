@@ -6,12 +6,20 @@ import { useState, useEffect } from "react";
 import ErrorBoundary from "./containers/errorBoundary";
 import Alert from "./components/alert";
 import { connect } from "react-redux";
-import { Routes, Route, Navigate } from "react-router-dom";
+import {
+	Routes,
+	Route,
+	Navigate,
+	useLocation,
+	listenBefore,
+} from "react-router-dom";
 import About from "./containers/about";
-
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
 function App(props) {
 	const [initialLoad, setInitialLoad] = useState(true);
 	const [showAlert, setShowAlert] = useState(false);
+
+	const location = useLocation();
 
 	useEffect(() => {
 		if (props.error) {
@@ -29,13 +37,21 @@ function App(props) {
 		setShowAlert(false);
 	};
 
+	const page = <h1>HI</h1>;
+
 	let alert = showAlert ? <Alert onClick={() => closeAlertHandler()} /> : null;
 
 	return (
 		<div>
 			{alert}
 			<ErrorBoundary>
-				<Routes>
+				{/* <TransitionGroup> */}
+				{/* <CSSTransition
+						timeout={250}
+						classNames={classes.trans}
+						key={location.key}
+					> */}
+				<Routes location={location}>
 					<Route path="/about" element={<About />}></Route>
 					<Route
 						path="/"
@@ -49,7 +65,10 @@ function App(props) {
 							)
 						}
 					></Route>
+					{/* <Route path="/" element={!onload ? page : "loaded"}></Route> */}
 				</Routes>
+				{/* </CSSTransition> */}
+				{/* </TransitionGroup> */}
 			</ErrorBoundary>
 		</div>
 	);

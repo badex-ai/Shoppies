@@ -47,6 +47,14 @@
   border: 1px solid var(--main-color) 49;
 }
 
+/* .trans-enter header{
+    opacity: 0
+}
+.trans-enter header .trans-enter-active header {
+  opacity: 1;
+  transition: opacity 250ms ease-in
+} */
+
 @keyframes fadein {
   0% {
     opacity: 0;
@@ -125,3 +133,5 @@
     }
   }
 }
+
+

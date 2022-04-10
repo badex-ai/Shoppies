@@ -115,8 +115,8 @@
 .bigCaption {
   width: 50rem;
   height: auto;
-  font-family: 'Poppins', sans-serif;
-  font-weight: normal;
+  font-family: 'Poppins', system-ui;
+  font-weight: bold;
   font-size: 5.2rem;
   line-height: 1.05;
   letter-spacing: -0.8px;

@@ -2,8 +2,14 @@ import React from "react";
 import classes from "./about.css";
 import HeaderNav from "./header";
 import MobileListIcon from "../components/icons/mobileList_icon";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Link } from "react-router-dom";
+import GithubIcon from "../components/icons/GithubIcon";
+import LInkedInIcon from "../components/icons/linkedIn";
+import LInkedInIcon2 from "../components/icons/linkedInIcon";
 
 function about() {
+	console.log(history, location);
 	return (
 		<React.Fragment>
 			<header className={classes.header}>
@@ -37,8 +43,12 @@ function about() {
 						</p>
 					</div>
 					<div className={classes.socials}>
-						<a href="">me</a>
-						<a href="">you</a>
+						<a href="https://github.com/badex-ai/Shoppies" target="_blank">
+							<GithubIcon id={classes.hov} />
+						</a>
+						<a href="https://www.linkedin.com/in/badamasi-aliu/">
+							<LInkedInIcon id={classes.hov} />
+						</a>
 					</div>
 				</div>
 			</section>

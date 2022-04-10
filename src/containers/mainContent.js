@@ -18,7 +18,13 @@ import { v4 as uuidv4 } from "uuid";
 import Reflick from "../assets/SVG/reflick";
 
 import Smallref from "../assets/SVG/smallref";
-import { NavLink } from "react-router-dom";
+import {
+	NavLink,
+	// usehistory,
+	// history,
+	// Location,
+	// match,
+} from "react-router-dom";
 
 import classes from "./mainContent.css";
 import SearchIcon from "../components/icons/search_icon";
@@ -55,41 +61,42 @@ function MainContent(props) {
 		setNotif(props.nominationComplete);
 	}, [props.nominationComplete]);
 
-	window.onscroll = function () {
-		if (window.screen.width <= 480) {
-			scrollmobileFunction();
-		} else {
-			scrollDeskFunction();
-		}
-	};
+	console.log(history, location);
 
-	function scrollmobileFunction() {
-		if (
-			document.body.scrollTop > 290 ||
-			document.documentElement.scrollTop > 290 ||
-			window.scrollY > 290
-		) {
-			document.getElementById("movableNav").style.top = "0rem";
-		} else {
-			document.getElementById("movableNav").style.top = "-10rem";
+	if (location.href !== `${location.protocol}//${location.host}/about`) {
+		console.log(`${location.protocol}//${location.host}/about`);
+		onscroll = function () {
+			if (window.screen.width <= 480) {
+				scrollmobileFunction();
+			} else {
+				scrollDeskFunction();
+			}
+		};
+
+		function scrollmobileFunction() {
+			if (
+				document.body.scrollTop > 290 ||
+				document.documentElement.scrollTop > 290 ||
+				window.scrollY > 290
+			) {
+				document.getElementById("movableNav").style.top = "0rem";
+			} else {
+				document.getElementById("movableNav").style.top = "-10rem";
+			}
+		}
+
+		function scrollDeskFunction() {
+			if (
+				document.body.scrollTop > 290 ||
+				document.documentElement.scrollTop > 290 ||
+				window.scrollY > 290
+			) {
+				document.getElementById("movableNav").style.top = "0rem";
+			} else {
+				document.getElementById("movableNav").style.top = "-10rem";
+			}
 		}
 	}
-
-	function scrollDeskFunction() {
-		if (
-			document.body.scrollTop > 290 ||
-			document.documentElement.scrollTop > 290 ||
-			window.scrollY > 290
-		) {
-			document.getElementById("movableNav").style.top = "0rem";
-		} else {
-			document.getElementById("movableNav").style.top = "-10rem";
-		}
-	}
-	const ondecoy = () => {
-		return;
-	};
-
 	const onFocusInput = () => {
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 		if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
@@ -98,6 +105,10 @@ function MainContent(props) {
 				document.getElementById("movableNav").style.position = "fixed";
 			}, 300);
 		} else return;
+	};
+
+	const ondecoy = () => {
+		return;
 	};
 
 	const onCloseNotif = () => {
