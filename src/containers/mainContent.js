@@ -39,65 +39,9 @@ function MainContent(props) {
 	const searchBarRef = useRef(null);
 	const movNavRef = useRef(null);
 
-	// useEffect(() => {
-	// 	console.log(searchBarRef, movNavRef);
-	// 	if (
-	// 		location.href !== `${location.protocol}//${location.host}/about` &&
-	// 		searchBarRef.current !== null
-	// 	) {
-	// 		document.querySelector(".total").onScroll = function () {
-	// 			if (window.screen.width <= 480) {
-	// 				scrollmobileFunction();
-	// 			} else {
-	// 				scrollDeskFunction();
-	// 			}
-	// 		};
-
-	// 		function scrollmobileFunction() {
-	// 			if (
-	// 				document.body.scrollTop > 290 ||
-	// 				document.documentElement.scrollTop > 290 ||
-	// 				window.scrollY > 290
-	// 			) {
-	// 				document.getElementById("movableNav").style.top = "0rem";
-	// 			} else {
-	// 				document.getElementById("movableNav").style.top = "-10rem";
-	// 			}
-	// 		}
-	// 		// console.log(document.documentElement.childNodes);
-	// 		function scrollDeskFunction() {
-	// 			// console.log(
-	// 			// 	document.getElementById("iq").getBoundingClientRect()
-	// 			// 	// .getBoundingClientRect()
-	// 			// );
-
-	// 			if (
-	// 				location.href !== `${location.protocol}//${location.host}/about` &&
-	// 				searchBarRef.current.getBoundingClientRect().top <= 8.800000190734863
-
-	// 				// document.documentElement.scrollTop > 290 || window.scrollY > 290
-	// 			) {
-	// 				movNavRef.style.top = "0rem";
-	// 				// console.log("in");
-	// 			} else {
-	// 				movNavRef.style.top = "-10rem";
-	// 				// console.log("out");
-	// 			}
-	// 			// searchBarRef.current = null;
-	// 		}
-	// 		// const onFocusInput = () => {
-	// 		// 	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-	// 		// 	if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-	// 		// 		setTimeout(() => {
-	// 		// 			document.getElementById("movableNav").style.top = "-0rem";
-	// 		// 			document.getElementById("movableNav").style.position = "fixed";
-	// 		// 		}, 300);
-	// 		// 	} else return;
-	// 		// };
-	// 	}
-	// }, [location.href, searchBarRef.current, movNavRef.current]);
-
-	useEffect(() => {}, [props.reduxLoader]);
+	useEffect(() => {
+		console.log(props.results);
+	}, [props.reduxLoader, props.results]);
 
 	useEffect(() => {
 		if (props.nominatedMovies.length > 0) {
@@ -115,56 +59,52 @@ function MainContent(props) {
 		setNotif(props.nominationComplete);
 	}, [props.nominationComplete]);
 
-	const movNav = document.getElementById("movableNav");
-	const box = document.getElementById("iq");
+	let onFocusInput;
 
-	if (location.href === `${location.protocol}//${location.host}/`)
-		if (location.href === `${location.protocol}//${location.host}/`) {
-			onscroll = function () {
-				if (location.href !== `${location.protocol}//${location.host}/`) {
-					return;
-				} else if (window.screen.width <= 480) {
-					scrollMobileFunction();
-				} else {
-					scrollDeskFunction();
-				}
-			};
+	if (location.href === `${location.protocol}//${location.host}/`) {
+		onFocusInput = () => {
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+			if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+				setTimeout(() => {
+					document.getElementById("movableNav").style.top = "-0rem";
+					document.getElementById("movableNav").style.position = "fixed";
+				}, 300);
+			} else return;
+		};
 
-			function scrollMobileFunction() {
-				if (
-					document.body.scrollTop > 290 ||
-					document.documentElement.scrollTop > 290 ||
-					window.scrollY > 290
-				) {
-					document.getElementById("movableNav").style.top = "0rem";
-				} else {
-					document.getElementById("movableNav").style.top = "-10rem";
-				}
+		onscroll = function () {
+			if (location.href !== `${location.protocol}//${location.host}/`) {
+				return;
+			} else if (window.screen.width <= 480) {
+				scrollMobileFunction();
+			} else {
+				scrollDeskFunction();
 			}
-			function scrollDeskFunction() {
-				if (
-					location.href !== `${location.protocol}//${location.host}/about` &&
-					document.getElementById("iq").getBoundingClientRect().top <=
-						8.800000190734863
-				) {
-					// console.log("in");
-					document.getElementById("movableNav").style.top = "0rem";
-				} else {
-					// console.log("out");
+		};
 
-					document.getElementById("movableNav").style.top = "-10rem";
-				}
+		function scrollMobileFunction() {
+			if (
+				document.body.scrollTop > 290 ||
+				document.documentElement.scrollTop > 290 ||
+				window.scrollY > 290
+			) {
+				document.getElementById("movableNav").style.top = "0rem";
+			} else {
+				document.getElementById("movableNav").style.top = "-10rem";
 			}
-			// const onFocusInput = () => {
-			// 	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-			// 	if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-			// 		setTimeout(() => {
-			// 			document.getElementById("movableNav").style.top = "-0rem";
-			// 			document.getElementById("movableNav").style.position = "fixed";
-			// 		}, 300);
-			// 	} else return;
-			// };
 		}
+		function scrollDeskFunction() {
+			if (
+				location.href !== `${location.protocol}//${location.host}/about` &&
+				document.getElementById("iq").getBoundingClientRect().top <=
+					8.800000190734863
+			) {
+				document.getElementById("movableNav").style.top = "0rem";
+			} else {
+				document.getElementById("movableNav").style.top = "-10rem";
+			}
+		}
+	}
 
 	const ondecoy = () => {
 		return;
@@ -241,19 +181,15 @@ function MainContent(props) {
 	) : null;
 
 	// requested movies display Area
-	if (props.searchResults === null) {
-		console.log(props.searchResults);
-		// setLoading({value: false});
+	if (props.results === null) {
 		searchResults = (
 			<div className={classes.initial}>
 				<div className={classes.initialSvg}></div>
 				<div className={classes.initialText}>No result found </div>
 			</div>
 		);
-	} else if (props.searchResults.length > 0) {
-		console.log(props.searchResults);
-
-		const results = props.searchResults.map((mov) => {
+	} else if (props.results.length > 0) {
+		const results = props.results.map((mov) => {
 			return (
 				<SearchResult
 					key={mov.imdbID}
@@ -521,11 +457,11 @@ function MainContent(props) {
 
 const mapStateToProps = (state) => {
 	return {
-		searchResults: state.searchResults.moviesResult,
+		results: state.searchResults.moviesResult,
 		nominatedMovies: state.nominatedMovies.nominatedMovies,
 		nominationComplete: state.nominatedMovies.nominationComplete,
 		// totalMoviesNumber: state.searchResults.moviesTotal,
-		reduxNoResult: state.searchResults.noResult,
+		// reduxNoResult: state.searchResults.noResult,
 		reduxLoader: state.searchResults.reduxLoader,
 	};
 };
@@ -533,6 +469,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchMoreMovies: (title, page) =>
+			dispatch(actions.fetchMoreMovies(title, page)),
+		fetchFirstMovies: (title, page) =>
 			dispatch(actions.fetchMoreMovies(title, page)),
 	};
 };

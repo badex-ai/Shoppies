@@ -12,7 +12,8 @@ import About from "./containers/about";
 function App(props) {
 	const [initialLoad, setInitialLoad] = useState(true);
 	const [showAlert, setShowAlert] = useState(false);
-	// console.log(history);
+	console.log(performance.getEntriesByType("navigation")[0].type);
+	//
 
 	useEffect(() => {
 		if (props.error) {
@@ -29,6 +30,8 @@ function App(props) {
 	const closeAlertHandler = () => {
 		setShowAlert(false);
 	};
+
+	let pns = performance.getEntriesByType("navigation")[0].type;
 
 	const page = <h1>HI</h1>;
 
@@ -49,7 +52,7 @@ function App(props) {
 					<Route
 						path="/"
 						element={
-							initialLoad ? (
+							initialLoad && pns !== "reload" ? (
 								<div className={classes.cont}>
 									<InitialPage />
 								</div>

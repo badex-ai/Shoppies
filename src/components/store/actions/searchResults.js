@@ -41,8 +41,6 @@ export const setMoreMovies = (movies) => {
 // }
 
 export const setLoader = (value) => {
-	console.log(value, "this is the action side");
-
 	return {
 		type: actionTypes.SET_LOADER,
 		status: value,
@@ -70,10 +68,7 @@ export const setError = (error) => {
 
 export const searchMovie = (movieTitle) => {
 	return (dispatch) => {
-		let blue;
-		blue = "searching";
 		dispatch(setLoader(true));
-		console.log(blue);
 		axios
 			.get(
 				`https://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_OMDB_API}&s=${movieTitle}`
@@ -82,8 +77,6 @@ export const searchMovie = (movieTitle) => {
 				// console.log(response);
 				dispatch(setLoader(false));
 
-				blue = "found";
-				console.log(blue);
 				if (
 					response.data.Error === "Movie not found!" ||
 					response.data.Error === "Too many results."
@@ -111,7 +104,7 @@ export const fetchMoreMovies = (movieTitle, page) => {
 	return (dispatch) => {
 		axios
 			.get(
-				`https://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_OMDB_API}=${movieTitle}&page=${page}`
+				`https://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_OMDB_API}&s=${movieTitle}&page=${page}`
 			)
 			.then((response) => {
 				// console.log("fetched more")

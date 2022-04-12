@@ -80,6 +80,7 @@ const setMoreMovies = (state, action) => {
 	);
 
 	const updatedState = { moviesResult: uniqueResult };
+	console.log(updatedState);
 	return updateState(state, updatedState);
 };
 

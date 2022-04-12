@@ -6,11 +6,9 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Link } from "react-router-dom";
 import GithubIcon from "../components/icons/GithubIcon";
 import LInkedInIcon from "../components/icons/linkedIn";
-import LInkedInIcon2 from "../components/icons/linkedInIcon";
+import LInkedInIcon2 from "../components/icons/linkedIn2";
 
 function about() {
-	console.log(history, location);
-
 	return (
 		<React.Fragment>
 			<header className={classes.header}>
@@ -44,17 +42,19 @@ function about() {
 						</p>
 					</div>
 					<div className={classes.socials}>
-						<a href="https://github.com/badex-ai/Shoppies" target="_blank">
+						<a href="https://github.com/badex-ai/Shoppies" target="blank">
 							<GithubIcon id={classes.hov} />
 						</a>
-						<a href="https://www.linkedin.com/in/badamasi-aliu/">
-							<LInkedInIcon id={classes.hov} />
+						<a href="https://www.linkedin.com/in/badamasi-aliu/" target="blank">
+							<LInkedInIcon2 id={classes.hov2} />
 						</a>
 					</div>
 				</div>
 			</section>
 			<footer className={classes.foot}>
-				<div>copyright</div>
+				<div>
+					&copy;<span> Reflick,</span> <span>2022</span>
+				</div>
 			</footer>
 		</React.Fragment>
 	);
