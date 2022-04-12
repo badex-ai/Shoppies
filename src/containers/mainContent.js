@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 // import PropTypes from 'prop-types'
 
@@ -18,13 +18,7 @@ import { v4 as uuidv4 } from "uuid";
 import Reflick from "../assets/SVG/reflick";
 
 import Smallref from "../assets/SVG/smallref";
-import {
-	NavLink,
-	// usehistory,
-	// history,
-	// Location,
-	// match,
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import classes from "./mainContent.css";
 import SearchIcon from "../components/icons/search_icon";
@@ -42,10 +36,70 @@ function MainContent(props) {
 	const [show, setShow] = useState(false);
 	const [showShare, setShowShare] = useState(false);
 
+	const searchBarRef = useRef(null);
+	const movNavRef = useRef(null);
+
+	// useEffect(() => {
+	// 	console.log(searchBarRef, movNavRef);
+	// 	if (
+	// 		location.href !== `${location.protocol}//${location.host}/about` &&
+	// 		searchBarRef.current !== null
+	// 	) {
+	// 		document.querySelector(".total").onScroll = function () {
+	// 			if (window.screen.width <= 480) {
+	// 				scrollmobileFunction();
+	// 			} else {
+	// 				scrollDeskFunction();
+	// 			}
+	// 		};
+
+	// 		function scrollmobileFunction() {
+	// 			if (
+	// 				document.body.scrollTop > 290 ||
+	// 				document.documentElement.scrollTop > 290 ||
+	// 				window.scrollY > 290
+	// 			) {
+	// 				document.getElementById("movableNav").style.top = "0rem";
+	// 			} else {
+	// 				document.getElementById("movableNav").style.top = "-10rem";
+	// 			}
+	// 		}
+	// 		// console.log(document.documentElement.childNodes);
+	// 		function scrollDeskFunction() {
+	// 			// console.log(
+	// 			// 	document.getElementById("iq").getBoundingClientRect()
+	// 			// 	// .getBoundingClientRect()
+	// 			// );
+
+	// 			if (
+	// 				location.href !== `${location.protocol}//${location.host}/about` &&
+	// 				searchBarRef.current.getBoundingClientRect().top <= 8.800000190734863
+
+	// 				// document.documentElement.scrollTop > 290 || window.scrollY > 290
+	// 			) {
+	// 				movNavRef.style.top = "0rem";
+	// 				// console.log("in");
+	// 			} else {
+	// 				movNavRef.style.top = "-10rem";
+	// 				// console.log("out");
+	// 			}
+	// 			// searchBarRef.current = null;
+	// 		}
+	// 		// const onFocusInput = () => {
+	// 		// 	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+	// 		// 	if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+	// 		// 		setTimeout(() => {
+	// 		// 			document.getElementById("movableNav").style.top = "-0rem";
+	// 		// 			document.getElementById("movableNav").style.position = "fixed";
+	// 		// 		}, 300);
+	// 		// 	} else return;
+	// 		// };
+	// 	}
+	// }, [location.href, searchBarRef.current, movNavRef.current]);
+
 	useEffect(() => {}, [props.reduxLoader]);
 
 	useEffect(() => {
-		// console.log(props.nominatedMovies," shows the nominated movies")
 		if (props.nominatedMovies.length > 0) {
 			setTimeout(() => {
 				setShowShare(true);
@@ -61,51 +115,56 @@ function MainContent(props) {
 		setNotif(props.nominationComplete);
 	}, [props.nominationComplete]);
 
-	console.log(history, location);
+	const movNav = document.getElementById("movableNav");
+	const box = document.getElementById("iq");
 
-	if (location.href !== `${location.protocol}//${location.host}/about`) {
-		console.log(`${location.protocol}//${location.host}/about`);
-		onscroll = function () {
-			if (window.screen.width <= 480) {
-				scrollmobileFunction();
-			} else {
-				scrollDeskFunction();
-			}
-		};
+	if (location.href === `${location.protocol}//${location.host}/`)
+		if (location.href === `${location.protocol}//${location.host}/`) {
+			onscroll = function () {
+				if (location.href !== `${location.protocol}//${location.host}/`) {
+					return;
+				} else if (window.screen.width <= 480) {
+					scrollMobileFunction();
+				} else {
+					scrollDeskFunction();
+				}
+			};
 
-		function scrollmobileFunction() {
-			if (
-				document.body.scrollTop > 290 ||
-				document.documentElement.scrollTop > 290 ||
-				window.scrollY > 290
-			) {
-				document.getElementById("movableNav").style.top = "0rem";
-			} else {
-				document.getElementById("movableNav").style.top = "-10rem";
+			function scrollMobileFunction() {
+				if (
+					document.body.scrollTop > 290 ||
+					document.documentElement.scrollTop > 290 ||
+					window.scrollY > 290
+				) {
+					document.getElementById("movableNav").style.top = "0rem";
+				} else {
+					document.getElementById("movableNav").style.top = "-10rem";
+				}
 			}
+			function scrollDeskFunction() {
+				if (
+					location.href !== `${location.protocol}//${location.host}/about` &&
+					document.getElementById("iq").getBoundingClientRect().top <=
+						8.800000190734863
+				) {
+					// console.log("in");
+					document.getElementById("movableNav").style.top = "0rem";
+				} else {
+					// console.log("out");
+
+					document.getElementById("movableNav").style.top = "-10rem";
+				}
+			}
+			// const onFocusInput = () => {
+			// 	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+			// 	if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+			// 		setTimeout(() => {
+			// 			document.getElementById("movableNav").style.top = "-0rem";
+			// 			document.getElementById("movableNav").style.position = "fixed";
+			// 		}, 300);
+			// 	} else return;
+			// };
 		}
-
-		function scrollDeskFunction() {
-			if (
-				document.body.scrollTop > 290 ||
-				document.documentElement.scrollTop > 290 ||
-				window.scrollY > 290
-			) {
-				document.getElementById("movableNav").style.top = "0rem";
-			} else {
-				document.getElementById("movableNav").style.top = "-10rem";
-			}
-		}
-	}
-	const onFocusInput = () => {
-		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-		if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-			setTimeout(() => {
-				document.getElementById("movableNav").style.top = "-0rem";
-				document.getElementById("movableNav").style.position = "fixed";
-			}, 300);
-		} else return;
-	};
 
 	const ondecoy = () => {
 		return;
@@ -114,6 +173,8 @@ function MainContent(props) {
 	const onCloseNotif = () => {
 		setNotif(false);
 	};
+
+	// for the mobile
 	const onShowNominated = () => {
 		document.getElementById("overlay").style.display = "block";
 		document.getElementById("overlay").style.opacity = "1";
@@ -131,6 +192,8 @@ function MainContent(props) {
 
 		setShow(false);
 	};
+
+	//
 
 	const onHandleLoading = (event) => {
 		//
@@ -298,7 +361,7 @@ function MainContent(props) {
 	}
 
 	let movableNav = (
-		<div id="movNav" className={classes.topNavMov}>
+		<div ref={movNavRef} id="movNav" className={classes.topNavMov}>
 			<div className={classes.logo}>{logo}</div>
 
 			<div className={classes.searchBarMov}>
@@ -332,7 +395,7 @@ function MainContent(props) {
 	);
 
 	return (
-		<div id="iq" className={classes.total}>
+		<div id={"total"} className={classes.total}>
 			<div onClick={onCloseSocials} className={classes.majorComp}>
 				<div id="overlay" className={classes.overlay}></div>
 
@@ -364,7 +427,7 @@ function MainContent(props) {
 								</div>
 							</div>
 							<h2 className={classes.smallCaption}>Search then share</h2>
-							<div className={classes.searchBar}>
+							<div ref={searchBarRef} id="iq" className={classes.searchBar}>
 								<span className={classes.searchIcon}>
 									<SearchIcon />
 								</span>

@@ -10,19 +10,20 @@ import LInkedInIcon2 from "../components/icons/linkedInIcon";
 
 function about() {
 	console.log(history, location);
+
 	return (
 		<React.Fragment>
 			<header className={classes.header}>
 				<div className={classes.topNav}>
 					<HeaderNav />
-					<div className={classes.mob}>
-						{/* <div onClick={onShowNominated} style={{ position: "relative" }}>
+					{/* <div className={classes.mob}> */}
+					{/* <div onClick={onShowNominated} style={{ position: "relative" }}>
 						<div className={classes.fave}>{props.nominatedMovies.length}</div>
 						<div className={classes.star}>
 							<MobileListIcon />
 						</div>
 					</div> */}
-					</div>
+					{/* </div> */}
 				</div>
 			</header>
 

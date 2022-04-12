@@ -6,20 +6,13 @@ import { useState, useEffect } from "react";
 import ErrorBoundary from "./containers/errorBoundary";
 import Alert from "./components/alert";
 import { connect } from "react-redux";
-import {
-	Routes,
-	Route,
-	Navigate,
-	useLocation,
-	listenBefore,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import About from "./containers/about";
 // import { TransitionGroup, CSSTransition } from "react-transition-group";
 function App(props) {
 	const [initialLoad, setInitialLoad] = useState(true);
 	const [showAlert, setShowAlert] = useState(false);
-
-	const location = useLocation();
+	// console.log(history);
 
 	useEffect(() => {
 		if (props.error) {
@@ -51,7 +44,7 @@ function App(props) {
 						classNames={classes.trans}
 						key={location.key}
 					> */}
-				<Routes location={location}>
+				<Routes>
 					<Route path="/about" element={<About />}></Route>
 					<Route
 						path="/"
