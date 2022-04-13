@@ -1,116 +1,97 @@
-import classes from './App.css';
+import classes from "./App.css";
 
- import  InitialPage  from './containers/initialPage';
- import MainContent from './containers/mainContent'
- import {useState,useEffect} from 'react';
-//  import {ErrorBoundary} from 'react-error-boundary'
-import ErrorBoundary from './containers/errorBoundary'
-import Alert from './components/alert'
-import {connect } from 'react-redux'
- 
-
-
-
-
-
-
+import InitialPage from "./containers/initialPage";
+import MainContent from "./containers/mainContent";
+import { useState, useEffect } from "react";
+import ErrorBoundary from "./containers/errorBoundary";
+import Alert from "./components/alert";
+import { connect } from "react-redux";
+import { Routes, Route } from "react-router-dom";
+import About from "./containers/about";
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
 function App(props) {
-  
+	const [initialLoad, setInitialLoad] = useState(true);
+	const [showAlert, setShowAlert] = useState(false);
+	//
 
- const [initialLoad, setInitialLoad] = useState(true)
- const [showAlert, setShowAlert] = useState(false)
+	useEffect(() => {
+		if (props.error) {
+			setShowAlert(true);
+		}
+	}, [props.error]);
 
+	window.onload = function () {
+		setTimeout(() => {
+			setInitialLoad(false);
+		}, 4000);
+	};
 
-  useEffect(() => {
-    if(props.error){
-    setShowAlert(true)
+	const closeAlertHandler = () => {
+		setShowAlert(false);
+	};
 
-    }
-    
-  }, [props.error])
+	let pns = performance.getEntriesByType("navigation")[0].type;
 
- window.onload = function() {
-   
+	const page = <h1>HI</h1>;
 
-  setTimeout(() => {
-    setInitialLoad(false)
-  }, 4000);
-  
-};
+	let alert = showAlert ? <Alert onClick={() => closeAlertHandler()} /> : null;
 
-  const closeAlertHandler=()=>{
-    setShowAlert(false)
-  }
-
-
-
-let alert = showAlert ? <Alert onClick={()=>closeAlertHandler()}/> : null
-
-
-  
-  return (
-    <div>
-      { initialLoad ?
-        <div className={classes.cont}>
-       
-          <InitialPage/>
-     
-        </div>
-          
-          : 
-          
-          
-          <div>
-           {alert}
-            <ErrorBoundary>
-            
-            <MainContent/>
-                    </ErrorBoundary>
-          </div>
-      }
-    </div>
-
-    
-    
-    );
+	return (
+		<div>
+			{alert}
+			<ErrorBoundary>
+				{/* <TransitionGroup> */}
+				{/* <CSSTransition
+						timeout={250}
+						classNames={classes.trans}
+						key={location.key}
+					> */}
+				<Routes>
+					<Route path="/about" element={<About />}></Route>
+					<Route
+						path="/"
+						element={
+							initialLoad && pns !== "reload" ? (
+								<div className={classes.cont}>
+									<InitialPage />
+								</div>
+							) : (
+								<MainContent />
+							)
+						}
+					></Route>
+					{/* <Route path="/" element={!onload ? page : "loaded"}></Route> */}
+				</Routes>
+				{/* </CSSTransition> */}
+				{/* </TransitionGroup> */}
+			</ErrorBoundary>
+		</div>
+	);
 }
 
-
 const mapStateToProps = (state) => ({
-  
- 
-  error: state.searchResults.error
+	error: state.searchResults.error,
+});
 
-  
-  
-})
+const mapDispatchToProps = (dispatch) => ({
+	// fetchMoreMovies: (title,page)=> dispatch(actions.fetchMoreMovies(title,page)),
+});
 
-const mapDispatchToProps =(dispatch)=>( {
-  // fetchMoreMovies: (title,page)=> dispatch(actions.fetchMoreMovies(title,page)),
-
-  
-})
-
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 // App
 
+{
+	/* <div>
+		{initialLoad ? (
+			<div className={classes.cont}>
+				<InitialPage />
+			</div>
+		) : (
+			<div>
+				{alert}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+				
+			</div>
+		)}
+	</div> */
+}
