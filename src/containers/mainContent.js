@@ -35,13 +35,14 @@ function MainContent(props) {
 	const [searchTerm, setSearchTerm] = useState("Movie Title");
 	const [show, setShow] = useState(false);
 	const [showShare, setShowShare] = useState(false);
+	const [searchTermValue, setsearchTermValue] = useState();
 
 	const searchBarRef = useRef(null);
 	const movNavRef = useRef(null);
 
 	useEffect(() => {
-		console.log(props.results);
-	}, [props.reduxLoader, props.results]);
+		// setSearchTerm(me);
+	}, [props.reduxLoader, props.results, props.totalMoviesNumber]);
 
 	useEffect(() => {
 		if (props.nominatedMovies.length > 0) {
@@ -136,9 +137,21 @@ function MainContent(props) {
 	//
 
 	const onHandleLoading = (event) => {
-		//
 		setSearchTerm(event);
 	};
+
+	function separator(numb) {
+		var str = numb.toString().split(".");
+		str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		return str.join(".");
+	}
+
+	let num;
+	if (props.totalMoviesNumber) {
+		num = separator(props.totalMoviesNumber);
+	} else {
+		num = "";
+	}
 
 	const onShareHandler = () => {
 		setSocials({ openSocials: !socials.openSocials });
@@ -392,7 +405,7 @@ function MainContent(props) {
 					<div className={classes.focus}>
 						<div className={classes.searchResultSide}>
 							<p className={classes.resultDescription}>
-								Results for:
+								<span>{num}</span> Results for:
 								<span className={classes.searchTerm}>{searchTerm}</span>
 							</p>
 							<div id="cover" className={classes.searchResults}>
@@ -460,7 +473,7 @@ const mapStateToProps = (state) => {
 		results: state.searchResults.moviesResult,
 		nominatedMovies: state.nominatedMovies.nominatedMovies,
 		nominationComplete: state.nominatedMovies.nominationComplete,
-		// totalMoviesNumber: state.searchResults.moviesTotal,
+		totalMoviesNumber: state.searchResults.moviesTotal,
 		// reduxNoResult: state.searchResults.noResult,
 		reduxLoader: state.searchResults.reduxLoader,
 	};

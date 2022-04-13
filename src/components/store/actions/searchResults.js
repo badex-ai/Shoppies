@@ -74,20 +74,16 @@ export const searchMovie = (movieTitle) => {
 				`https://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_OMDB_API}&s=${movieTitle}`
 			)
 			.then((response) => {
-				// console.log(response);
 				dispatch(setLoader(false));
 
 				if (
 					response.data.Error === "Movie not found!" ||
 					response.data.Error === "Too many results."
 				) {
-					// console.log(response.data, "this is the failed first function")
 					dispatch(searchMovieFailed("error"));
 
 					// useErrorHandler(response.data.Error)
 				} else {
-					// console.log(response.data, "this is the result of the succesful first function")
-
 					dispatch(searchMovieSuccess());
 
 					dispatch(setMovies(response.data));
@@ -95,7 +91,7 @@ export const searchMovie = (movieTitle) => {
 			})
 			.catch((Error) => {
 				// dispatch(setError(Error));
-				console.log(Error);
+				// console.log(Error);
 			});
 	};
 };
@@ -107,16 +103,13 @@ export const fetchMoreMovies = (movieTitle, page) => {
 				`https://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_OMDB_API}&s=${movieTitle}&page=${page}`
 			)
 			.then((response) => {
-				// console.log("fetched more")
 				if (!response.data.Error) {
-					//  console.log('fetched')
-
 					dispatch(searchMovieSuccess());
 					dispatch(setMoreMovies(response.data));
 				}
 			})
 			.catch((error) => {
-				console.log(error);
+				// console.log(error);
 			});
 	};
 };

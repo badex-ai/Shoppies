@@ -119,4 +119,18 @@
 
   }
 
+
+  @media screen and (max-width: 920px) {
+    .sec{
+      padding: 10rem 4rem 0 4rem 
+
+
+  }
+
+  .bx{
+    width: 100%;
+   
+}
+  }
+
   

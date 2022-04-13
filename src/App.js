@@ -12,7 +12,6 @@ import About from "./containers/about";
 function App(props) {
 	const [initialLoad, setInitialLoad] = useState(true);
 	const [showAlert, setShowAlert] = useState(false);
-	console.log(performance.getEntriesByType("navigation")[0].type);
 	//
 
 	useEffect(() => {
