@@ -182,12 +182,19 @@ li > p {
   }
 }
 
-.section > span {
+.a {
   animation: animateUp 0.7s cubic-bezier(0.2, 0.6, 0.35, 1) 1;
   animation-fill-mode: forwards;
   animation-delay: 0.1s;
   display: block;
 }
+
+
+.b {
+  transform: translateY(0px);
+  display: block;
+}
+
 
 @keyframes animateUp {
   0% {
@@ -333,7 +340,7 @@ li > p {
   min-width: 68%;
   height: 66rem;
   display: grid;
-  /* grid-template-columns: 65rem 45.8rem; */
+  
   grid-template-columns: 58% 41%;
   grid-column-gap: 0.8rem;
   /* background-color: red; */
@@ -345,6 +352,12 @@ li > p {
   font-stretch: condensed;
   font-weight: 500;
   color: rgb(52, 52, 52);
+  display: flex;
+}
+.result{
+  /* background-color: red; */
+  margin-right: .5rem;
+  font-weight: 550;
 }
 
 .searchTerm {

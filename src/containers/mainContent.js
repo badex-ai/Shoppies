@@ -25,6 +25,7 @@ import SearchIcon from "../components/icons/search_icon";
 import MobileListIcon from "../components/icons/mobileList_icon";
 import Ok from "../components/icons/ok";
 import HeaderNav from "./header";
+import TextLoader from "../components/shared/textLoader";
 
 // import * as actions from '../components/store/actions/index'
 import MovieResultContainer from "./movieResultContainer";
@@ -106,6 +107,13 @@ function MainContent(props) {
 		}
 	}
 
+	// let classState;
+	// if (location.state == null || location.state.prevPath !== "/about") {
+	// 	classState = classes.header_n;
+	// } else {
+	// 	classState = classes.header_m;
+	// }
+
 	const ondecoy = () => {
 		return;
 	};
@@ -146,7 +154,9 @@ function MainContent(props) {
 	}
 
 	let num;
-	if (props.totalMoviesNumber) {
+	if (props.reduxLoader) {
+		num = <TextLoader />;
+	} else if (props.totalMoviesNumber) {
 		num = separator(props.totalMoviesNumber);
 	} else {
 		num = "";
@@ -369,13 +379,13 @@ function MainContent(props) {
 						<div className={classes.caption}>
 							<div className={classes.bigCaption}>
 								<div className={classes.section}>
-									<span>Share your</span>
+									<span className={classes.a}>Share your</span>
 								</div>
 								<div className={classes.section}>
-									<span>favorite movies</span>
+									<span className={classes.a}>favorite movies</span>
 								</div>
 								<div className={classes.section}>
-									<span>with friends</span>
+									<span className={classes.a}>with friends</span>
 								</div>
 							</div>
 							<h2 className={classes.smallCaption}>Search then share</h2>
@@ -407,10 +417,13 @@ function MainContent(props) {
 				<main className={classes.body}>
 					<div className={classes.focus}>
 						<div className={classes.searchResultSide}>
-							<p className={classes.resultDescription}>
-								<span>{num}</span> Results for:
-								<span className={classes.searchTerm}>{searchTerm}</span>
-							</p>
+							<div className={classes.resultDescription}>
+								<span className={classes.result}>{num} </span>
+								<p>
+									Results for:
+									<span className={classes.searchTerm}>{searchTerm}</span>
+								</p>
+							</div>
 							<div id="cover" className={classes.searchResults}>
 								{content}
 								{completeOverlay}
