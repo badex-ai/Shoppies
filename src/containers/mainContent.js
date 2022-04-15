@@ -97,8 +97,7 @@ function MainContent(props) {
 		function scrollDeskFunction() {
 			if (
 				location.href !== `${location.protocol}//${location.host}/about` &&
-				document.getElementById("iq").getBoundingClientRect().top <=
-					8.800000190734863
+				document.getElementById("iq").getBoundingClientRect().top <= 8
 			) {
 				document.getElementById("movableNav").style.top = "0rem";
 			} else {
@@ -328,7 +327,11 @@ function MainContent(props) {
 
 			<nav className={classes.links}>
 				<div>
-					<NavLink to="/about">ABOUT</NavLink>
+					<NavLink
+						to={{ pathname: "/about", state: { prevPath: location.pathname } }}
+					>
+						ABOUT
+					</NavLink>
 				</div>
 			</nav>
 

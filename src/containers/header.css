@@ -26,7 +26,7 @@
     text-decoration: none;
     padding: 1rem 1rem;
     font-size: 1.4rem;
-    color: white;
+ 
     transition: 0.05s;
     font-weight: 550;
   }
@@ -36,6 +36,13 @@
     font-weight: 600;
     
   
+  }
+
+  .activeLink{
+    color: #5ddb06;
+  }
+  .no{
+        color: white;
   }
 
   @media screen and (max-width: 480px) {

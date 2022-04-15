@@ -1,18 +1,28 @@
+import { NavLink, useLocation } from "react-router-dom";
 import React from "react";
-import { NavLink } from "react-router-dom";
+// import { withRouter } from "react-router";
 import Reflick from "../assets/SVG/reflick";
 import classes from "./header.css";
 function headerNav() {
 	return (
 		<React.Fragment>
 			<div className={classes.logo}>
-				<NavLink to="/">
+				<NavLink to={"/"} state={{ prevPath: location.pathname }}>
 					<Reflick />
 				</NavLink>
 			</div>
 			<div className={classes.links}>
 				<div>
-					<NavLink to="/about">ABOUT</NavLink>
+					<NavLink
+						// exact
+						className={({ isActive }) =>
+							isActive ? classes.activeLink : classes.no
+						}
+						to={"/about"}
+						state={{ prevPath: location.pathname }}
+					>
+						ABOUT
+					</NavLink>
 				</div>
 			</div>
 		</React.Fragment>
@@ -20,3 +30,4 @@ function headerNav() {
 }
 
 export default headerNav;
+// export default withRouter(headerNav);
