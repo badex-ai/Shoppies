@@ -154,10 +154,12 @@ function MainContent(props) {
 	}
 
 	let num;
+	let format = " ";
 	if (props.reduxLoader) {
 		num = <TextLoader />;
 	} else if (props.totalMoviesNumber) {
 		num = separator(props.totalMoviesNumber);
+		format = classes.result;
 	} else {
 		num = "";
 	}
@@ -418,7 +420,7 @@ function MainContent(props) {
 					<div className={classes.focus}>
 						<div className={classes.searchResultSide}>
 							<div className={classes.resultDescription}>
-								<span className={classes.result}>{num} </span>
+								<span className={format}>{num} </span>
 								<p>
 									Results for:
 									<span className={classes.searchTerm}>{searchTerm}</span>
