@@ -3,15 +3,26 @@ import classes from "./about.css";
 import HeaderNav from "./header";
 import MobileListIcon from "../components/icons/mobileList_icon";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { Link } from "react-router-dom";
+// import { Link, useLocation } from "react-router-dom";
+
+import { Link, useLocation } from "react-router-dom";
 import GithubIcon from "../components/icons/GithubIcon";
-import LInkedInIcon from "../components/icons/linkedIn";
 import LInkedInIcon2 from "../components/icons/linkedIn2";
 
-function about() {
+function about(props) {
+	const location = useLocation();
+
+	let classState;
+	if (location.state == null || location.state.prevPath !== "/") {
+		classState = classes.header_n;
+	} else {
+		classState = classes.header_m;
+	}
+
 	return (
 		<React.Fragment>
-			<header className={classes.header}>
+			{/* <CSSTransition in={inProp} timeout={1000} classNames="head"> */}
+			<header className={[classes.header, classState].join(" ")}>
 				<div className={classes.topNav}>
 					<HeaderNav />
 					{/* <div className={classes.mob}> */}
@@ -24,6 +35,7 @@ function about() {
 					{/* </div> */}
 				</div>
 			</header>
+			{/* </CSSTransition> */}
 
 			<section className={classes.sec}>
 				<div className={classes.bx}>
