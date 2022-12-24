@@ -42,15 +42,9 @@ function about(props) {
 					<h1>About</h1>
 					<div className={classes.txt}>
 						<p>
-							Reflick is a movie sharing app that lets you send your favourite
-							movies to people using their social media. It is a single page
-							application which uses the react framework. The laboriosam, eaque
-							assumenda in vitae impedit esse quis harum cumque temporibus
-							laudantium quos magni hic provident rerum itaque nihil.lorem Lorem
-							ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-							consectetur error sapiente quis magnam sequi repudiandae impedit.
-							Eos architecto consequatur ipsa itaque maxime unde consectetur,
-							nulla modi voluptatibus, nam vel!
+							Reflick is a movie sharing application that lets you send your
+							favourite movies to people using your social media. It is a single
+							page application built using omdb's movie api.
 						</p>
 					</div>
 					<div className={classes.socials}>
